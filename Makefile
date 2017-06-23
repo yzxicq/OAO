@@ -15,7 +15,8 @@ down:
 update:
 	echo ${PWD}
 	for pp in ${submodule} 	     ;\
-	do echo $pp                  ;\
+	do echo 项目所在目录: $pp     ;\
+	cd $pp                       ;\
 	git add .                    ;\
 	git commit -m "${your.name}" ;\
 	git push                     ;\
