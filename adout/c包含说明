@@ -1,0 +1,23 @@
+
+assert		断言
+ctype		字符类测试
+errno		（部分）库函数抛出的错误代码
+float		浮点数运算
+limits		检测整型数据类型值范围
+locale		本土化
+math		数学函数
+setjmp		“非局部跳转”
+signal		信号
+stdarg		可变参数列表
+stddef		一些常数，类型和变量
+stdio		输入和输出
+stdlib		实用功能
+string		字符串函数
+time		时间和日期函数 
+
+
+
+aio		异步输入和输出
+xf86drm		DRM用户级库接口
+xf86drmMode	DRM模式设置接口
+zlib 		zlib通用压缩库的接口
