@@ -14,18 +14,18 @@
 
 参与项目
 ===========
-eval "$(ssh-agent -s)"
-ssh-add
+	eval "$(ssh-agent -s)"
+	ssh-add
+	
+	git clone git@github.com:angelllls/DATA.git
 
-git clone git@github.com:angelllls/DATA.git
 
-
-git pull
-
-git add .
-git commit -m "first commit"
-git remote add origin git@github.com:angelllls/DATA.git
-git push
+	git pull
+	
+	git add .
+	git commit -m "first commit"
+	git remote add origin git@github.com:angelllls/DATA.git
+	git push
 
 
 
