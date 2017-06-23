@@ -51,12 +51,9 @@
 	$ git clone git@github.com:angelllls/DATA.git	#第一次需要完整下载
 	$ cd DATA
 
-	$ git pull					#git数据同步到本地主机 
+	$ make down					#git数据同步到本地主机 
 	
-	$ git add .
-	$ git commit -m "first commit"
-	$ git remote add origin git@github.com:angelllls/DATA.git
-	$ git push					#本地主机数据同步到git
+	$ make update 					#本地主机数据同步到git
 
 	#git引用d.aider项目
 	$ git remote add PRO/d.aider git@github.com:angelllls/d.aider.git
