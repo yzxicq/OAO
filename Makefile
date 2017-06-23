@@ -10,9 +10,12 @@ down:
 	git pull
 	#git submodule add git@github.com:angelllls/d.aider.git PRO/d.aider
 
+
+#上传代码到git
 update:
+	for pp in ${submodule} ; do echo $pp ;done
 	git add .
-	git commit -m "$(your.name)"
+	git commit -m "${your.name}"
 	git push
 clean:
 	@echo "清理垃圾"
