@@ -1,13 +1,19 @@
 
+include makefile.common
+
 
 all:
 	@echo "没事做"
 
+#git同步到本地
+down:
+	git pull
+	#git submodule add git@github.com:angelllls/d.aider.git PRO/d.aider
 
 update:
-	git pull
-	git submodule add git@github.com:angelllls/d.aider.git PRO/d.aider
-
+	git add .
+	git commit -m "$(your.name)"
+	git push
 clean:
 	@echo "清理垃圾"
 	cd /home/angelllls/DATE/工程/s.嵌入式/开发板.nanoPC.T3/other/source/android
