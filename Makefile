@@ -13,14 +13,13 @@ down:
 
 #上传代码到git
 update:
-	echo ${PWD}
 	for p in ${submodule} ./    ;\
-	do echo 项目所在目录: \$p  ;\
-	cd \$p                     ;\
+	do cd $$p   ;\
+	pwd                 ;\
 	git add .                    ;\
 	git commit -m "${your.name}" ;\
 	git push                     ;\
-	done
+	cd ${ROOT} ;done
 clean:
 	@echo "清理垃圾"
 	cd /home/angelllls/DATE/工程/s.嵌入式/开发板.nanoPC.T3/other/source/android
@@ -33,3 +32,8 @@ clean:
 
 install:
 	@echo "为了方便"
+
+
+
+help:
+	@echo help

@@ -1,6 +1,6 @@
 
 #顶层位置
-Top=$(shell pwd)
+ROOT=$(shell pwd)
 
 
 #你的名字
