@@ -11,7 +11,7 @@ down:
 	git pull
 	# git submodule add git@github.com:angelllls/d.aider.git PRO/d.aider
 	# git fetch PRO/d.aider
-	# git subtree add -P PRO/d.aider 'PRO/d.aider/master
+	# git subtree add -P PRO/d.aider 'PRO/d.aider/master'
 
 #上传代码到git
 update:
