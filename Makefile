@@ -14,9 +14,9 @@ down:
 #上传代码到git
 update:
 	echo ${PWD}
-	for pp in ${submodule} 	     ;\
-	do echo 项目所在目录: $pp     ;\
-	cd $pp                       ;\
+	for pp in ${submodule} ./    ;\
+	do echo 项目所在目录: \$pp    ;\
+	cd \$pp                      ;\
 	git add .                    ;\
 	git commit -m "${your.name}" ;\
 	git push                     ;\
