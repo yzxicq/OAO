@@ -1,4 +1,5 @@
 
+#包含了变量好函数
 include makefile.common
 
 
@@ -8,14 +9,17 @@ all:
 #git同步到本地
 down:
 	git pull
-	#git submodule add git@github.com:angelllls/d.aider.git PRO/d.aider
-
+	# git submodule add git@github.com:angelllls/d.aider.git PRO/d.aider
+	# git fetch PRO/d.aider
+	# git subtree add -P PRO/d.aider 'PRO/d.aider/master
 
 #上传代码到git
 update:
-	for p in ${submodule} ./    ;\
-	do cd $$p   ;\
-	pwd                 ;\
+	# eval "$(ssh-agent -s)"
+	# ssh-add
+	
+	@for p in ${submodule} ./    ;\
+	do cd $$p                    ;\
 	git add .                    ;\
 	git commit -m "${your.name}" ;\
 	git push                     ;\
