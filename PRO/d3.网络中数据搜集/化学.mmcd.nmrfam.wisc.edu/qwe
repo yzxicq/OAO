@@ -1,0 +1,64 @@
+      <table border="0" cellspacing="2" cellpadding="0" width="650">
+            <tr>
+         <td align="right">
+            <form id="angle_change__raman__3082">
+      <input type="hidden" name="sample_id" value="3082" />
+<input type="hidden" name="sample_child_id" value="6988" />
+<strong>Direction of polarization of laser relative to fiducial mark:</strong><select name="sample_child_record_raman_id" onchange="sendForm('angle_change__raman__3082','http://rruff.info/index.php/r=sample_detail/module=graph_box/NODISPLAY=1','graph_box_raman__3082');sendForm('angle_change__raman__3082','http://rruff.info/index.php/r=sample_detail/download_type=sample_child_record_raman/module=download_box/NODISPLAY=1','download_box_raman__3082');">
+    
+         <option value="7947" selected="selected">unoriented (532 nm)</option>
+                     
+    
+         <option value="7948">unoriented (785 nm)</option>
+                     
+    
+         <option value="7947,7948">all data</option>
+                     
+   </select>
+      </form>
+               </td>
+      </tr>
+            <tr>
+         <td id="graph_image_raman" width="650" height="250">
+            <img border="0" src="http://rruff.info/pre_rendered_graphs/raman__3082__7947.png" />          
+         </td>
+      </tr>
+       
+      <tr>
+         <td class="chart_toolbox" width="650">
+            <table border="0">
+            <tr>
+               <td>
+                  <form method="get" name="frm_chart_toolbox" id="frm_chart_toolbox_raman">
+                  X Min: <input type="text" name="x_min" size="9" maxlength="15" value="0" />&nbsp;&nbsp;
+                  X Max: <input type="text" name="x_max" size="9" maxlength="15" value="1500" />&nbsp;&nbsp;
+                  X Sort: <select name="x_sort" size="1">
+                  <option value="asc" selected="selected">asc</option>
+                  <option value="desc">desc</option>
+                  </select>
+                  <input type="button" name="sbmt_chart_toolbox" value="refresh" onclick="sendForm('frm_chart_toolbox_raman','http://rruff.info/index.php/r=change_graph_limits/NODISPLAY=1','graph_image_raman');" />
+                  <!-- <br />
+                   Data Type: <b>processed</b>
+                  <input type="checkbox" name="chk_save_defaults_raman" value="1" />Save as my default settings for RAMAN SPECTRUM -->
+                  <input type="hidden" name="sample_id" value="" />
+                  <!-- <input type="hidden" name="sample_child_id" value="" /> -->
+                  <input type="hidden" name="graph_type" value="raman" />
+                                    <input type="hidden" name="sample_child_record_raman_id" value="7947" />
+                                    </form>
+               </td>
+               <td valign="top">
+                  <form method="get" name="frm_chart_toolbox" id="frm_chart_reset_raman">                                
+                  <input type="hidden" name="sample_id" value="" />
+                                    <input type="hidden" name="sample_child_record_raman_id" value="7947" />
+                                    <input type="hidden" name="graph_type" value="raman" />
+                  <input type="hidden" name="x_sort" value="asc" />
+                  <input type="hidden" name="x_min" value="0" />
+                  <input type="hidden" name="x_max" value="1500" />
+                  <input type="button" name="sbmt_chart_toolbox" value="reset" onclick="sendForm('frm_chart_reset_raman','http://rruff.info/index.php/r=change_graph_limits/NODISPLAY=1','graph_image_raman');" />
+                  </form>
+               </td>
+            </tr>
+                        </table>
+         </td>
+      </tr>
+      </table>

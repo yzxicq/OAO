@@ -1,0 +1,9 @@
+#! /bin/bash
+
+
+awk 'BEGIN{FS="<img src=\""} /Structure:<\/th>/{getline;print $2}' html/*.html |(while read line;do
+line=${line%%\"*}
+"$line"
+
+done)
+

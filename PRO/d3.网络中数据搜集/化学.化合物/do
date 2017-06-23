@@ -1,0 +1,74 @@
+#! /bin/bash
+
+
+while true;do
+((num++));
+#108983
+#curl http://www.basechem.org/chemical/$num >html/$num.html
+[[ -f "html/$num.html" ]] || break
+
+
+##CAS
+a=$(awk 'BEGIN{FS="</b>"} /<b>CAS号：</{;print $2}' html/$num.html)
+a=${a%%<*}
+echo "CSA:	$a" >>txt/$num
+
+##中文名称
+a=$(awk 'BEGIN{FS="<span>"} /<b>中文名称：</{;print $2}' html/$num.html)
+a=${a%%<*}
+echo "中文名称:	$a" >>txt/$num
+
+##英文名称
+a=$(awk 'BEGIN{FS="<span>"} /<b>英文名称：</{;print $2}' html/$num.html)
+a=${a%%<*}
+echo "英文名称:	$a" >>txt/$num
+
+##别名名称
+a=$(awk 'BEGIN{FS="<span>"} /<b>别名名称：</{;print $2}' html/$num.html)
+a=${a%%<*}
+echo "别名名称:	$a" >>txt/$num
+
+##分子式
+a=$(awk 'BEGIN{FS="：<\/b>"} />分&nbsp;子&nbsp;式：</{;print $2}' html/$num.html)
+a=${a//<\/li>/};a=${a//<sub>0/₀};a=${a//<sub>1/₁};a=${a//<sub>2/₂};a=${a//<sub>3/₃};a=${a//<sub>4/₄};a=${a//<sub>5/₅};a=${a//<sub>6/₆};a=${a//<sub>7/₇};a=${a//<sub>8/₈};a=${a//<sub>9/₉};a=${a//0<\/sub>/₀};a=${a//1<\/sub>/₁};a=${a//2<\/sub>/₂};a=${a//3<\/sub>/₃};a=${a//4<\/sub>/₄};a=${a//5<\/sub>/₅};a=${a//6<\/sub>/₆};a=${a//7<\/sub>/₇};a=${a//8<\/sub>/₈};a=${a//9<\/sub>/₉};a=${a//<\/sub>/}
+echo "分子式:	$a" >>txt/$num
+
+##分子量
+a=$(awk 'BEGIN{FS="：<\/b>"} />分&nbsp;子&nbsp;量：</{;print $2}' html/$num.html)
+a=${a%%<*}
+echo "分子量:	$a" >>txt/$num
+
+##MDL
+a=$(awk 'BEGIN{FS="</b>"} /<b>MDL号：</{;print $2}' html/$num.html)
+a=${a%%<*}
+echo "MDL:	$a" >>txt/$num
+
+##EINECS
+a=$(awk 'BEGIN{FS="</b>"} /<b>EINECS号：</{;print $2}' html/$num.html)
+a=${a%%<*}
+echo "EINECS:	$a" >>txt/$num
+
+##RTECS
+a=$(awk 'BEGIN{FS="</b>"} /<b>RTECS号：</{;print $2}' html/$num.html)
+a=${a%%<*}
+echo "RTECS:	$a" >>txt/$num
+
+##BRN
+a=$(awk 'BEGIN{FS="</b>"} /<b>BRN号：</{;print $2}' html/$num.html)
+a=${a%%<*}
+echo "BRN:	$a" >>txt/$num
+
+##PubChem
+a=$(awk 'BEGIN{FS="</b>"} /<b>PubChem号：</{;print $2}' html/$num.html)
+a=${a%%<*}
+echo "PubChem:	$a" >>txt/$num
+
+##
+#a=$(awk 'BEGIN{FS="</b>"} //{;print $2}' html/$num.html)
+#a=${a%%<*}
+#echo ":	$a" >>txt/$num
+
+
+
+
+done

@@ -1,0 +1,105 @@
+#! /bin/bash
+#html格式的公式可视化， $1=字符串
+function html_to_match () {
+a=$1
+a=${a//<sub>0/₀};a=${a//<sub>1/₁};a=${a//<sub>2/₂};a=${a//<sub>3/₃};a=${a//<sub>4/₄};a=${a//<sub>5/₅};a=${a//<sub>6/₆};a=${a//<sub>7/₇};a=${a//<sub>8/₈};a=${a//<sub>9/₉};a=${a//0<\/sub>/₀};a=${a//1<\/sub>/₁};a=${a//2<\/sub>/₂};a=${a//3<\/sub>/₃};a=${a//4<\/sub>/₄};a=${a//5<\/sub>/₅};a=${a//6<\/sub>/₆};a=${a//7<\/sub>/₇};a=${a//8<\/sub>/₈};a=${a//9<\/sub>/₉};a=${a//<\/sub>/}
+#¹²³⁴⁵⁶⁷⁸⁹⁰⁺⁻
+a=${a//<sup>1/¹};a=${a//<sup>2/²};a=${a//<sup>3/³};a=${a//<sup>4/⁴};a=${a//<sup>5/⁵};a=${a//<sup>6/⁶};a=${a//1<\/sup>/¹};a=${a//2<\/sup>/²};a=${a//3<\/sup>/³};a=${a//4<\/sup>/⁴};a=${a//5<\/sup>/⁵};a=${a//6<\/sup>/⁶};a=${a//+<\/sup>/⁺};a=${a//-<\/sup>/⁻}
+#a=${a//<span style=\"\"border: 1px solid #333; font-size:7px;\"\">   <\/span>/}	###
+printf "$a"
+}
+#10进程下载rruff.info
+function down_html () {
+aa=10;while ((aa--));do
+l=$(cat list);i=0
+for pp in $l;do
+z=${#i};((z--));z=${i:$z:1}
+if [[ "$aa" == "$z" ]] ;then
+	[[ -f "html/$pp" ]] || wget http://rruff.info/all/display=default/$pp -P html/
+	awk "BEGIN{FS=\"'\"}/Javascript:MM_openBrWindow/{print \$2}" html/$pp |(while read line;do ((num++));[[ -f "txt/_img/$pp-$num" ]] || wget "$line" -O "txt/_img/$pp-$num";done)
+	#link=$(awk 'BEGIN{FS="\""}/>\[ Download Excel File \]</{print $2}' html/$pp);wget $link -P txt/other/
+
+	###拉曼光谱###
+	a=;a=$(awk '/RAMAN SPECTRUM/{getline;if($1=="</th>"){print 1}}' html/$pp);[[ "$a" == "1" ]] || continue 
+	a=;a=$(awk '/<div id=\"download_box_raman__/{getline;getline;if($0~!/To download sample data/){print NR}}' html/$pp)
+	if ((a)) ;then
+	awk "BEGIN{FS=\"\\\"\"} NR==$a{i=1} /<a href=/&&!/_blank\"><img/&&/(Processed)/{if(i==1)print \$2,\$5} /<\/table>/{i=0}" html/$pp |(while read link;do ((num++));link=${link%% >*};wget $link -O txt/_拉曼光谱/$pp-$num ;done)
+	else 
+	id=$(awk 'BEGIN{FS="value=\""} /<form id=\"angle_change__raman__/{getline;printf "%s ",$2;getline;printf "%s ",$2}' html/$pp);id=(${id//\" \/>/})
+	sample_id=$id;sample_child_id=${id[1]}
+	id=$(awk 'BEGIN{FS="\""} /<form id=\"angle_change__raman__/{i=1} /<option value=/{if(i==1)print $2} /<\/form>/{i=0}' html/$pp)
+	for sample_child_record_raman_id in $id;do
+	[[ "$sample_child_record_raman_id" =~ "," ]] && continue
+	shex=$(awk "BEGIN{FS=\">\"}/<form id=\\\"angle_change__raman__/{i=1} /<option value=\\\"$sample_child_record_raman_id\\\"/{if(i==1)print \$2} /<\/form>/{i=0}" html/$pp);shex=${shex%%<*};shex=${shex// /_}
+	[[ -f "tmp/$pp-$sample_child_record_raman_id" ]] || wget "http://rruff.info/index.php/r=sample_detail/download_type=sample_child_record_raman/module=download_box/NODISPLAY=1/sample_id=$sample_id/sample_child_id=$sample_child_id/sample_child_record_raman_id=$sample_child_record_raman_id" -O "tmp/$pp-$sample_child_record_raman_id" >& /dev/null
+	awk "BEGIN{FS=\"\\\"\"} /<a href=/&&!/_blank\"><img/&&/Raman Data/{print \$2,\$5}" tmp/$pp-$sample_child_record_raman_id |(while read link;do ((num++));link=${link%% >*};[[ -f "txt/_拉曼光谱/$pp-$num" ]] || wget $link -O txt/_拉曼光谱/$pp-$shex-$num ;done)
+	done
+	fi
+
+
+
+
+
+
+fi
+((i++));done &
+done
+}
+
+function make_list () {
+echo "$1:"
+echo "RRUFF ID:	$1" > txt/$1
+
+a=$(awk 'BEGIN{FS="<\/strong>"}/>Name:</{print $2}' html/$1);a=${a%%<*};a=${a// /}
+echo "英文.名称:	$a" >> txt/$1
+
+a=$(awk "BEGIN{FS=\"\\\",\\\"\"}/$1/{print \$2;exit}" date);a=$(html_to_match $a)
+echo "RRUFF.化学式:	$a" >> txt/$1
+
+a=$(awk "BEGIN{FS=\"\\\",\\\"\"}/$1/{print \$3;exit}" date);a=$(html_to_match $a)
+echo "IMA.化学式:	$a" >> txt/$1
+
+a=$(awk "BEGIN{FS=\"\\\",\\\"\"}/$1/{print \$5;exit}" date)
+echo "IMA.号:		$a" >> txt/$1
+
+
+
+a=$(awk 'BEGIN{FS="<\/strong>"}/>Locality:</{print $2}' html/$1);a=${a%%<*};a=${a// /}
+echo "分布地区:	$a" >> txt/$1
+
+a=$(awk 'BEGIN{FS="<\/strong> "}/>Description:</{print $2}' html/$1);a=${a%%<*}
+echo "des:		$a" >> txt/$1
+
+a=$(cd txt;ls _img/$1* 2>/dev/null)
+echo "img:		"$a >> txt/$1
+
+a=$(cd txt;ls _拉曼光谱/$1* 2>/dev/null)
+echo "拉曼光谱:		"$a >> txt/$1
+
+
+}
+
+
+################################################
+
+
+
+
+
+
+for pp in $(cat list) ;do
+
+make_list $pp
+done
+
+
+
+
+
+
+
+
+
+
+
+

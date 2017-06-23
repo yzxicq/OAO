@@ -1,0 +1,26 @@
+#! /bin/bash
+
+#while true;do ((num++))
+###网页下载###
+#wget http://cheman.chemnet.com/dict/cas/$num.html -P html/
+###CSA###
+#a=$(awk 'BEGIN{FS=">"}/<li class="w22"><a href=\"\/dict\/dict/{print $3}' html/$num.html);a=${a//\&nbsp;/};a=${a//<\/a/}
+#((num>622)) && break;done
+
+function down_html () {
+aa=10;while ((aa--));do
+l=$(cat _LIST_);i=0
+for pp in $l;do
+z=${#i};((z--));z=${i:$z:1}
+if [[ "$aa" == "$z" ]] ;then
+[[ -f "html01/$pp.html" ]]curl "http://webbook.nist.gov/cgi/cbook.cgi?ID=${pp}&Units=SI&cTG=on&cIR=on&cTC=on&cTZ=on&cTP=on&cMS=on&cTR=on&cUV=on&cIE=on&cGC=on&cIC=on&cES=on&cDI=on&cSO=on" >html01/$pp.html
+
+fi
+((i++));done &
+done
+}
+
+
+
+
+down_html

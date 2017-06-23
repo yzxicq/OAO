@@ -1,0 +1,15 @@
+#! /bin/bash
+
+
+while true;do
+((num++));
+#108983
+#curl http://www.basechem.org/chemical/$num >html/$num.html
+[[ -f "html/$num.html" ]] || break
+
+
+a=$(awk 'BEGIN{FS="</b>"} /<b>CAS号：</{;print $2}' html/$num.html)
+a=${a%%<*}
+echo "$num	:	$a"
+
+done

@@ -1,0 +1,15 @@
+#! /bin/bash
+
+function down_img () {
+while true;do
+((num++))
+[[ -f "html/$num" ]] && (a=$(awk 'BEGIN{FS="img&amp;id="} /\/ArticlesHandler.ashx\?type=img&amp/{print $2}' html/$num)
+a=${a%%\"*}
+[[ -f "txt/img/$a" ]] || (wget "http://cssp.chemspider.com/ArticlesHandler.ashx?type=img&id=$a" -O txt/img/$a &)
+
+echo "$num	:	$a")
+
+done
+}
+
+
