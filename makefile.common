@@ -1,6 +1,6 @@
 
 #顶层位置
-Top=/home/angelllls/文档
+Top=$(shell pwd)
 
 
 #你的名字
