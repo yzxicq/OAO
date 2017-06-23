@@ -1,0 +1,151 @@
+#! /bin/bash
+
+export root=$(pwd)
+name=$1
+#英文翻译
+er()
+{
+	(return -1)
+}
+
+
+#打印
+pLIST()	{ #$1:目录 $2:关键字 
+list() {
+file=$(awk "\$1==\"$2\"{if(\$2==\".\")t=\$1;else t=\$2;print t }" $1/_LIST_)
+}
+sdir=$1
+a=$(list_fun $2)
+
+file=$(find $sdir -type f -name "$a" 2>/dev/null)
+[[ -n "$file" ]] && less $file && return 1  #直接打开
+list $sdir $a
+[[ -f "$sdir/$file" ]] && less $sdir/$file && return 1 #通过_LIST_打开
+
+
+ldir=$(cat $sdir/_LIST_ | (while read line;do line=($line);[[ "${line[1]}" != "." ]] && line=${line[1]};[[ -d "$sdir/$line" ]] && echo $line;done))
+[[ -n "$ldir" ]] || return 0
+for pp in $ldir;do
+tmp="$sdir/$pp"
+if [[ -f $tmp/_LIST_ ]];then
+list $tmp $a;[[ -f "$tmp/$file" ]] && less $tmp/$file && return 1 #通过_LIST_指定的目录打开
+fi
+if [[ -d "$tmp/keys" ]];then
+list $tmp/keys $a;[[ -f "$tmp/keys/$file" ]] && less $tmp/$file && return 1
+fi
+if [[ -d "$tmp/cmds" ]];then
+list $tmp/keys $a;[[ -f "$tmp/cmds/$file" ]] && less $tmp/$file && return 1
+fi
+if [[ -d "$tmp/cmds" ]];then
+list $tmp/keys $a;[[ -f "$tmp/cmds/$file" ]] && less $tmp/$file && return 1
+fi
+done
+# 这里没有执行过
+}
+
+language() {	#$1:语言名 $2:属性
+type=$2;cat $root/.script/$1 2>/dev/null
+while true ; do case $type in :q)return;;help)cat help;;start)less start;;""):;;
+	cmds)		echo "" ;echo "[详细] #命令," ;;
+	keys)		printf "\n[关键字]:\n" ;ls keys	;;
+	lib)echo "";;
+		
+	example|ex.)	printf "\n[示例]:\n\t" ;ls example
+			printf "\n[命令]:\n\t:find\t#搜索关键字\n\t:q\t#返回\n\t:echo\t#查看示例\n"		
+			read -p "命令:" cmd type
+			case $cmd in
+			:q):;;
+			:find) find example -name "*$type*"	;;
+			:echo) less example/$type	;;
+			*):	 ;;	
+			esac;;
+
+	*)		pLIST keys $type && pLIST lib $type ;;
+	esac
+	read -p "前关键字:$type 请输入:" type;done
+}
+
+
+object()	#$1:物质种类 $2:属性 		/没完成/
+{	type=$2
+	while true ; do
+	case $type in
+	help)		cat help		;; 
+	start)		vi start		;; 
+	"")		:			;;
+	*)			;;
+	esac
+	read -p "请输入关键字:"  type
+	done
+}
+list_fun() {
+case $1 in
+语言)echo language;;
+物源|substance|物质)echo object;;
+C)echo c;;
+/)echo 正斜线 ;;
+*)echo $1;;
+
+esac
+}
+
+class()	{ #$1:类 $2:名
+### 准备
+cat .script/$name 2>/dev/null;cd class.$1;type=$2
+###
+while true;do type=$(list_fun $type)
+case $type in start)cat start ;;help)cat help ;;*)
+	if [[ $type != "" ]];then
+	cd *.${type}
+	[[ -f e ]] && ./e
+	[[ -f .e ]] && ./.e
+	$1 $type
+	cd ..
+	fi
+;;esac;read -p "$type:子类型:" type;done
+}
+
+#开始
+
+
+	name=$(list_fun $name)
+	case $name in
+	start)		cat Start		;; 
+	"")		:			;;
+	language)
+	class language				;;
+	object)
+	class object				;;
+	c|java|shell|sql)
+	cd class.language/*.$name
+	language $name $2			;;
+	at\&t)
+	cd class.language/hu-ma2.c/at\&t
+	language $name $2			;;
+	
+	*)		 echo all		;;
+	esac
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
