@@ -1,0 +1,279 @@
+
+boot.image：     文件格式 elf32-i386
+
+
+Disassembly of section .text:
+
+00007c00 <_start>:
+    7c00:	eb 63                	jmp    7c65 <L_after_BPB>
+    7c02:	90                   	nop
+	...
+
+00007c04 <mode>:
+	...
+
+00007c05 <disk_address_packet>:
+    7c05:	00 00                	add    %al,(%eax)
+	...
+
+00007c09 <heads>:
+    7c09:	00 00                	add    %al,(%eax)
+	...
+
+00007c0d <cylinders>:
+	...
+
+00007c0f <sector_start>:
+	...
+
+00007c10 <head_start>:
+	...
+
+00007c11 <cylinder_start>:
+	...
+
+00007c5a <kernel_address>:
+    7c5a:	00                   	.byte 0x0
+    7c5b:	80                   	.byte 0x80
+
+00007c5c <kernel_sector>:
+    7c5c:	01 00                	add    %eax,(%eax)
+	...
+
+00007c60 <kernel_sector_high>:
+    7c60:	00 00                	add    %al,(%eax)
+	...
+
+00007c64 <boot_drive>:
+    7c64:	ff                   	.byte 0xff
+
+00007c65 <L_after_BPB>:
+    7c65:	fa                   	cli    
+
+00007c66 <boot_drive_check>:
+    7c66:	eb 05                	jmp    7c6d <boot_drive_check+0x7>
+    7c68:	f6 c2 80             	test   $0x80,%dl
+    7c6b:	74 05                	je     7c72 <boot_drive_check+0xc>
+    7c6d:	f6 c2 70             	test   $0x70,%dl
+    7c70:	74 02                	je     7c74 <boot_drive_check+0xe>
+    7c72:	b2 80                	mov    $0x80,%dl
+    7c74:	ea                   	.byte 0xea
+    7c75:	79 7c                	jns    7cf3 <L_final_init+0x2>
+	...
+
+00007c79 <real_start>:
+    7c79:	31 c0                	xor    %eax,%eax
+    7c7b:	8e d8                	mov    %eax,%ds
+    7c7d:	8e d0                	mov    %eax,%ss
+    7c7f:	bc 00 20 fb a0       	mov    $0xa0fb2000,%esp
+    7c84:	64 7c 3c             	fs jl  7cc3 <lba_mode+0x17>
+    7c87:	ff 74 02 88          	pushl  -0x78(%edx,%eax,1)
+    7c8b:	c2 52 be             	ret    $0xbe52
+    7c8e:	80 7d e8 17          	cmpb   $0x17,-0x18(%ebp)
+    7c92:	01 be 05 7c b4 41    	add    %edi,0x41b47c05(%esi)
+    7c98:	bb aa 55 cd 13       	mov    $0x13cd55aa,%ebx
+    7c9d:	5a                   	pop    %edx
+    7c9e:	52                   	push   %edx
+    7c9f:	72 3d                	jb     7cde <L_chs_mode>
+    7ca1:	81 fb 55 aa 75 37    	cmp    $0x3775aa55,%ebx
+    7ca7:	83 e1 01             	and    $0x1,%ecx
+    7caa:	74 32                	je     7cde <L_chs_mode>
+
+00007cac <lba_mode>:
+    7cac:	31 c0                	xor    %eax,%eax
+    7cae:	89 44 04 40          	mov    %eax,0x40(%esp,%eax,1)
+    7cb2:	88 44 ff 89          	mov    %al,-0x77(%edi,%edi,8)
+    7cb6:	44                   	inc    %esp
+    7cb7:	02 c7                	add    %bh,%al
+    7cb9:	04 10                	add    $0x10,%al
+    7cbb:	00 66 8b             	add    %ah,-0x75(%esi)
+    7cbe:	1e                   	push   %ds
+    7cbf:	5c                   	pop    %esp
+    7cc0:	7c 66                	jl     7d28 <setup_sectors+0x14>
+    7cc2:	89 5c 08 66          	mov    %ebx,0x66(%eax,%ecx,1)
+    7cc6:	8b 1e                	mov    (%esi),%ebx
+    7cc8:	60                   	pusha  
+    7cc9:	7c 66                	jl     7d31 <setup_sectors+0x1d>
+    7ccb:	89 5c 0c c7          	mov    %ebx,-0x39(%esp,%ecx,1)
+    7ccf:	44                   	inc    %esp
+    7cd0:	06                   	push   %es
+    7cd1:	00 70 b4             	add    %dh,-0x4c(%eax)
+    7cd4:	42                   	inc    %edx
+    7cd5:	cd 13                	int    $0x13
+    7cd7:	72 05                	jb     7cde <L_chs_mode>
+    7cd9:	bb 00 70 eb 76       	mov    $0x76eb7000,%ebx
+
+00007cde <L_chs_mode>:
+    7cde:	b4 08                	mov    $0x8,%ah
+    7ce0:	cd 13                	int    $0x13
+    7ce2:	73 0d                	jae    7cf1 <L_final_init>
+    7ce4:	5a                   	pop    %edx
+    7ce5:	84 d2                	test   %dl,%dl
+    7ce7:	0f 83 d8 00 be 8b    	jae    8bbe7dc5 <__bss_start+0x8bbdffc5>
+    7ced:	7d e9                	jge    7cd8 <lba_mode+0x2c>
+    7cef:	82                   	(bad)  
+	...
+
+00007cf1 <L_final_init>:
+    7cf1:	66 0f b6 c6          	movzbw %dh,%ax
+    7cf5:	88 64 ff 40          	mov    %ah,0x40(%edi,%edi,8)
+    7cf9:	66 89 44 04 0f       	mov    %ax,0xf(%esp,%eax,1)
+    7cfe:	b6 d1                	mov    $0xd1,%dh
+    7d00:	c1 e2 02             	shl    $0x2,%edx
+    7d03:	88 e8                	mov    %ch,%al
+    7d05:	88 f4                	mov    %dh,%ah
+    7d07:	40                   	inc    %eax
+    7d08:	89 44 08 0f          	mov    %eax,0xf(%eax,%ecx,1)
+    7d0c:	b6 c2                	mov    $0xc2,%dh
+    7d0e:	c0 e8 02             	shr    $0x2,%al
+    7d11:	66                   	data16
+    7d12:	89                   	.byte 0x89
+    7d13:	04                   	.byte 0x4
+
+00007d14 <setup_sectors>:
+    7d14:	66 a1 60 7c 66 09    	mov    0x9667c60,%ax
+    7d1a:	c0                   	(bad)  
+    7d1b:	75 4e                	jne    7d6b <L_geometry_error>
+    7d1d:	66 a1 5c 7c 66 31    	mov    0x31667c5c,%ax
+    7d23:	d2 66 f7             	shlb   %cl,-0x9(%esi)
+    7d26:	34 88                	xor    $0x88,%al
+    7d28:	d1                   	(bad)  
+    7d29:	31 d2                	xor    %edx,%edx
+    7d2b:	66 f7 74 04 3b       	divw   0x3b(%esp,%eax,1)
+    7d30:	44                   	inc    %esp
+    7d31:	08 7d 37             	or     %bh,0x37(%ebp)
+    7d34:	fe c1                	inc    %cl
+    7d36:	88 c5                	mov    %al,%ch
+    7d38:	30 c0                	xor    %al,%al
+    7d3a:	c1 e8 02             	shr    $0x2,%eax
+    7d3d:	08 c1                	or     %al,%cl
+    7d3f:	88 d0                	mov    %dl,%al
+    7d41:	5a                   	pop    %edx
+    7d42:	88 c6                	mov    %al,%dh
+    7d44:	bb 00 70 8e c3       	mov    $0xc38e7000,%ebx
+    7d49:	31 db                	xor    %ebx,%ebx
+    7d4b:	b8 01 02 cd 13       	mov    $0x13cd0201,%eax
+    7d50:	72 1e                	jb     7d70 <L_read_error>
+    7d52:	8c c3                	mov    %es,%ebx
+
+00007d54 <L_copy_buffer>:
+    7d54:	60                   	pusha  
+    7d55:	1e                   	push   %ds
+    7d56:	b9 00 01 8e db       	mov    $0xdb8e0100,%ecx
+    7d5b:	31 f6                	xor    %esi,%esi
+    7d5d:	bf 00 80 8e c6       	mov    $0xc68e8000,%edi
+    7d62:	fc                   	cld    
+    7d63:	f3 a5                	rep movsl %ds:(%esi),%es:(%edi)
+    7d65:	1f                   	pop    %ds
+    7d66:	61                   	popa   
+    7d67:	ff 26                	jmp    *(%esi)
+    7d69:	5a                   	pop    %edx
+    7d6a:	7c                   	.byte 0x7c
+
+00007d6b <L_geometry_error>:
+    7d6b:	be 86 7d eb 03       	mov    $0x3eb7d86,%esi
+
+00007d70 <L_read_error>:
+    7d70:	be                   	.byte 0xbe
+    7d71:	95                   	xchg   %eax,%ebp
+    7d72:	7d                   	.byte 0x7d
+
+00007d73 <L_error_message>:
+    7d73:	e8                   	.byte 0xe8
+    7d74:	34 00                	xor    $0x0,%al
+
+00007d76 <L_general_error>:
+    7d76:	be 9a 7d e8 2e       	mov    $0x2ee87d9a,%esi
+    7d7b:	00 cd                	add    %cl,%ch
+    7d7d:	18                   	.byte 0x18
+
+00007d7e <L_stop>:
+    7d7e:	eb fe                	jmp    7d7e <L_stop>
+
+00007d80 <notification_string>:
+    7d80:	47                   	inc    %edi
+    7d81:	52                   	push   %edx
+    7d82:	55                   	push   %ebp
+    7d83:	42                   	inc    %edx
+    7d84:	20 00                	and    %al,(%eax)
+
+00007d86 <geometry_error_string>:
+    7d86:	47                   	inc    %edi
+    7d87:	65 6f                	outsl  %gs:(%esi),(%dx)
+    7d89:	6d                   	insl   (%dx),%es:(%edi)
+	...
+
+00007d8b <hd_probe_error_string>:
+    7d8b:	48                   	dec    %eax
+    7d8c:	61                   	popa   
+    7d8d:	72 64                	jb     7df3 <fd_probe_error_string+0x19>
+    7d8f:	20 44 69 73          	and    %al,0x73(%ecx,%ebp,2)
+    7d93:	6b                   	.byte 0x6b
+	...
+
+00007d95 <read_error_string>:
+    7d95:	52                   	push   %edx
+    7d96:	65 61                	gs popa 
+    7d98:	64                   	fs
+	...
+
+00007d9a <general_error_string>:
+    7d9a:	20 45 72             	and    %al,0x72(%ebp)
+    7d9d:	72 6f                	jb     7e0e <__bss_start+0xe>
+    7d9f:	72 0d                	jb     7dae <L_message+0x4>
+    7da1:	0a 00                	or     (%eax),%al
+    7da3:	bb 01 00 b4 0e       	mov    $0xeb40001,%ebx
+    7da8:	cd 10                	int    $0x10
+
+00007daa <L_message>:
+    7daa:	ac                   	lods   %ds:(%esi),%al
+    7dab:	3c 00                	cmp    $0x0,%al
+    7dad:	75 f4                	jne    7da3 <general_error_string+0x9>
+    7daf:	c3                   	ret    
+	...
+
+00007db8 <nt_magic>:
+    7db8:	00 00                	add    %al,(%eax)
+    7dba:	00 00                	add    %al,(%eax)
+	...
+
+00007dbe <L_probe_values>:
+    7dbe:	24 12                	and    $0x12,%al
+    7dc0:	0f 09                	wbinvd 
+	...
+
+00007dc3 <L_floppy_probe>:
+    7dc3:	52                   	push   %edx
+    7dc4:	be                   	.byte 0xbe
+    7dc5:	bd                   	.byte 0xbd
+    7dc6:	7d                   	.byte 0x7d
+
+00007dc7 <L_probe_loop>:
+    7dc7:	31 c0                	xor    %eax,%eax
+    7dc9:	cd 13                	int    $0x13
+    7dcb:	46                   	inc    %esi
+    7dcc:	8a 0c 84             	mov    (%esp,%eax,4),%cl
+    7dcf:	c9                   	leave  
+    7dd0:	75 0f                	jne    7de1 <fd_probe_error_string+0x7>
+    7dd2:	be da 7d e8 d2       	mov    $0xd2e87dda,%esi
+    7dd7:	ff                   	(bad)  
+    7dd8:	eb 9c                	jmp    7d76 <L_general_error>
+
+00007dda <fd_probe_error_string>:
+    7dda:	46                   	inc    %esi
+    7ddb:	6c                   	insb   (%dx),%es:(%edi)
+    7ddc:	6f                   	outsl  %ds:(%esi),(%dx)
+    7ddd:	70 70                	jo     7e4f <__bss_start+0x4f>
+    7ddf:	79 00                	jns    7de1 <fd_probe_error_string+0x7>
+    7de1:	bb 00 70 8e c3       	mov    $0xc38e7000,%ebx
+    7de6:	31 db                	xor    %ebx,%ebx
+    7de8:	b8 01 02 b5 00       	mov    $0xb50201,%eax
+    7ded:	b6 00                	mov    $0x0,%dh
+    7def:	cd 13                	int    $0x13
+    7df1:	72 d4                	jb     7dc7 <L_probe_loop>
+    7df3:	b6 01                	mov    $0x1,%dh
+    7df5:	b5 4f                	mov    $0x4f,%ch
+    7df7:	e9 f7 fe 00 00       	jmp    17cf3 <__bss_start+0xfef3>
+    7dfc:	00 00                	add    %al,(%eax)
+    7dfe:	55                   	push   %ebp
+    7dff:	aa                   	stos   %al,%es:(%edi)

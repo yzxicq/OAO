@@ -1,0 +1,28 @@
+
+
+boot.img
+	这个被拷贝到0x7C00上，在第一扇区
+
+diskboot.img
+	第 2 个扇区
+
+kernel.img
+	第 3~ n 个扇区, n<63，
+boot_hybrid.img
+cdboot.img 
+	cd启动引导
+pxeboot.img 
+	PXE远程启动
+lnxboot.img 
+lzma_decompress.img
+
+
+vmlinux		ELF文件，原始的文件
+
+vmlinuz		可引导的、压缩的内核
+
+initrd.img	被用来临时的引导硬件到实际内核vmlinuz能够接管并继续引导的状态
+
+ulmage		uboot启动要调用的linux镜像
+
+zImage		可引导解压启动+vmlinux的压缩数据，在0X0地址运行

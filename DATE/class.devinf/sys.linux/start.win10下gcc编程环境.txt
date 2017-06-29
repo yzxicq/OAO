@@ -1,0 +1,13 @@
+#windows操作系统下最好用Notepad++编辑器打开！！！
+
+
+#msys2 - 在windows操作系统下gcc编译搭建
+
+1,	https://github.com/msys2
+2,	登陆官网 http://www.msys2.org/ 点击下载 "msys2-[arch]-[time].exe"  #[arch]为你的系统构架，[time]为最新版本日期
+	安装其exe文件，并选择恰当的目录，一般选非c盘，一步一步的选择，直到安装完成。
+	打开[msys2_root]\msys64\msys2.exe ,会出现命令行，这个就是shell终端了,还需要初始化，在内输入:
+		$ pacman -Syu	#“$”代表其后是shell命令,不需实际写入。
+
+#介绍msys2
+	gcc是一个免费而强大的编译工具，主要工作在linux，msys2是最新的gcc等编译工具组合

@@ -1,0 +1,122 @@
+
+
+#x86 bios
+	0,intel x86 平台指令可控对象如下:
+		cpu{寄存器{eax{} ebx ecx edx } } 内存 端口
+	1,加电后,主板会产生一条RESET信号到cpu，cpu状态如下:
+		CR0   =  0x0000 0000 6000 0010  #CR0.PE=0,CR0.ET=1,CR0.CD=1，实模式 
+		RFlags=  0x0000 0000 0000 0002
+		cs    =  0x0000 0000 FFFF F000  #CS.Base=FFFF0000h,Limit=64K，此时DPL=0处于最高权限 
+	cs Selector   =  0xF000
+		RIP   =  0x0000 0000 0000 FFF0
+	IDTR.base     =  0			#中断向量表位置在内存地址 0
+
+	#内存分布
+	0x00000000 - 0x000003FF - Real Mode Interrupt Vector Table
+	0x00000400 - 0x000004FF - BIOS Data Area
+	0x00000500 - 0x00007BFF - Unused
+	0x00007C00 - 0x00007DFF - Our Bootloader
+	0x00007E00 - 0x0009FFFF - Unused
+	0x000A0000 - 0x000BFFFF - Video RAM (VRAM) Memory
+	0x000B0000 - 0x000B7777 - Monochrome Video Memory
+	0x000B8000 - 0x000BFFFF - Color Video Memory
+	0x000C0000 - 0x000C7FFF - Video ROM BIOS
+	0x000C8000 - 0x000EFFFF - BIOS Shadow Area
+	0x000F0000 - 0x000FFFFF - System BIOS
+	0xFFFE0000 - 0xFFFFFFFF: 128 kilobyte ROM mapped into address space
+
+
+	2,RESET信号撤去,cpu到0xFFFFFFF0执行指令，此处(ROM)存放BIOS代码(主板自带的),此处执行转跳代码，接着代码要做的如下:
+		POST(加电自检)	检测系统中的一些关键设备是否存在和能否正常工作，如内存和显卡等
+		Initial(枚举设备) 初始化寄存器，分配中断、IO端口、DMA资源
+		Setup(系统设置) 存于CMOS中。一般开机时按Del或者F2进入到BIOS的设置界面。
+		将512B的数据(主引导)(mbr)从磁盘第一扇区复制至 内存地址:0x7C00处,并跳转至 0x7C00处执行代码
+	##此时内存使用分布在 linux源代码中/x86/boot.txt 查看##
+	3,主引导mbr代码结构如下: 		#grub2源代码中/grub-core/boot/i386/pc/可以查看boot.s boot.img
+		0x000 ~ 0x1BD:占446B,为MBR引导代码;
+		0x1BE ~ 0x1FD:占64B,4组磁盘分区表信息(DPT),每组分区信息占16B
+		0x1FE ~ 0x1FF:结束标志,0x55 和 0xAA;
+
+	 ,0x7C00处引导代码
+
+	4,次引导扇区				#grub2源代码中 /grub-core/boot/i386/pc/可以查看diskboot.S diskboot.img
+		
+		在0x8200
+	5,kernel.img
+		进入保护模式
+		lzma 解压缩代码把其解压至内存地址:0x10000
+		再代码搬至:0x8200 处执行
+		执行grub_main()			#grub2源代码中/grub-core/kern/main.c
+		开始进入用户菜单，最后还是要进入linux内核，
+		grub_menu_execute_entry
+			    ...
+		 | Protected-mode kernel  |
+	100000   +------------------------+
+		 | I/O memory hole        |
+	0A0000   +------------------------+
+		 | Reserved for BIOS      | Leave as much as possible unused
+		 ~                        ~
+		 | Command line           | (Can also be below the X+10000 mark)
+	X+10000  +------------------------+
+		 | Stack/heap             | For use by the kernel real-mode code.
+	X+08000  +------------------------+
+		 | Kernel setup           | The kernel real-mode code.
+		 | Kernel boot sector     | The kernel legacy boot sector.
+	       X +------------------------+
+		 | Boot loader            | <- Boot sector entry point 0x7C00
+	001000   +------------------------+
+		 | Reserved for MBR/BIOS  |
+	000800   +------------------------+
+		 | Typically used by MBR  |
+	000600   +------------------------+
+		 | BIOS use only          |
+	000000   +------------------------+
+###linux内核### vmlinuz
+	6,实模式入口_start0 			#linux源代码中 /arch/x86/boot/header.S
+	状态:	gs=fs=es=ds=ss=0x10000
+		cs = 0x1020
+	若遵从UEFI的硬件:			#linux源代码中 /arch/x86/boot/header.S
+asm:		.global bootsect_star
+		.byte 0x4d
+		.byte 0x5a
+		   ...
+		.ascii	"PE"
+		.word 	0
+	start_of_setup
+		#允许中断,所有段寄存器的值设置成一样
+		#设置堆栈,检查magic签名
+		#设置 bss （静态变量区）
+	7,实模式 main 				#linux源代码中 /arch/x86/boot/header.S
+		启动参数 拷贝到"zeropage"
+		控制台初始化
+		堆初始化
+		检查CPU类型
+		内存分布侦测
+		键盘初始化
+		系统参数查询s
+		设置显示模式
+		在切换到保护模式之前的最后的准备工作
+		设置中断描述符表
+		设置全局描述符表
+		切换进入保护模式	protected_mode_jump
+
+		
+	8,保护模式入口 startup_32		#linux源代码中/arch/x86/boot/compressed/header_32.S
+	  内核入口函数 startup_32		#linux源代码中/arch/x86/kernel/header_32.S
+	  内核启动函数(体系结构无关) start_kernel()	#init/main.c
+		#详细查阅: "start.保护模式"
+	  创建内存 rootfs:
+		vfs_caches_init()		#fs/dcache.c
+		mnt_init()			#fs/namespace.c
+	  内核初始化:
+		rest_init()			#init/main.c
+		kernel_init()			#init/main.c,启动内核模块、创建基于内存的rootfs、加载initramfs文件或cpio-initrd，并启动一个内核线程来运行其中的/init脚本，完成真正根文件系统的挂载。
+	  /sbin/init				#执行相关脚本，以完成系统初始化，如设置键盘、字体，装载模块，设置网络等，最后运行登录程序，出现登录界面
+	
+
+
+内核引导程序：内核引导程序分两部分：主、次引导程序。主引导程序的主要工作就是收索，寻找活动的分区，将活动的分区引导记录中的次引导程序加载到内存中并且执行。而这个次引导程序就是负责加载内核的并且将控制权交给内核。上面提过内核引导程序有LILO、GRUB、U-Boot、RedBoot。其中前面两个为pc中的，而后面两个是嵌入式的。
+
+内核：内核以压缩的形式存在，不是一个可执行的内核！所以内核阶段首先要做的是自解压内核映像。这里说说编译内核后形成的内核压缩的映像vmlinuz。编译生成vmlinux后，一般会对其进行压缩为vmlinuz，使其成为zImage--小于512KB的小内核，或者成为bzImage--大于512KB的大内核。
+
+

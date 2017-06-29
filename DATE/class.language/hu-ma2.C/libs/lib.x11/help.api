@@ -102,7 +102,7 @@ unsigned long XBlackPixelOfScreen(Screen *screen);
 unsigned long XWhitePixelOfScreen(Screen *screen);
 	return:		# XB*:返回黑色值 ; XW*:返回白色值
 int XCellsOfScreen(Screen *screen);
-	return:		# 返回指定屏幕默认色图的色图cells数量
+	return:		# 返回指定屏幕默认色图的色图色素数量
 Colormap XDefaultColormapOfScreen(Screen *screen);
 	return:		# 返回指定屏幕默认色图
 int XDefaultDepthOfScreen(Screen *screen);
@@ -352,7 +352,7 @@ Status XLookupColor(Display *display, Colormap colormap, char *color_name, XColo
 Status XParseColor(Display *display, Colormap colormap, char *spec, XColor *exact_def_return);
 Status XcmsLookupColor(Display *display, Colormap colormap, char *color_string, XcmsColor*color_exact_return, *color_screen_return, XcmsColorFormat result_format);
 
-### 分配和释放细cell
+### 分配和释放细色素
 Status XAllocColor(Display *display, Colormap colormap, XColor *screen_in_out);
 Status XcmsAllocColor(Display *display, Colormap colormap, XcmsColor *color_in_out, XcmsColorFormat result_format);
 Status XAllocNamedColor(Display *display, Colormap colormap, char *color_name, XColor*screen_def_return, *exact_def_return);
@@ -361,7 +361,7 @@ Status XAllocColorCells(Display *display, Colormap colormap, Bool contig, unsign
 Status XAllocColorPlanes(Display *display, Colormap colormap, Bool contig, unsignedlong pixels_return[], int ncolors, intnreds,ngreens, nblues, unsignedlong*rmask_return,*gmask_return, *bmask_return);
 XFreeColors(Display *display, Colormap colormap, unsignedlong pixels[], int npixels, unsignedlong planes);
 
-### 修改和查询色图cells
+### 修改和查询色图色素
 XStoreColor(Display *display, Colormap colormap, XColor *color);
 XStoreColors(Display *display, Colormap colormap, XColor color[], int ncolors);
 Status XcmsStoreColor(Display *display, Colormap colormap, XcmsColor *color);

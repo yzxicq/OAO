@@ -1,0 +1,210 @@
+    GObject
+    ├── GInitiallyUnowned
+    │   ├── GtkWidget
+    │   │   ├── GtkContainer
+    │   │   │   ├── GtkBin
+    │   │   │   │   ├── GtkWindow
+    │   │   │   │   │   ├── GtkDialog
+    │   │   │   │   │   │   ├── GtkAboutDialog
+    │   │   │   │   │   │   ├── GtkAppChooserDialog
+    │   │   │   │   │   │   ├── GtkColorChooserDialog
+    │   │   │   │   │   │   ├── GtkFileChooserDialog
+    │   │   │   │   │   │   ├── GtkFontChooserDialog
+    │   │   │   │   │   │   ├── GtkMessageDialog
+    │   │   │   │   │   │   ├── GtkPageSetupUnixDialog
+    │   │   │   │   │   │   ├── GtkPrintUnixDialog
+    │   │   │   │   │   │   ╰── GtkRecentChooserDialog
+    │   │   │   │   │   ├── GtkApplicationWindow
+    │   │   │   │   │   ├── GtkAssistant
+    │   │   │   │   │   ╰── GtkShortcutsWindow
+    │   │   │   │   ├── GtkComboBox
+    │   │   │   │   │   ├── GtkAppChooserButton
+    │   │   │   │   │   ╰── GtkComboBoxText
+    │   │   │   │   ├── GtkFrame
+    │   │   │   │   │   ╰── GtkAspectFrame
+    │   │   │   │   ├── GtkButton
+    │   │   │   │   │   ├── GtkToggleButton
+    │   │   │   │   │   │   ├── GtkCheckButton
+    │   │   │   │   │   │   │   ╰── GtkRadioButton
+    │   │   │   │   │   │   ╰── GtkMenuButton
+    │   │   │   │   │   ├── GtkLinkButton
+    │   │   │   │   │   ├── GtkLockButton
+    │   │   │   │   │   ├── GtkModelButton
+    │   │   │   │   │   ╰── GtkScaleButton
+    │   │   │   │   │       ╰── GtkVolumeButton
+    │   │   │   │   ├── GtkMenuItem
+    │   │   │   │   │   ├── GtkCheckMenuItem
+    │   │   │   │   │   │   ╰── GtkRadioMenuItem
+    │   │   │   │   │   ╰── GtkSeparatorMenuItem
+    │   │   │   │   ├── GtkEventBox
+    │   │   │   │   ├── GtkExpander
+    │   │   │   │   ├── GtkFlowBoxChild
+    │   │   │   │   ├── GtkListBoxRow
+    │   │   │   │   ├── GtkToolItem
+    │   │   │   │   │   ├── GtkToolButton
+    │   │   │   │   │   │   ├── GtkMenuToolButton
+    │   │   │   │   │   │   ╰── GtkToggleToolButton
+    │   │   │   │   │   │       ╰── GtkRadioToolButton
+    │   │   │   │   │   ╰── GtkSeparatorToolItem
+    │   │   │   │   ├── GtkOverlay
+    │   │   │   │   ├── GtkScrolledWindow
+    │   │   │   │   │   ╰── GtkPlacesSidebar
+    │   │   │   │   ├── GtkPopover
+    │   │   │   │   │   ╰── GtkPopoverMenu
+    │   │   │   │   ├── GtkRevealer
+    │   │   │   │   ├── GtkSearchBar
+    │   │   │   │   ├── GtkStackSidebar
+    │   │   │   │   ╰── GtkViewport
+    │   │   │   ├── GtkActionBar
+    │   │   │   ├── GtkBox
+    │   │   │   │   ├── GtkButtonBox
+    │   │   │   │   ├── GtkColorChooserWidget
+    │   │   │   │   ├── GtkInfoBar
+    │   │   │   │   ├── GtkShortcutLabel
+    │   │   │   │   ├── GtkShortcutsSection
+    │   │   │   │   ├── GtkShortcutsGroup
+    │   │   │   │   ├── GtkStackSwitcher
+    │   │   │   │   ╰── GtkStatusbar
+    │   │   │   ├── GtkFixed
+    │   │   │   ├── GtkFlowBox
+    │   │   │   ├── GtkGrid
+    │   │   │   ├── GtkHeaderBar
+    │   │   │   ├── GtkIconView
+    │   │   │   ├── GtkLayout
+    │   │   │   ├── GtkListBox
+    │   │   │   ├── GtkMenuShell
+    │   │   │   │   ├── GtkMenuBar
+    │   │   │   │   ╰── GtkMenu
+    │   │   │   │       ╰── GtkRecentChooserMenu
+    │   │   │   ├── GtkNotebook
+    │   │   │   ├── GtkPaned
+    │   │   │   ├── GtkStack
+    │   │   │   ├── GtkTextView
+    │   │   │   ├── GtkToolbar
+    │   │   │   ├── GtkToolItemGroup
+    │   │   │   ├── GtkToolPalette
+    │   │   │   ╰── GtkTreeView
+    │   │   ├── GtkLabel
+    │   │   │   ╰── GtkAccelLabel
+    │   │   ├── GtkAppChooserWidget
+    │   │   ├── GtkCalendar
+    │   │   ├── GtkCellView
+    │   │   ├── GtkColorButton
+    │   │   ├── GtkDrawingArea
+    │   │   ├── GtkEntry
+    │   │   │   ├── GtkSearchEntry
+    │   │   │   ╰── GtkSpinButton
+    │   │   ├── GtkFileChooserButton
+    │   │   ├── GtkFileChooserWidget
+    │   │   ├── GtkFontButton
+    │   │   ├── GtkFontChooserWidget
+    │   │   ├── GtkGLArea
+    │   │   ├── GtkImage
+    │   │   ├── GtkInvisible
+    │   │   ├── GtkProgressBar
+    │   │   ├── GtkRange
+    │   │   │   ├── GtkScale
+    │   │   │   ╰── GtkScrollbar
+    │   │   ├── GtkRecentChooserWidget
+    │   │   ├── GtkSeparator
+    │   │   ├── GtkShortcutsShortcut
+    │   │   ├── GtkSpinner
+    │   │   ├── GtkSwitch
+    │   │   ╰── GtkLevelBar
+    │   ├── GtkAdjustment
+    │   ├── GtkCellArea
+    │   │   ╰── GtkCellAreaBox
+    │   ├── GtkCellRenderer
+    │   │   ├── GtkCellRendererText
+    │   │   │   ├── GtkCellRendererAccel
+    │   │   │   ├── GtkCellRendererCombo
+    │   │   │   ╰── GtkCellRendererSpin
+    │   │   ├── GtkCellRendererPixbuf
+    │   │   ├── GtkCellRendererProgress
+    │   │   ├── GtkCellRendererSpinner
+    │   │   ╰── GtkCellRendererToggle
+    │   ├── GtkFileFilter
+    │   ├── GtkTreeViewColumn
+    │   ╰── GtkRecentFilter
+    ├── GtkAccelGroup
+    ├── GtkAccelMap
+    ├── AtkObject
+    │   ╰── GtkAccessible
+    ├── GApplication
+    │   ╰── GtkApplication
+    ├── GtkBuilder
+    ├── GtkCellAreaContext
+    ├── GtkClipboard
+    ├── GtkCssProvider
+    ├── GtkEntryBuffer
+    ├── GtkEntryCompletion
+    ├── GtkEventController
+    │   ├── GtkGesture
+    │   │   ├── GtkGestureSingle
+    │   │   │   ├── GtkGestureDrag
+    │   │   │   │   ╰── GtkGesturePan
+    │   │   │   ├── GtkGestureLongPress
+    │   │   │   ├── GtkGestureMultiPress
+    │   │   │   ╰── GtkGestureSwipe
+    │   │   ├── GtkGestureRotate
+    │   │   ╰── GtkGestureZoom
+    │   ╰── GtkPadController
+    ├── GtkIconTheme
+    ├── GtkIMContext
+    │   ├── GtkIMContextSimple
+    │   ╰── GtkIMMulticontext
+    ├── GtkListStore
+    ├── GMountOperation
+    │   ╰── GtkMountOperation
+    ├── GtkPageSetup
+    ├── GtkPrinter
+    ├── GtkPrintContext
+    ├── GtkPrintJob
+    ├── GtkPrintOperation
+    ├── GtkPrintSettings
+    ├── GtkRecentManager
+    ├── GtkSettings
+    ├── GtkSizeGroup
+    ├── GtkStyleContext
+    ├── GtkTextBuffer
+    ├── GtkTextChildAnchor
+    ├── GtkTextMark
+    ├── GtkTextTag
+    ├── GtkTextTagTable
+    ├── GtkTreeModelFilter
+    ├── GtkTreeModelSort
+    ├── GtkTreeSelection
+    ├── GtkTreeStore
+    ├── GtkWindowGroup
+    ├── GtkTooltip
+    ╰── GtkPrintBackend
+    GInterface
+    ├── GtkBuildable
+    ├── GtkActionable
+    ├── GtkAppChooser
+    ├── GtkCellLayout
+    ├── GtkCellEditable
+    ├── GtkOrientable
+    ├── GtkColorChooser
+    ├── GtkStyleProvider
+    ├── GtkEditable
+    ├── GtkFileChooser
+    ├── GtkFontChooser
+    ├── GtkScrollable
+    ├── GtkTreeModel
+    ├── GtkTreeDragSource
+    ├── GtkTreeDragDest
+    ├── GtkTreeSortable
+    ├── GtkPrintOperationPreview
+    ├── GtkRecentChooser
+    ╰── GtkToolShell
+    GBoxed
+    ├── GtkPaperSize
+    ├── GtkTextIter
+    ├── GtkSelectionData
+    ├── GtkRequisition
+    ├── GtkBorder
+    ├── GtkTreeIter
+    ├── GtkCssSection
+    ├── GtkTreePath
+    ╰── GtkTargetList

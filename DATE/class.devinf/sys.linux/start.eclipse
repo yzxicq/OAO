@@ -1,0 +1,48 @@
+ HowTo use the CDT to navigate Linux kernel source
+
+Here are some steps that I've found to get the CDT to work well with the Linux kernel source. If you exclude some of these steps, it may still work to a large degree, but some things may not work exactly right; for example it may find the wrong include file for a C file.
+
+Anyway, as you do these steps, I think you may understand how they assist the indexer to do a good job for the Linux kernel source.
+
+Disclaimer: these steps were last updated for Eclipse Mars 4.5.2 + CDT 8.8.1, and originally developed for Eclipse 3.5.1 + CDT 6.0.0.
+
+	1,下载ecplise CDT
+	2,配置和构建你的linux内核以定义 CONFIG_*  和生成 autoconf.h
+	3,启动eclipse
+	4,File->New->C Project	(英文版的菜单选择路径)
+	5,填写 project name 为linux
+	6,勾除 Use default location 和 Location 处选择linux内核源代码目录
+	7,Project type 处点击Makefile project 和设置 Empty Project
+	8,Toolchains 处 设置Linux GCC
+	9,选择 Advanced settings... 将弹出一个窗口
+	10,展开左侧 C/C++ General 和点击 Preprocessor Include Paths, Macros etc.
+	  ,选择 languages 列表下的 GNU C 后选择 Setting Entries 列表下的 CDT User Setting Entries 
+	  ,点击 add... 弹出窗口 ，下拉选择 Preprocessor Macros File 与 Project Path ，File 中键入 "include/linux/kconfig.h" ，
+	11,左侧 C/C++ General 下点击 Indexer 
+	  ,打勾 Enable project specific setttings 
+	  ,勾除 Index source files not included in the build
+	12,左侧 C/C++ General 下点击 Paths and Symbols
+	  ,选择 Includes 下 GNU C ，点击 add...
+	  	点击 Workspace... 依次选择要包含目录
+		点击 ok
+	  ,选择 # Symbols 和 add...
+		name 写入为 __KERNEL__
+		value 写入为 1
+		点击 ok
+	  ,选择 Source Location 展开 linux (工程名) 选择 Filter ，点击 Edit Filter... 
+	  	点击 Add Multiple... 依次选择你不需要的目录或文件
+		点击 ok
+	13,左侧 C/C++ General 下点击 Preprocessor Include Paths, Macros etc.
+	  ,选择 Providers 下 CDT GCC Built-in Compiler Settings
+	  ,勾除 Use global provider shared between projects
+	  ,在 Command to get compiler specs 处添加 -nostdinc 
+	  ,打勾 Allocate console in the Console View 
+	14,点击 OK 
+	  ,点击 Finish
+
+
+
+
+
+
+

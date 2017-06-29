@@ -1,0 +1,10 @@
+
+##配置alfs
+	make
+
+
+##可在配置中配置自动make，也可以自己运行
+	export LFS=[lfs]	#lfs系统根目录
+	cd $LFS/jhalfs
+	make
+

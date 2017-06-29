@@ -1,0 +1,22 @@
+
+#初始化
+现在linux大部分使用grub2作为启动引导，
+
+#控制
+linux是一个操作系统的内核，源码所用的语言有：
+	 c gas 
+两种， 而运行时与使用者互交的语言有：
+	bash shell
+，他们在语言目录下可以了解相关信息。
+
+
+
+
+#目录:
+
+sys
+sources
+
+
+资源:
+	https://github.com/MintCN/linux-insides-zh/	#linux内核解析

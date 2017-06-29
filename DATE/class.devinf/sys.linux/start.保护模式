@@ -1,0 +1,169 @@
+
+
+
+# ## linux内核运行环境 ##
+
+#环境初始化	start_kernel()
+
+
+    smp_setup_processor_id()		#	空函数
+    debug_objects_early_init()		#初始化 内核调试相关
+    boot_init_stack_canary()		#初始化 栈溢出保护
+    cgroup_init_early()			#控制组初始化-cgroup-资源任务分组管理
+    local_irq_disable()			#	关中断
+    early_boot_irqs_disabled = true;
+    tick_init()				#初始化 时钟
+    boot_cpu_init()			#初始化 启动cpu
+    page_address_init()			#初始化 页面
+    setup_arch(&command_line)		#初始化 架构相关
+    mm_init_owner(&init_mm, &init_task)	#初始化 内存管理
+    mm_init_cpumask(&init_mm);//内存管理初始化
+    setup_command_line(command_line);//处理命令行(保存2份)
+    setup_nr_cpu_ids();//cpuid相关
+    setup_per_cpu_areas();//每cpu变量申请空间(包括gdt)
+    //smp中用来启动的cpu
+    smp_prepare_boot_cpu(); /* arch-specific boot-cpu hooks */
+     //建立系统内存页区链表
+    build_all_zonelists(NULL);
+    //内存页相关初始化
+    page_alloc_init();
+
+    printk(KERN_NOTICE "Kernel command line: %s\n", boot_command_line);
+    //命令行boot_command_line
+    parse_early_param();
+    //解析参数
+    parse_args("Booting kernel", static_command_line, __start___param,
+           __stop___param - __start___param,
+           -1, -1, &unknown_bootoption);
+    //
+    jump_label_init();
+
+    /*
+     * These use large bootmem allocations and must precede
+     * kmem_cache_init()
+     * 内存初始化相关
+     */
+    setup_log_buf(0);
+    pidhash_init();
+    vfs_caches_init_early();
+    sort_main_extable();
+    trap_init();
+    mm_init();
+
+    /*
+     * Set up the scheduler prior starting any interrupts (such as the
+     * timer interrupt). Full topology setup happens at smp_init()
+     * time - but meanwhile we still have a functioning scheduler.
+     * 调度初始化
+     */
+    sched_init();
+    /*
+     * Disable preemption - early bootup scheduling is extremely
+     * fragile until we cpu_idle() for the first time.
+     * 抢占禁用
+     */
+    preempt_disable();
+    if (!irqs_disabled()) {
+        printk(KERN_WARNING "start_kernel(): bug: interrupts were "
+                "enabled *very* early, fixing it\n");
+        local_irq_disable();
+    }
+    idr_init_cache();//idr
+    perf_event_init();//performance event
+    rcu_init();//read-copy-update 机制
+    radix_tree_init();//radix树机制
+    /* init some links before init_ISA_irqs() */
+    early_irq_init();//中断请求
+    init_IRQ();//中断请求
+    prio_tree_init();//优先查找树
+    init_timers();//时钟
+    hrtimers_init();//High-resolution kernel timers高精度内核时钟
+    softirq_init();//软中断
+    timekeeping_init();//时间相关
+    time_init();//时间
+    profile_init();//分配内核性能统计保存的内存
+    call_function_init();//smp中每cpu的call_single_queue初始化
+    if (!irqs_disabled())
+        printk(KERN_CRIT "start_kernel(): bug: interrupts were "
+                 "enabled early\n");
+    early_boot_irqs_disabled = false;//中断请求开
+    local_irq_enable();//本地中断开
+
+    kmem_cache_init_late();//kmem后期初始化
+
+    /*
+     * HACK ALERT! This is early. We're enabling the console before
+     * we've done PCI setups etc, and console_init() must be aware of
+     * this. But we do want output early, in case something goes wrong.
+     */
+    console_init();//初始化系统控制台结构
+    if (panic_later)
+        panic(panic_later, panic_param);
+    //锁依赖信息
+    lockdep_info();
+
+    /*
+     * Need to run this when irqs are enabled, because it wants
+     * to self-test [hard/soft]-irqs on/off lock inversion bugs
+     * too:
+     */
+    locking_selftest();
+
+#ifdef CONFIG_BLK_DEV_INITRD
+    if (initrd_start && !initrd_below_start_ok &&
+        page_to_pfn(virt_to_page((void *)initrd_start)) < min_low_pfn) {
+        printk(KERN_CRIT "initrd overwritten (0x%08lx < 0x%08lx) - "
+            "disabling it.\n",
+            page_to_pfn(virt_to_page((void *)initrd_start)),
+            min_low_pfn);
+        initrd_start = 0;
+    }
+#endif
+    page_cgroup_init();//control groups初始化
+    debug_objects_mem_init();//对象调试
+    kmemleak_init();//检测内核内存泄漏的功能
+    setup_per_cpu_pageset();//申请并初始化每cpu页set
+    numa_policy_init();//numa相关
+    if (late_time_init)
+        late_time_init();
+    //初始化每cpusched_clock_data=ktime_now
+    sched_clock_init();
+    calibrate_delay();//计算cpuMIPS百万条指令/s
+    pidmap_init();//pid进程id表初始化
+    anon_vma_init();//虚拟地址
+#ifdef CONFIG_X86
+    if (efi_enabled)//efi bois
+        efi_enter_virtual_mode();
+#endif
+    thread_info_cache_init();//申请thread_info的内存
+    cred_init();//credential健在分配 
+    //根据物理内存大小，计算可创建进/线程数量
+    fork_init(totalram_pages); 
+    proc_caches_init();//进程内存初始化
+    buffer_init();//页高速缓存
+    key_init();//红黑树内存，存keys
+    security_init();//安全相关
+    dbg_late_init();//调试相关
+    vfs_caches_init(totalram_pages);//虚拟文件系统初始化
+    signals_init();//sigqueue申请内存，信号系统
+    /* rootfs populating might need page-writeback */
+    page_writeback_init();//页回写
+#ifdef CONFIG_PROC_FS
+    proc_root_init();//proc文件系统初始化
+#endif
+    cgroup_init();//cgroup相关
+    cpuset_init();//cpuset相关
+    taskstats_init_early();//进程计数器
+    delayacct_init();//进程延时审计
+
+    check_bugs();//系统bug相关测试
+    //acpi总线
+    acpi_early_init(); /* before LAPIC and SMP init */
+    sfi_init_late();//Simple Firmware Interface
+    //功能追踪初始化,一种调试工具
+    ftrace_init();
+
+    /* Do the rest non-__init'ed, we're now alive */
+    rest_init();
+
+
