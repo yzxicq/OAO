@@ -1,0 +1,408 @@
+
+
+https://www.x.org/releases/X11R7.7/doc/
+https://www.x.org/releases/X11R7.6/doc/libX11/specs/libX11/libX11.html
+
+
+
+#######################################################################
+#####
+Access control list
+
+    X maintains a list of hosts from which client programs can be run. By default, only programs on the local host and hosts specified in an initial list read by the server can use the display. This access control list can be changed by clients on the local host. Some server implementations can also implement other authorization mechanisms in addition to or in place of this mechanism. The action of this mechanism can be conditional based on the authorization protocol name and data received by the server at connection setup. 
+Active grab
+
+    A grab is active when the pointer or keyboard is actually owned by the single grabbing client. 
+Ancestors
+
+    If W is an inferior of A, then A is an ancestor of W. 
+Atom
+
+    An atom is a unique ID corresponding to a string name. Atoms are used to identify properties, types, and selections. 
+Background
+
+    An InputOutput window can have a background, which is defined as a pixmap. When regions of the window have their contents lost or invalidated, the server automatically tiles those regions with the background. 
+Backing store
+
+    When a server maintains the contents of a window, the pixels saved off-screen are known as a backing store. 
+Base font name
+
+    A font name used to select a family of fonts whose members may be encoded in various charsets. The CharSetRegistry and CharSetEncoding fields of an XLFD name identify the charset of the font. A base font name may be a full XLFD name, with all fourteen '-' delimiters, or an abbreviated XLFD name containing only the first 12 fields of an XLFD name, up to but not including CharSetRegistry, with or without the thirteenth '-', or a non-XLFD name. Any XLFD fields may contain wild cards.
+
+    When creating an XFontSet, Xlib accepts from the client a list of one or more base font names which select one or more font families. They are combined with charset names obtained from the encoding of the locale to load the fonts required to render text. 
+Bit gravity
+
+    When a window is resized, the contents of the window are not necessarily discarded. It is possible to request that the server relocate the previous contents to some region of the window (though no guarantees are made). This attraction of window contents for some location of a window is known as bit gravity. 
+Bit plane
+
+    When a pixmap or window is thought of as a stack of bitmaps, each bitmap is called a bit plane or plane. 
+Bitmap
+
+    A bitmap is a pixmap of depth one. 
+Border
+
+    An InputOutput window can have a border of equal thickness on all four sides of the window. The contents of the border are defined by a pixmap, and the server automatically maintains the contents of the border. Exposure events are never generated for border regions. 
+Button grabbing
+
+    Buttons on the pointer can be passively grabbed by a client. When the button is pressed, the pointer is then actively grabbed by the client. 
+Byte order
+
+    For image (pixmap/bitmap) data, the server defines the byte order, and clients with different native byte ordering must swap bytes as necessary. For all other parts of the protocol, the client defines the byte order, and the server swaps bytes as necessary. 
+Character
+
+    A member of a set of elements used for the organization, control, or representation of text (ISO2022, as adapted by XPG3). Note that in ISO2022 terms, a character is not bound to a coded value until it is identified as part of a coded character set. 
+Character glyph
+
+    The abstract graphical symbol for a character. Character glyphs may or may not map one-to-one to font glyphs, and may be context-dependent, varying with the adjacent characters. Multiple characters may map to a single character glyph. 
+Character set
+
+    A collection of characters. 
+Charset
+
+    An encoding with a uniform, state-independent mapping from characters to codepoints. A coded character set.
+
+    For display in X, there can be a direct mapping from a charset to one font, if the width of all characters in the charset is either one or two bytes. A text string encoded in an encoding such as Shift-JIS cannot be passed directly to the X server, because the text imaging requests accept only single-width charsets (either 8 or 16 bits). Charsets which meet these restrictions can serve as “font charsets”. Font charsets strictly speaking map font indices to font glyphs, not characters to character glyphs.
+
+    Note that a single font charset is sometimes used as the encoding of a locale, for example, ISO8859-1. 
+Children
+
+    The children of a window are its first-level subwindows. 
+Class
+
+    Windows can be of different classes or types. See the entries for InputOnly and InputOutput windows for further information about valid window types. 
+Client
+
+    An application program connects to the window system server by some interprocess communication (IPC) path, such as a TCP connection or a shared memory buffer. This program is referred to as a client of the window system server. More precisely, the client is the IPC path itself. A program with multiple paths open to the server is viewed as multiple clients by the protocol. Resource lifetimes are controlled by connection lifetimes, not by program lifetimes. 
+Clipping region
+
+    In a graphics context, a bitmap or list of rectangles can be specified to restrict output to a particular region of the window. The image defined by the bitmap or rectangles is called a clipping region. 
+Coded character
+
+    A character bound to a codepoint. 
+Coded character set
+
+    A set of unambiguous rules that establishes a character set and the one-to-one relationship between each character of the set and its bit representation. (ISO2022, as adapted by XPG3) A definition of a one-to-one mapping of a set of characters to a set of codepoints. 
+Codepoint
+
+    The coded representation of a single character in a coded character set. 
+Colormap
+
+    A colormap consists of a set of entries defining color values. The colormap associated with a window is used to display the contents of the window; each pixel value indexes the colormap to produce an RGB value that drives the guns of a monitor. Depending on hardware limitations, one or more colormaps can be installed at one time so that windows associated with those maps display with true colors. 
+Connection	服务器和客户端程序之间的IPC路径被称为连接。 通常（但不一定）客户端程序与发送请求和事件的服务器有一个连接
+Containment
+
+    A window contains the pointer if the window is viewable and the hotspot of the cursor is within a visible region of the window or a visible region of one of its inferiors. The border of the window is included as part of the window for containment. The pointer is in a window if the window contains the pointer but no inferior contains the pointer. 
+Coordinate system
+
+    The coordinate system has X horizontal and Y vertical, with the origin [0, 0] at the upper left. Coordinates are integral and coincide with pixel centers. Each window and pixmap has its own coordinate system. For a window, the origin is inside the border at the inside upper-left corner. 
+Cursor
+
+    A cursor is the visible shape of the pointer on a screen. It consists of a hotspot, a source bitmap, a shape bitmap, and a pair of colors. The cursor defined for a window controls the visible appearance when the pointer is in that window. 
+Depth
+
+    The depth of a window or pixmap is the number of bits per pixel it has. The depth of a graphics context is the depth of the drawables it can be used in conjunction with graphics output. 
+Device
+
+    Keyboards, mice, tablets, track-balls, button boxes, and so on are all collectively known as input devices. Pointers can have one or more buttons (the most common number is three). The core protocol only deals with two devices: the keyboard and the pointer. 
+DirectColor
+
+    DirectColor is a class of colormap in which a pixel value is decomposed into three separate subfields for indexing. The first subfield indexes an array to produce red intensity values. The second subfield indexes a second array to produce blue intensity values. The third subfield indexes a third array to produce green intensity values. The RGB (red, green, and blue) values in the colormap entry can be changed dynamically. 
+Display	# 服务器及其屏幕和输入设备被称为显示器。Display结构含有关特定显示及其屏幕的所有信息，包含Xlib通过特定连接与显示器进行通信的状态
+Drawable
+
+    Both windows and pixmaps can be used as sources and destinations in graphics operations. These windows and pixmaps are collectively known as drawables. However, an InputOnly window cannot be used as a source or destination in a graphics operation. 
+Encoding
+
+    A set of unambiguous rules that establishes a character set and a relationship between the characters and their representations. The character set does not have to be fixed to a finite pre-defined set of characters. The representations do not have to be of uniform length. Examples are an ISO2022 graphic set, a state-independent or state-dependent combination of graphic sets, possibly including control sets, and the X Compound Text encoding.
+
+    In X, encodings are identified by a string which appears as: the CharSetRegistry and CharSetEncoding components of an XLFD name; the name of a charset of the locale for which a font could not be found; or an atom which identifies the encoding of a text property or which names an encoding for a text selection target type. Encoding names should be composed of characters from the X Portable Character Set. 
+Escapement
+
+    The escapement of a string is the distance in pixels in the primary draw direction from the drawing origin to the origin of the next character (that is, the one following the given string) to be drawn. 
+Event		客户通过事件以异步方式通知信息 These events can be either asynchronously generated from devices or generated as side effects of client requests. Events are grouped into types. 服务器永远不会将事件发送到客户端，除非客户端明确要求将该事件通知给该类型的事件. 然而，客户端可以强制将事件发送到其他客户端.事件通常相对于窗口报告 
+Event mask	Events are requested relative to a window. The set of event types a client requests relative to a window is described by using an event mask. 
+Event propagation
+
+    Device-related events propagate from the source window to ancestor windows until some client has expressed interest in handling that type of event or until the event is discarded explicitly. 
+Event source
+
+    The deepest viewable window that the pointer is in is called the source of a device-related event. 
+Event synchronization
+
+    There are certain race conditions possible when demultiplexing device events to clients (in particular, deciding where pointer and keyboard events should be sent when in the middle of window management operations). The event synchronization mechanism allows synchronous processing of device events. 
+Exposure event
+
+    Servers do not guarantee to preserve the contents of windows when windows are obscured or reconfigured. Exposure events are sent to clients to inform them when contents of regions of windows have been lost. 
+Extension
+
+    Named extensions to the core protocol can be defined to extend the system. Extensions to output requests, resources, and event types are all possible and expected. 
+Font
+
+    A font is an array of glyphs (typically characters). The protocol does no translation or interpretation of character sets. The client simply indicates values used to index the glyph array. A font contains additional metric information to determine interglyph and interline spacing. 
+Font glyph
+
+    The abstract graphical symbol for an index into a font. 
+Frozen events
+
+    Clients can freeze event processing during keyboard and pointer grabs. 
+GC			# 图形上下文的缩写
+Graphics context	# 图形上下文,图形输出的各种信息,例如前景像素，背景像素，线宽，裁剪区域等,只能给相同根和深度使用
+Glyph			# 
+
+    An identified abstract graphical symbol independent of any actual image. (ISO/IEC/DIS 9541-1) An abstract visual representation of a graphic character, not bound to a codepoint. 
+Glyph image
+
+    An image of a glyph, as obtained from a glyph representation displayed on a presentation surface. (ISO/IEC/DIS 9541-1) 
+Grab
+
+    Keyboard keys, the keyboard, pointer buttons, the pointer, and the server can be grabbed for exclusive use by a client. In general, these facilities are not intended to be used by normal applications but are intended for various input and window managers to implement various styles of user interfaces. 
+
+Gravity
+
+    The contents of windows and windows themselves have a gravity, which determines how the contents move when a window is resized. See Bit gravity and Window gravity. 
+GrayScale
+
+    GrayScale can be viewed as a degenerate case of PseudoColor, in which the red, green, and blue values in any given colormap entry are equal and thus, produce shades of gray. The gray values can be changed dynamically. 
+Host Portable Character Encoding
+
+    The encoding of the X Portable Character Set on the host. The encoding itself is not defined by this standard, but the encoding must be the same in all locales supported by Xlib on the host. If a string is said to be in the Host Portable Character Encoding, then it only contains characters from the X Portable Character Set, in the host encoding. 
+Hotspot
+
+    A cursor has an associated hotspot, which defines the point in the cursor corresponding to the coordinates reported for the pointer. 
+Identifier
+
+    An identifier is a unique value associated with a resource that clients use to name that resource. The identifier can be used over any connection to name the resource. 
+Inferiors
+
+    The inferiors of a window are all of the subwindows nested below it: the children, the children's children, and so on. 
+Input focus
+
+    The input focus is usually a window defining the scope for processing of keyboard input. If a generated keyboard event usually would be reported to this window or one of its inferiors, the event is reported as usual. Otherwise, the event is reported with respect to the focus window. The input focus also can be set such that all keyboard events are discarded and such that the focus window is dynamically taken to be the root window of whatever screen the pointer is on at each keyboard event. 
+Input manager
+
+    Control over keyboard input is typically provided by an input manager client, which usually is part of a window manager. 
+InputOnly window
+
+    An InputOnly window is a window that cannot be used for graphics requests. InputOnly windows are invisible and are used to control such things as cursors, input event generation, and grabbing. InputOnly windows cannot have InputOutput windows as inferiors. 
+InputOutput window
+
+    An InputOutput window is the normal kind of window that is used for both input and output. InputOutput windows can have both InputOutput and InputOnly windows as inferiors. 
+Internationalization
+
+    The process of making software adaptable to the requirements of different native languages, local customs, and character string encodings. Making a computer program adaptable to different locales without program source modifications or recompilation. 
+ISO2022
+
+    ISO standard for code extension techniques for 7-bit and 8-bit coded character sets. 
+Key grabbing
+
+    Keys on the keyboard can be passively grabbed by a client. When the key is pressed, the keyboard is then actively grabbed by the client. 
+Keyboard grabbing
+
+    A client can actively grab control of the keyboard, and key events will be sent to that client rather than the client the events would normally have been sent to. 
+Keysym
+
+    An encoding of a symbol on a keycap on a keyboard. 
+Latin-1
+
+    The coded character set defined by the ISO8859-1 standard. 
+Latin Portable Character Encoding
+
+    The encoding of the X Portable Character Set using the Latin-1 codepoints plus ASCII control characters. If a string is said to be in the Latin Portable Character Encoding, then it only contains characters from the X Portable Character Set, not all of Latin-1. 
+Locale
+
+    The international environment of a computer program defining the “localized” behavior of that program at run-time. This information can be established from one or more sets of localization data. ANSI C defines locale-specific processing by C system library calls. See ANSI C and the X/Open Portability Guide specifications for more details. In this specification, on implementations that conform to the ANSI C library, the “current locale” is the current setting of the LC_CTYPE setlocale category. Associated with each locale is a text encoding. When text is processed in the context of a locale, the text must be in the encoding of the locale. The current locale affects Xlib in its:
+
+        Encoding and processing of input method text
+
+        Encoding of resource files and values
+
+        Encoding and imaging of text strings
+
+        Encoding and decoding for inter-client text communication 
+
+Locale name
+
+    The identifier used to select the desired locale for the host C library and X library functions. On ANSI C library compliant systems, the locale argument to the setlocale function. 
+Localization
+
+    The process of establishing information within a computer system specific to the operation of particular native languages, local customs and coded character sets. (XPG3) 
+Mapped
+
+    A window is said to be mapped if a map call has been performed on it. Unmapped windows and their inferiors are never viewable or visible. 
+Modifier keys
+
+    Shift, Control, Meta, Super, Hyper, Alt, Compose, Apple, CapsLock, ShiftLock, and similar keys are called modifier keys. 
+Monochrome
+
+    Monochrome is a special case of StaticGray in which there are only two colormap entries. 
+Multibyte
+
+    A character whose codepoint is stored in more than one byte; any encoding which can contain multibyte characters; text in a multibyte encoding. The “char *” null-terminated string datatype in ANSI C. Note that references in this document to multibyte strings imply only that the strings may contain multibyte characters. 
+Obscure
+
+    A window is obscured if some other window obscures it. A window can be partially obscured and so still have visible regions. Window A obscures window B if both are viewable InputOutput windows, if A is higher in the global stacking order, and if the rectangle defined by the outside edges of A intersects the rectangle defined by the outside edges of B. Note the distinction between obscures and occludes. Also note that window borders are included in the calculation. 
+Occlude
+
+    A window is occluded if some other window occludes it. Window A occludes window B if both are mapped, if A is higher in the global stacking order, and if the rectangle defined by the outside edges of A intersects the rectangle defined by the outside edges of B. Note the distinction between occludes and obscures. Also note that window borders are included in the calculation and that InputOnly windows never obscure other windows but can occlude other windows. 
+Padding
+
+    Some padding bytes are inserted in the data stream to maintain alignment of the protocol requests on natural boundaries. This increases ease of portability to some machine architectures. 
+Parent window
+
+    If C is a child of P, then P is the parent of C. 
+Passive grab
+
+    Grabbing a key or button is a passive grab. The grab activates when the key or button is actually pressed. 
+Pixel value	像素值，其位与屏幕深度同等
+Pixmap		像素图是一个三维数组的位. A pixmap is normally thought of as a two-dimensional array of pixels, where each pixel can be a value from 0 to 2N-1, and where N is the depth (z axis) of the pixmap. A pixmap can also be thought of as a stack of N bitmaps. A pixmap can only be used on the screen that it was created in. 
+Plane
+
+    When a pixmap or window is thought of as a stack of bitmaps, each bitmap is called a plane or bit plane. 
+Plane mask
+
+    Graphics operations can be restricted to only affect a subset of bit planes of a destination. A plane mask is a bit mask describing which planes are to be modified. The plane mask is stored in a graphics context. 
+Pointer
+
+    The pointer is the pointing device currently attached to the cursor and tracked on the screens. 
+Pointer grabbing
+
+    A client can actively grab control of the pointer. Then button and motion events will be sent to that client rather than the client the events would normally have been sent to. 
+Pointing device
+
+    A pointing device is typically a mouse, tablet, or some other device with effective dimensional motion. The core protocol defines only one visible cursor, which tracks whatever pointing device is attached as the pointer. 
+POSIX
+
+    Portable Operating System Interface, ISO/IEC 9945-1 (IEEE Std 1003.1). 
+POSIX Portable Filename Character Set
+
+    The set of 65 characters which can be used in naming files on a POSIX-compliant host that are correctly processed in all locales. The set is:
+
+    a..z A..Z 0..9 ._- 
+Property
+
+    Windows can have associated properties that consist of a name, a type, a data format, and some data. The protocol places no interpretation on properties. They are intended as a general-purpose naming mechanism for clients. For example, clients might use properties to share information such as resize hints, program names, and icon formats with a window manager. 
+Property list
+
+    The property list of a window is the list of properties that have been defined for the window. 
+PseudoColor
+
+    PseudoColor is a class of colormap in which a pixel value indexes the colormap entry to produce an independent RGB value; that is, the colormap is viewed as an array of triples (RGB values). The RGB values can be changed dynamically. 
+Rectangle
+
+    A rectangle specified by [x,y,w,h] has an infinitely thin outline path with corners at [x,y], [x+w,y], [x+w,y+h], and [x, y+h]. When a rectangle is filled, the lower-right edges are not drawn. For example, if w=h=0, nothing would be drawn. For w=h=1, a single pixel would be drawn. 
+Redirecting control
+
+    Window managers (or client programs) may enforce window layout policy in various ways. When a client attempts to change the size or position of a window, the operation may be redirected to a specified client rather than the operation actually being performed. 
+Reply
+
+    Information requested by a client program using the X protocol is sent back to the client with a reply. Both events and replies are multiplexed on the same connection. Most requests do not generate replies, but some requests generate multiple replies. 
+Request		对服务器的命令称为请求.它是通过单个数据块连接发送
+Resource
+
+    Windows, pixmaps, cursors, fonts, graphics contexts, and colormaps are known as resources. They all have unique identifiers associated with them for naming purposes. The lifetime of a resource usually is bounded by the lifetime of the connection over which the resource was created. 
+RGB values
+
+    RGB values are the red, green, and blue intensity values that are used to define a color. These values are always represented as 16-bit, unsigned numbers, with 0 the minimum intensity and 65535 the maximum intensity. The X server scales these values to match the display hardware. 
+Root
+
+    The root of a pixmap or graphics context is the same as the root of whatever drawable was used when the pixmap or GC was created. The root of a window is the root window under which the window was created. 
+Root window
+
+    Each screen has a root window covering it. The root window cannot be reconfigured or unmapped, but otherwise it acts as a full-fledged window. A root window has no parent. 
+Save set
+
+    The save set of a client is a list of other clients' windows that, if they are inferiors of one of the client's windows at connection close, should not be destroyed and that should be remapped if currently unmapped. Save sets are typically used by window managers to avoid lost windows if the manager should terminate abnormally. 
+Scanline		扫描线是被视为图像的水平行（所有具有相同y坐标的值）的像素或位值的列表，其值通过增加x坐标进行排序
+Scanline order
+
+    An image represented in scanline order contains scanlines ordered by increasing the y coordinate. 
+Screen	服务器可以提供几个独立的屏幕，通常具有物理独立的显示器。当屏幕之间只有一个键盘和指针共享时，这将是预期的配置。 屏幕结构包含有关该屏幕的信息，并链接到“显示”结构 
+Selection
+
+    A selection can be thought of as an indirect property with dynamic type. That is, rather than having the property stored in the X server, it is maintained by some client (the owner). A selection is global and is thought of as belonging to the user and being maintained by clients, rather than being private to a particular window subhierarchy or a particular set of clients. When a client asks for the contents of a selection, it specifies a selection target type, which can be used to control the transmitted representation of the contents. For example, if the selection is “the last thing the user clicked on,” and that is currently an image, then the target type might specify whether the contents of the image should be sent in XY format or Z format.
+
+    The target type can also be used to control the class of contents transmitted; for example, asking for the “looks” (fonts, line spacing, indentation, and so forth) of a paragraph selection, rather than the text of the paragraph. The target type can also be used for other purposes. The protocol does not constrain the semantics. 
+Server
+
+    The server, which is also referred to as the X server, provides the basic windowing mechanism. It handles IPC connections from clients, multiplexes graphics requests onto the screens, and demultiplexes input back to the appropriate clients. 
+Server grabbing
+
+    The server can be grabbed by a single client for exclusive use. This prevents processing of any requests from other client connections until the grab is completed. This is typically only a transient state for such things as rubber-banding, pop-up menus, or executing requests indivisibly. 
+Shift sequence
+
+    ISO2022 defines control characters and escape sequences which temporarily (single shift) or permanently (locking shift) cause a different character set to be in effect (“invoking” a character set). 
+Sibling
+
+    Children of the same parent window are known as sibling windows. 
+Stacking order
+
+    Sibling windows, similar to sheets of paper on a desk, can stack on top of each other. Windows above both obscure and occlude lower windows. The relationship between sibling windows is known as the stacking order. 
+State-dependent encoding
+
+    An encoding in which an invocation of a charset can apply to multiple characters in sequence. A state-dependent encoding begins in an “initial state” and enters other “shift states” when specific “shift sequences” are encountered in the byte sequence. In ISO2022 terms, this means use of locking shifts, not single shifts. 
+State-independent encoding
+
+    Any encoding in which the invocations of the charsets are fixed, or span only a single character. In ISO2022 terms, this means use of at most single shifts, not locking shifts. 
+StaticColor
+
+    StaticColor can be viewed as a degenerate case of PseudoColor in which the RGB values are predefined and read-only. 
+StaticGray
+
+    StaticGray can be viewed as a degenerate case of GrayScale in which the gray values are predefined and read-only. The values are typically linear or near-linear increasing ramps. 
+Status
+
+    Many Xlib functions return a success status. If the function does not succeed, however, its arguments are not disturbed. 
+Stipple
+
+    A stipple pattern is a bitmap that is used to tile a region to serve as an additional clip mask for a fill operation with the foreground color. 
+STRING encoding
+
+    Latin-1, plus tab and newline. 
+String Equivalence
+
+    Two ISO Latin-1 STRING8 values are considered equal if they are the same length and if corresponding bytes are either equal or are equivalent as follows: decimal values 65 to 90 inclusive (characters “A” to “Z”) are pairwise equivalent to decimal values 97 to 122 inclusive (characters “a” to “z”), decimal values 192 to 214 inclusive (characters “A grave” to “O diaeresis”) are pairwise equivalent to decimal values 224 to 246 inclusive (characters “a grave” to “o diaeresis”), and decimal values 216 to 222 inclusive (characters “O oblique” to “THORN”) are pairwise equivalent to decimal values 246 to 254 inclusive (characters “o oblique” to “thorn”). 
+Tile
+
+    A pixmap can be replicated in two dimensions to tile a region. The pixmap itself is also known as a tile. 
+Timestamp
+
+    A timestamp is a time value expressed in milliseconds. It is typically the time since the last server reset. Timestamp values wrap around (after about 49.7 days). The server, given its current time is represented by timestamp T, always interprets timestamps from clients by treating half of the timestamp space as being earlier in time than T and half of the timestamp space as being later in time than T. One timestamp value, represented by the constant CurrentTime, is never generated by the server. This value is reserved for use in requests to represent the current server time. 
+TrueColor
+
+    TrueColor can be viewed as a degenerate case of DirectColor in which the subfields in the pixel value directly encode the corresponding RGB values. That is, the colormap has predefined read-only RGB values. The values are typically linear or near-linear increasing ramps. 
+Type
+
+    A type is an arbitrary atom used to identify the interpretation of property data. Types are completely uninterpreted by the server. They are solely for the benefit of clients. X predefines type atoms for many frequently used types, and clients also can define new types. 
+Viewable
+
+    A window is viewable if it and all of its ancestors are mapped. This does not imply that any portion of the window is actually visible. Graphics requests can be performed on a window when it is not viewable, but output will not be retained unless the server is maintaining backing store. 
+Visible
+
+    A region of a window is visible if someone looking at the screen can actually see it; that is, the window is viewable and the region is not occluded by any other window. 
+Whitespace
+
+    Any spacing character. On implementations that conform to the ANSI C library, whitespace is any character for which isspace returns true. 
+Window gravity
+
+    When windows are resized, subwindows may be repositioned automatically relative to some position in the window. This attraction of a subwindow to some part of its parent is known as window gravity. 
+Window manager
+
+    Manipulation of windows on the screen and much of the user interface (policy) is typically provided by a window manager client. 
+X Portable Character Set
+
+    A basic set of 97 characters which are assumed to exist in all locales supported by Xlib. This set contains the following characters:
+
+
+    a..z A..Z 0..9
+    !"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~
+    <space>, <tab>, and <newline>
+          
+
+    This is the left/lower half (also called the G0 set) of the graphic character set of ISO8859-1 plus <space>, <tab>, and <newline>. It is also the set of graphic characters in 7-bit ASCII plus the same three control characters. The actual encoding of these characters on the host is system dependent; see the Host Portable Character Encoding. 
+XLFD
+
+    The X Logical Font Description Conventions that define a standard syntax for structured font names. 
+XY format
+
+    The data for a pixmap is said to be in XY format if it is organized as a set of bitmaps representing individual bit planes with the planes appearing from most-significant to least-significant bit order. 
+Z format		像素图的数据被称为Z格式 ,如果它以扫描线顺序组织成一组像素值

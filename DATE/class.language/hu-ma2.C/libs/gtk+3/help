@@ -1,0 +1,250 @@
+GObject
+    ├── GInitiallyUnowned		
+    │   ├── GtkWidget				部件
+    │   │   ├── GtkContainer				容器
+    │   │   │   ├── GtkBin				  GtkBin～
+    │   │   │   │   ├── GtkWindow				窗口，顶层，它可以包含其他部件
+    │   │   │   │   │   ├── GtkDialog				  对话框
+    │   │   │   │   │   │   ├── GtkAboutDialog			    关于
+    │   │   │   │   │   │   ├── GtkAppChooserDialog		    选择
+    │   │   │   │   │   │   ├── GtkColorChooserDialog		    颜色选择
+    │   │   │   │   │   │   ├── GtkColorSelectionDialog		    颜色设置
+    │   │   │   │   │   │   ├── GtkFileChooserDialog		    文件选择
+    │   │   │   │   │   │   ├── GtkFontChooserDialog		    字体选择
+    │   │   │   │   │   │   ├── GtkFontSelectionDialog		    字体设置
+    │   │   │   │   │   │   ├── GtkMessageDialog		    消息
+    │   │   │   │   │   │   ├── GtkPageSetupUnixDalog		    页面设置
+    │   │   │   │   │   │   ├── GtkPrintUnixDialog		    打印
+    │   │   │   │   │   │   ╰── GtkRecentChooserDialog		    最近选择
+    │   │   │   │   │   ├── GtkApplicationWindow		  程序
+    │   │   │   │   │   ├── GtkAssistant			  助手
+    │   │   │   │   │   ├── GtkOffscreenWindow			  离屏
+    │   │   │   │   │   ├── GtkPlug				  嵌入到其他进程
+    │   │   │   │   │   ╰── GtkShortcutsWindow			  显示快捷操作帮助
+    │   │   │   │   ├── GtkActionBar				活动条
+    │   │   │   │   ├── GtkAlignment				对齐
+    │   │   │   │   ├── GtkComboBox				复合框
+    │   │   │   │   │   ├── GtkAppChooserButton			  程序选择
+    │   │   │   │   │   ╰── GtkComboBoxText			  文本
+    │   │   │   │   ├── GtkFrame				框架
+    │   │   │   │   │   ╰── GtkAspectFrame			  外观
+    │   │   │   │   ├── GtkButton				按钮
+    │   │   │   │   │   ├── GtkToggleButton			  开关型
+    │   │   │   │   │   │   ├── GtkCheckButton			    副选
+    │   │   │   │   │   │   │   ╰── GtkRadioButton		    单选
+    │   │   │   │   │   │   ╰── GtkMenuButton			    菜单
+    │   │   │   │   │   ├── GtkColorButton			  颜色型
+    │   │   │   │   │   ├── GtkFontButton			  文字型
+    │   │   │   │   │   ├── GtkLinkButton			  链接型
+    │   │   │   │   │   ├── GtkLockButton			  解锁或锁定特权操作
+    │   │   │   │   │   ├── GtkModelButton
+    │   │   │   │   │   ╰── GtkScaleButton			  比例型
+    │   │   │   │   │       ╰── GtkVolumeButton		    音量
+    │   │   │   │   ├── GtkMenuItem				菜单项
+    │   │   │   │   │   ├── GtkCheckMenuItem
+    │   │   │   │   │   │   ╰── GtkRadioMenuItem
+    │   │   │   │   │   ├── GtkImageMenuItem
+    │   │   │   │   │   ├── GtkSeparatorMenuItem
+    │   │   │   │   │   ╰── GtkTearoffMenuItem
+    │   │   │   │   ├── GtkEventBox				事件框
+    │   │   │   │   ├── GtkExpander				扩展器
+    │   │   │   │   ├── GtkFlowBoxChild
+    │   │   │   │   ├── GtkHandleBox				可拆卸窗口部分
+    │   │   │   │   ├── GtkListBoxRow				列表容器
+    │   │   │   │   ├── GtkToolItem				工具项
+    │   │   │   │   │   ├── GtkToolButton
+    │   │   │   │   │   │   ├── GtkMenuToolButton
+    │   │   │   │   │   │   ╰── GtkToggleToolButton
+    │   │   │   │   │   │       ╰── GtkRadioToolButton
+    │   │   │   │   │   ╰── GtkSeparatorToolItem
+    │   │   │   │   ├── GtkOverlay				层叠
+    │   │   │   │   ├── GtkScrolledWindow			可滚动的窗口
+    │   │   │   │   │   ╰── GtkPlacesSidebar			侧面条
+    │   │   │   │   ├── GtkPopover
+    │   │   │   │   │   ╰── GtkPopoverMenu
+    │   │   │   │   ├── GtkRevealer				反向
+    │   │   │   │   ├── GtkSearchBar				搜索条
+    │   │   │   │   ├── GtkStackSidebar				自动侧边栏部件
+    │   │   │   │   ╰── GtkViewport				观察窗
+    │   │   │   ├── GtkBox				  框
+    │   │   │   │   ├── GtkAppChooserWidget			程序选择器组件
+    │   │   │   │   ├── GtkButtonBox				按钮框
+    │   │   │   │   │   ├── GtkHButtonBox
+    │   │   │   │   │   ╰── GtkVButtonBox
+    │   │   │   │   ├── GtkColorChooserWidget			颜色选择器组件
+    │   │   │   │   ├── GtkColorSelection
+    │   │   │   │   ├── GtkFileChooserButton			文件选择器按钮
+    │   │   │   │   ├── GtkFileChooserWidget			文件选择器组件
+    │   │   │   │   ├── GtkFontChooserWidget			字体选择器组件
+    │   │   │   │   ├── GtkFontSelection
+    │   │   │   │   ├── GtkHBox
+    │   │   │   │   ├── GtkInfoBar				信息栏
+    │   │   │   │   ├── GtkRecentChooserWidget			最近选择器组件
+    │   │   │   │   ├── GtkShortcutsSection
+    │   │   │   │   ├── GtkShortcutsGroup
+    │   │   │   │   ├── GtkShortcutsShortcut
+    │   │   │   │   ├── GtkStackSwitcher
+    │   │   │   │   ├── GtkStatusbar				状态栏
+    │   │   │   │   ╰── GtkVBox
+    │   │   │   ├── GtkFixed				  固定的
+    │   │   │   ├── GtkFlowBox
+    │   │   │   ├── GtkGrid				  网络
+    │   │   │   ├── GtkHeaderBar			  标题条
+    │   │   │   ├── GtkPaned				  镶嵌
+    │   │   │   │   ├── GtkHPaned
+    │   │   │   │   ╰── GtkVPaned
+    │   │   │   ├── GtkIconView				  图标视图
+    │   │   │   ├── GtkLayout				  布局
+    │   │   │   ├── GtkListBox				  列表框
+    │   │   │   ├── GtkMenuShell				
+    │   │   │   │   ├── GtkMenuBar			    菜单栏
+    │   │   │   │   ╰── GtkMenu			    弹出式菜单
+    │   │   │   │       ╰── GtkRecentChooserMenu
+    │   │   │   ├── GtkNotebook				  记事本
+    │   │   │   ├── GtkSocket
+    │   │   │   ├── GtkStack
+    │   │   │   ├── GtkTable
+    │   │   │   ├── GtkTextView				  文本视图
+    │   │   │   ├── GtkToolbar				  工具条
+    │   │   │   ├── GtkToolItemGroup
+    │   │   │   ├── GtkToolPalette			  工具调色版
+    │   │   │   ╰── GtkTreeView			  树视图
+    │   │   ├── GtkMisc
+    │   │   │   ├── GtkLabel				  标签
+    │   │   │   │   ╰── GtkAccelLabel			    快捷键标签
+    │   │   │   ├── GtkArrow				  箭头
+    │   │   │   ╰── GtkImage				  图像
+    │   │   ├── GtkCalendar				日历
+    │   │   ├── GtkCellView
+    │   │   ├── GtkDrawingArea				绘图区域
+    │   │   ├── GtkEntry				文本框控件
+    │   │   │   ├── GtkSearchEntry			  搜索
+    │   │   │   ╰── GtkSpinButton			  微调按钮
+    │   │   ├── GtkGLArea
+    │   │   ├── GtkRange
+    │   │   │   ├── GtkScale				  比例
+    │   │   │   │   ├── GtkHScale
+    │   │   │   │   ╰── GtkVScale
+    │   │   │   ╰── GtkScrollbar			  滚动条
+    │   │   │       ├── GtkHScrollbar
+    │   │   │       ╰── GtkVScrollbar
+    │   │   ├── GtkSeparator				分割条
+    │   │   │   ├── GtkHSeparator
+    │   │   │   ╰── GtkVSeparator
+    │   │   ├── GtkHSV
+    │   │   ├── GtkInvisible
+    │   │   ├── GtkProgressBar				进度条
+    │   │   ├── GtkSpinner				动画
+    │   │   ├── GtkSwitch				切换
+    │   │   ╰── GtkLevelBar				水平条
+    │   ├── GtkAdjustment			调整
+    │   ├── GtkCellArea
+    │   │   ╰── GtkCellAreaBox
+    │   ├── GtkCellRenderer
+    │   │   ├── GtkCellRendererText
+    │   │   │   ├── GtkCellRendererAccel
+    │   │   │   ├── GtkCellRendererCombo
+    │   │   │   ╰── GtkCellRendererSpin
+    │   │   ├── GtkCellRendererPixbuf
+    │   │   ├── GtkCellRendererProgress
+    │   │   ├── GtkCellRendererSpinner
+    │   │   ╰── GtkCellRendererToggle
+    │   ├── GtkFileFilter			文件过滤器
+    │   ├── GtkTreeViewColumn
+    │   ╰── GtkRecentFilter			最近的过滤器
+    ├── GtkAccelGroup			快捷键组
+    ├── GtkAccelMap
+    ├── AtkObject
+    │   ╰── GtkAccessible
+    ├── GtkAction			动作
+    │   ├── GtkToggleAction			开关
+    │   │   ╰── GtkRadioAction			  单选
+    │   ╰── GtkRecentAction			最近
+    ├── GtkActionGroup			动作组
+    ├── GApplication
+    │   ╰── GtkApplication
+    ├── GtkBuilder
+    ├── GtkCellAreaContext
+    ├── GtkClipboard
+    ├── GtkCssProvider
+    ├── GtkEntryBuffer			输入缓冲区
+    ├── GtkEntryCompletion		输入补全
+    ├── GtkEventController		
+    │   ╰── GtkGesture
+    │       ├── GtkGestureSingle
+    │       │   ├── GtkGestureDrag
+    │       │   │   ╰── GtkGesturePan
+    │       │   ├── GtkGestureLongPress
+    │       │   ├── GtkGestureMultiPress
+    │       │   ╰── GtkGestureSwipe
+    │       ├── GtkGestureRotate
+    │       ╰── GtkGestureZoom
+    ├── GtkIconFactory			图标工厂
+    ├── GtkIconTheme			图标主题
+    ├── GtkIMContext
+    │   ├── GtkIMContextSimple
+    │   ╰── GtkIMMulticontext
+    ├── GtkListStore			列表库
+    ├── GMountOperation
+    │   ╰── GtkMountOperation
+    ├── GEmblemedIcon
+    │   ╰── GtkNumerableIcon
+    ├── GtkPageSetup
+    ├── GtkPrinter
+    ├── GtkPrintContext
+    ├── GtkPrintJob
+    ├── GtkPrintOperation
+    ├── GtkPrintSettings
+    ├── GtkRcStyle
+    ├── GtkRecentManager		最近的管理员
+    ├── GtkSettings
+    ├── GtkSizeGroup			尺寸组
+    ├── GtkStatusIcon			状态图标
+    ├── GtkStyle
+    ├── GtkStyleContext
+    ├── GtkTextBuffer			文本缓冲区
+    ├── GtkTextChildAnchor
+    ├── GtkTextMark
+    ├── GtkTextTag			文本标签
+    ├── GtkTextTagTable			文本标签表
+    ├── GtkThemingEngine
+    ├── GtkTreeModelFilter		树模型过滤器
+    ├── GtkTreeModelSort		树模型排序
+    ├── GtkTreeSelection
+    ├── GtkTreeStore			树库
+    ├── GtkUIManager			从XML描述构建菜单和工具栏
+    ├── GtkWindowGroup			窗口组
+    ├── GtkTooltip			添加提示到部件
+        ╰── GtkPrintBackend
+    GInterface				类型加载模块
+    ├── GtkBuildable
+    ├── GtkActionable
+    ├── GtkActivatable
+    ├── GtkAppChooser
+    ├── GtkCellLayout
+    ├── GtkCellEditable
+    ├── GtkOrientable
+    ├── GtkColorChooser
+    ├── GtkStyleProvider
+    ├── GtkEditable
+    ├── GtkFileChooser
+    ├── GtkFontChooser
+    ├── GtkScrollable
+    ├── GtkTreeModel
+    ├── GtkTreeDragSource
+    ├── GtkTreeDragDest
+    ├── GtkTreeSortable
+    ├── GtkPrintOperationPreview
+    ├── GtkRecentChooser
+        ╰── GtkToolShell
+    GBoxed
+    ├── GtkPaperSize
+    ├── GtkTextIter
+    ├── GtkSelectionData
+    ├── GtkRequisition
+    ├── GtkBorder
+    ├── GtkTreeIter
+    ├── GtkCssSection
+    ├── GtkTreePath
+    ├── GtkIconSet
+        ╰── GtkTargetList

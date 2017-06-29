@@ -1,0 +1,18 @@
+
+
+
+disk:
+	file-sys
+		dir
+		file
+
+
+mem:
+	var
+	env
+
+video:
+	comd-line
+	X
+
+

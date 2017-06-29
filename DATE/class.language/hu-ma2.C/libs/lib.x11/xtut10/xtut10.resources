@@ -1,0 +1,5 @@
+xtut10.exit: Quit
+xtut10.background: Blue
+xtut10.foreground: DarkBlue
+xtut10.border: slate blue
+xtut10.font: -*-charter-medium-r-*-15-*

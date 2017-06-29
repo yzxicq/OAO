@@ -1,0 +1,46 @@
+<X11/Xlib.h>	#主要Xlib头文件. 
+
+<X11/X.h>	#X协议的类型和常量。从<X11 / Xlib.h>自动包含
+
+<X11/Xcms.h>	#包含此文件之前必须包含<X11 / Xlib.h>
+
+<X11/Xutil.h>	#该文件声明了用于客户端间通信和应用程序实用程序功能的各种功能，类型和符号，含此文件之前必须包含<X11 / Xlib.h>
+
+<X11/Xresource.h>	#该文件声明资源管理器功能的所有功能，类型和符号。含此文件之前必须包含<X11 / Xlib.h>
+
+<X11/Xatom.h>	#该文件声明所有预定义的原子, which are symbols with the prefix "XA_".
+
+<X11/cursorfont.h>
+	
+
+This file declares the cursor symbols for the standard cursor font, which are listed in Appendix B. All cursor symbols have the prefix "XC_".
+
+<X11/keysymdef.h>
+	
+
+This file declares all standard KeySym values, which are symbols with the prefix "XK_". The KeySyms are arranged in groups, and a preprocessor symbol controls inclusion of each group. The preprocessor symbol must be defined prior to inclusion of the file to obtain the associated values. The preprocessor symbols are XK_MISCELLANY, XK_XKB_KEYS, XK_3270, XK_LATIN1, XK_LATIN2, XK_LATIN3, XK_LATIN4, XK_KATAKANA, XK_ARABIC, XK_CYRILLIC, XK_GREEK, XK_TECHNICAL, XK_SPECIAL, XK_PUBLISHING, XK_APL, XK_HEBREW, XK_THAI, and XK_KOREAN.
+
+<X11/keysym.h>
+	
+
+This file defines the preprocessor symbols XK_MISCELLANY, XK_XKB_KEYS, XK_LATIN1, XK_LATIN2, XK_LATIN3, XK_LATIN4, and XK_GREEK and then includes <X11/keysymdef.h>.
+
+<X11/Xlibint.h>
+	
+
+This file declares all the functions, types, and symbols used for extensions, which are described in Appendix C. This file automatically includes <X11/Xlib.h>.
+
+<X11/Xproto.h>
+	
+
+This file declares types and symbols for the basic X protocol, for use in implementing extensions. It is included automatically from <X11/Xlibint.h>, so application and extension code should never need to reference this file directly.
+
+<X11/Xprotostr.h>
+	
+
+This file declares types and symbols for the basic X protocol, for use in implementing extensions. It is included automatically from <X11/Xproto.h>, so application and extension code should never need to reference this file directly.
+
+<X11/X10.h>
+	
+
+This file declares all the functions, types, and symbols used for the X10 compatibility functions, which are described in Appendix D. 

@@ -1,0 +1,869 @@
+
+
+##参考: https://www.x.org/releases/X11R7.6/doc/libX11/specs/libX11/libX11.html#
+ #######
+###fun###
+ #######
+
+
+Display *XOpenDisplay(char *display_name);	# 打开指定显示器，返回其对象
+	display_name	# 硬件显示名称
+		NULL	# 同DISPLAY环境变量的值
+	return:		# new Display *
+
+### Display Macros
+unsigned long XBlackPixel(Display *display, int screen_number);	# 颜色使用默认颜色
+unsigned long XWhitePixel(Display *display, int screen_number);
+	display		# 
+	screen_number	# 相应屏幕号
+		0
+	return:		# XB*:返回黑色值 ; XW*:返回白色值
+int XConnectionNumber(Display *display);
+	return:		# 指定显示器的链接号
+
+Colormap XDefaultColormap(Display *display, int screen_number);
+	return: Colormap	# 屏幕默认颜色分配
+int XDefaultDepth(Display *display, int screen_number);
+	return:			# 显示器默认深度
+int *XListDepths(Display *display, int screen_number, int *count_return);	#确定可用给定的屏幕上深度值
+	count_return	# 返回数组数量
+	return:		# 返回深度的数组
+GC XDefaultGC(Display *display, int screen_number);
+Window XDefaultRootWindow(Display *display);
+	return:		# 返回默认屏幕的根窗口
+Screen *XDefaultScreenOfDisplay(Display *display);
+	return:		# 返回默认屏幕的指针
+Screen *XScreenOfDisplay(Display *display, int screen_number);
+	return:		# 返回指定屏幕的指针
+int XDefaultScreen(Display *display);
+	return:		# 返回默认屏幕号
+Visual *XDefaultVisual(Display *display, int screen_number);
+	return:		# 返回默认屏幕的默认视觉类型
+int XDisplayCells(Display *display, int screen_number);
+	return:		# 返回默认色彩分配(colormap)中的条目数
+int XDisplayPlanes(Display *display, int screen_number);
+	return:		# 返回默认屏幕中根窗口的深度
+char *XDisplayString(Display *display);
+	return:		# 返回指定屏幕的"display_name"
+long XExtendedMaxRequestSize(Display *display);
+	return:		# 返回最大请求大小4-byte为单位,
+		0	# 若不支持扩展长度协议编码
+long XMaxRequestSize(Display *display);
+	return:		# 返回最大请求大小4-byte为单位,不使用扩展长度协议编码
+unsigned long XLastKnownRequestProcessed(Display *display);
+	return:		# 返回最后的请求完整序列号
+unsigned long XNextRequest(Display *display);
+	return:		# 返回用于下一个请求的完整序列号
+int XProtocolVersion(Display *display);
+	return:		# 返回x服务的主要版本号(major)
+int XProtocolRevision(Display *display);
+	return:		# 返回x服务的第二版本号(minor)
+int XQLength(Display *display);
+	return:		# 返回以连接显示器的事件队列的长度
+Window XRootWindow(Display *display, int screen_number);
+	return:		# 返回根窗口
+int XScreenCount(Display *display);
+	return:		# 返回可用屏幕号
+char *XServerVendor(Display *display);
+	return:		# 返回指针，指向X服务器实现的所有者的一些标识，直到空值终止
+int XVendorRelease(Display *display);
+	return:		# 返回供应商的X服务器版本号
+
+### 图像格式功能和宏
+typedef struct {
+	int depth;
+	int bits_per_pixel;
+	int scanline_pad;
+} XPixmapFormatValues;
+XPixmapFormatValues XListPixmapFormats(Display *display, int *count_return);
+	return:		# 返回描述所支持的Z格式图像类型的数组
+int XImageByteOrder(Display *display);
+	return:		# 返回图像位的顺序
+		LSBFirst
+		MSBFirst
+int XBitmapUnit(Display *display);
+	return:		# 返回位图扫描线单元的大小
+int XBitmapBitOrder(Display *display);
+	return:		# 返回位图位的顺序
+		LSBFirst
+		MSBFirst
+int XBitmapPad(Display *display);	#???
+int XDisplayHeight(Display *display, int screen_number);
+	return:		# 返回描述屏幕高度的像素
+int XDisplayWidth(Display *display, int screen_number);
+	return:		# 返回描述屏幕宽度的像素
+int XDisplayHeightMM(Display *display, int screen_number);
+	return:		# 返回以毫米为单位描述的屏幕高度
+int XDisplayWidthMM(Display *display, int screen_number);
+	return:		# 返回以毫米为单位描述的屏幕宽度
+
+### 屏幕信息 Macros
+unsigned long XBlackPixelOfScreen(Screen *screen);
+unsigned long XWhitePixelOfScreen(Screen *screen);
+	return:		# XB*:返回黑色值 ; XW*:返回白色值
+int XCellsOfScreen(Screen *screen);
+	return:		# 返回指定屏幕默认色图的色图cells数量
+Colormap XDefaultColormapOfScreen(Screen *screen);
+	return:		# 返回指定屏幕默认色图
+int XDefaultDepthOfScreen(Screen *screen);
+	return:		# 返回根窗口的深度
+GC XDefaultGCOfScreen(Screen *screen);
+	return:		# 返回指定屏幕的默认显卡上下文
+Visual *XDefaultVisualOfScreen(Screen *screen);
+	return:		# 返回指定屏幕的默认视觉
+int XDoesBackingStore(Screen *screen);
+	return:		# 返回一个值，指示屏幕是否支持后备存储
+		WhenMapped
+		NotUseful
+		Always
+Bool XDoesSaveUnders(Screen *screen);
+	return:		# 返回一个布尔值，指示屏幕是否支持保存unders
+Display *XDisplayOfScreen(Screen *screen);
+	return:		# 返回指定屏幕的显示器
+int XScreenNumberOfScreen(Screen *screen);
+	return:		# 返回指定屏幕索引号
+long XEventMaskOfScreen(Screen *screen);
+	return:		# 返回指定屏幕根窗口的事件掩码，在连接建立时候
+int XWidthOfScreen(Screen *screen);
+	return:		# 返回指定屏幕像素宽度
+int XHeightOfScreen(Screen *screen);
+	return:		# 返回指定屏幕像素高度
+int XWidthMMOfScreen(Screen *screen);
+	return:		# 返回指定屏幕毫米为单位的宽度
+int XHeightMMOfScreen(Screen *screen);
+	return:		# 返回指定屏幕毫米为单位的高度
+int XMaxCmapsOfScreen(Screen *screen);
+	return:		# 返回指定屏幕支持的已安装色图最大数
+int XMinCmapsOfScreen(Screen *screen);
+	return:		# 返回指定屏幕支持的已安装色图最小数
+int XPlanesOfScreen(Screen *screen);
+	return:		# 返回根窗口的深度
+Window XRootWindowOfScreen(Screen *screen);
+	return:		# 返回指定屏幕的根窗口
+
+### 生成NoOperation协议请求
+XNoOp(Display *display);	# 发送NoOperation协议请求到x服务器，从而行使连接
+XFree(void *data);		# 释放指定数据，你必须用它释放xlib分配的任何对象
+
+### 关闭显示
+XCloseDisplay(Display *display);	# 关闭指定显示器
+XSetCloseDownMode(Display *display, int close_mode);	#???
+	close_mode
+		DestroyAll
+		RetainPermanent
+		RetainTemporary
+
+### Using X Server Connection Close Operations ???
+
+### 使用Xlib与线程
+XLockDisplay(Display *display);
+XUnlockDisplay(Display *display);
+
+### 使用内部连接
+type void XConnectionWatchProc(Display *display, XPointer client_data, int fd, Bool opening, XPointer *watch_data);
+Status XRemoveConnectionWatch(Display *display, XWatchProc procedure, XPointer client_data);
+void XProcessInternalConnection(Display *display, int fd);
+Status XInternalConnectionNumbers(Display *display, int fd, int count_return);
+
+
+#窗口函数
+#视觉类型
+VisualID XVisualIDFromVisual(Visual *visual);
+	return:		# 返回视觉id(VisualID)
+
+
+Window XCreateWindow(Display *display, Window parent, intx, y, unsignedintwidth, height, unsignedint border_width, int depth, unsignedint class, Visual *visual, unsignedlong valuemask, XSetWindowAttributes *attributes);	# 创建窗口
+	display
+	parent		# 指定父窗口
+	x
+	y		# 指定坐标
+	width		# 指定宽度
+	height		# 指定高度
+	border_width	# 指定窗口边框像素宽度
+	depth		# 指定窗口深度
+	class		# 指定窗口类型
+		InputOutput
+		InputOnly
+		CopyFromParent	#复制遗传
+	visual		# 指定视觉类型
+	valuemask	# ???
+	attributes	# 指定属性结构XSetWindowAttributes 
+	return:	 Window	
+Window XCreateSimpleWindow(Display *display, Window parent, intx, y, unsignedintwidth, height, unsignedint border_width, unsignedlong border, unsignedlong background);	#创建简单窗口
+	border		# 指定窗口边框像素值
+	background	# 指定背景像素值
+XDestroyWindow(Display *display, Window w);	# 关闭窗口
+XDestroySubwindows(Display *display, Window w);	# 关闭窗口的子窗口
+
+XMapWindow(Display *display, Window w);		# 映射(显示)窗口
+XMapRaised(Display *display, Window w);		# 提高子窗口 ???
+XMapSubwindows(Display *display, Window w);	# 映射指定窗口所有子窗口
+XUnmapWindow(Display *display, Window w);	# 落映窗口
+XUnmapSubwindows(Display *display, Window w);	# 落映指定窗口所有子窗口
+XConfigureWindow(Display *display, Window w, unsignedint value_mask, XWindowChanges *values);
+	value_mask
+		CWX              (1<<0)
+		CWY              (1<<1)
+		CWWidth          (1<<2)
+		CWHeight         (1<<3)
+		CWBorderWidth    (1<<4)
+		CWSibling        (1<<5)
+		CWStackMode      (1<<6)
+	values	#指定XWindowChanges结构
+typedef struct {
+     int x, y;
+     int width, height;
+     int border_width;
+     Window sibling;
+     int stack_mode;
+} XWindowChanges;
+XMoveWindow(Display *display, Window w, intx, y);	#移动窗口
+XResizeWindow(Display *display, Window w, unsignedintwidth, height);	#要更改窗口的大小
+XMoveResizeWindow(Display *display, Window w, intx, y, unsignedintwidth, height);	#移动,更改窗口的大小
+XSetWindowBorderWidth(Display *display, Window w, unsignedint width);	#更改边框宽度
+
+### 更改窗口堆叠顺序
+XRaiseWindow(Display *display, Window w);	# 提高指定窗口
+XLowerWindow(Display *display, Window w);	# 降下指定窗口
+XCirculateSubwindows(Display *display, Window w, int direction);
+	direction
+		RaiseLowest
+		LowerHighest
+XCirculateSubwindowsUp(Display *display, Window w);
+XCirculateSubwindowsDown(Display *display, Window w);
+XRestackWindows(Display *display, Window windows[], int nwindows);	#要从上到下重新堆叠一套Windows
+	windows[]	# 窗口数组
+	nwindows	# 将窗口重新压入堆栈的数量
+
+### 更改窗口属性
+XChangeWindowAttributes(Display *display, Window w, unsignedlong valuemask, XSetWindowAttributes *attributes);	#更改窗口属性
+XSetWindowBackground(Display *display, Window w, unsignedlong background_pixel);	#更改背景
+XSetWindowBackgroundPixmap(Display *display, Window w, Pixmap background_pixmap);	#更改背景
+XSetWindowBorder(Display *display, Window w, unsignedlong border_pixel);	#更改边框
+XSetWindowBorderPixmap(Display *display, Window w, Pixmap border_pixmap);	#更改边框
+XSetWindowColormap(Display *display, Window w, Colormap colormap);	#更改色图
+XDefineCursor(Display *display, Window w, Cursor cursor);	#定义光标
+	cursor
+XUndefineCursor(Display *display, Window w);	#取消定义
+
+### 获取窗口信息
+Status XQueryTree(Display *display, Window w, Window *root_return, Window *parent_return, Window **children_return, unsignedint *nchildren_return);
+	display	# 指定显示器
+	w	# 指定窗口
+	root_return	#返回根窗口
+	parent_return	#返回主窗口
+	children_return	# 子窗口列表
+	nchildren_return	# 子窗口数
+Status XGetWindowAttributes(Display *display, Window w, XWindowAttributes *window_attributes_return);
+	window_attributes_return	# 返回XWindowAttributes结构
+typedef struct {
+     int x, y;                     /* location of window */
+     int width, height;            /* width and height of window */
+     int border_width;             /* border width of window */
+     int depth;                    /* depth of window */
+     Visual *visual;               /* the associated visual structure */
+     Window root;                  /* root of screen containing window */
+     int class;                    /* InputOutput, InputOnly*/
+     int bit_gravity;              /* one of the bit gravity values */
+     int win_gravity;              /* one of the window gravity values */
+     int backing_store;            /* NotUseful, WhenMapped, Always */
+     unsigned long backing_planes; /* planes to be preserved if possible */
+     unsigned long backing_pixel;  /* value to be used when restoring planes */
+     Bool save_under;              /* boolean, should bits under be saved? */
+     Colormap colormap;            /* color map to be associated with window */
+     Bool map_installed;           /* boolean, is color map currently installed*/
+     int map_state;                /* IsUnmapped, IsUnviewable, IsViewable */
+     long all_event_masks;         /* set of events all people have interest in*/
+     long your_event_mask;         /* my event mask */
+     long do_not_propagate_mask;   /* set of events that should not propagate */
+     Bool override_redirect;       /* boolean value for override-redirect */
+     Screen *screen;               /* back pointer to correct screen */
+} XWindowAttributes;
+Status XGetGeometry(Display *display, Drawable d, Window *root_return, int*x_return, *y_return, unsignedint*width_return, *height_return, unsignedint *border_width_return, unsignedint *depth_return);	#获得给定的绘制的当前几何
+	d	# 指定drawable
+	root_return	# 返回根窗口
+	x_return	
+	y_return	# 返回drawable的位置坐标
+	width_return
+	height_return	# 返回drawable的大小
+	border_width_return	# 返回边框宽度
+	depth_return	# 返回drawable的深度
+
+### 转换屏幕坐标
+Bool XTranslateCoordinates(Display *display, Windowsrc_w, dest_w, intsrc_x, src_y, int*dest_x_return, *dest_y_return, Window *child_return);
+src_w	# 指定原窗口
+dest_w	# 指定目标窗口
+src_x
+src_y	#指定源窗口内的x和y坐标
+dest_x_return
+dest_y_return	# 返回目标窗口中的x和y坐标
+child_return	# 如果坐标包含在目标窗口的映射子节点中，则返回该子节点
+Bool XQueryPointer(Display *display, Window w, Window *root_return, *child_return, int*root_x_return, *root_y_return, int *win_x_return, *win_y_return, unsignedint *mask_return);
+root_return	# 返回根窗口
+child_return	# 返回子窗口
+root_x_return
+root_y_return	# 相对于根窗口的原点返回指针坐标。
+win_x_return
+win_y_return	Return the pointer coordinates relative to the specified window.
+mask_return	Returns the current state of the modifier keys and pointer buttons. 
+
+### 性能与原子
+Atom XInternAtom(Display *display, char *atom_name, Bool only_if_exists);
+Status XInternAtoms(Display *display, char **names, int count, Bool only_if_exists, Atom *atoms_return);
+char *XGetAtomName(Display *display, Atom atom);
+Status XGetAtomNames(Display *display, Atom *atoms, int count, char **names_return);.
+
+### 获取和更改窗口属性
+int XGetWindowProperty( display, w, property, long_offset, long_length, delete, req_type, actual_type_return, actual_format_return, nitems_return, bytes_after_return, prop_return);	#获得给定的窗口的属性的类型，格式和值，
+Atom *XListProperties(Display *display, Window w, int *num_prop_return);
+XChangeProperty(Display *display, Window w, Atomproperty, type, int format, int mode, unsignedchar *data, int nelements);
+XRotateWindowProperties(Display *display, Window w, Atom properties[], int num_prop, int npositions);
+XDeleteProperty(Display *display, Window w, Atom property);
+
+### Selections
+XSetSelectionOwner(Display *display, Atom selection, Window owner, Time time);
+selection	Specifies the selection atom.
+owner		Specifies the owner of the specified selection atom. You can pass a window or None.
+time	Specifies the time. You can pass either a timestamp or CurrentTime. 
+Window XGetSelectionOwner(Display *display, Atom selection);
+XConvertSelection(Display *display, Atomselection, target, Atom property, Window requestor, Time time);
+
+## 像素图和光标功能
+###创建和释放Pixmap
+Pixmap XCreatePixmap(Display *display, Drawable d, unsignedintwidth, height, unsignedint depth);
+XFreePixmap(Display *display, Pixmap pixmap);
+
+### 创建，重新着色，并释放光标
+Cursor XCreateFontCursor(Display *display, unsignedint shape);
+Cursor XCreateGlyphCursor(Display *display, Fontsource_font, mask_font, unsignedintsource_char, mask_char, XColor *foreground_color, XColor *background_color);
+Status XQueryBestCursor(Display *display, Drawable d, unsignedintwidth, height, unsignedint*width_return, *height_return);
+XRecolorCursor(Display *display, Cursor cursor, XColor*foreground_color, *background_color);
+XFreeCursor(Display *display, Cursor cursor);
+
+
+## 色彩管理功能
+### 创建，复制，和销毁的colormaps
+Colormap XCreateColormap(Display *display, Window w, Visual *visual, int alloc);
+Colormap XCopyColormapAndFree(Display *display, Colormap colormap);
+XFreeColormap(Display *display, Colormap colormap);
+
+### 映射颜色名称到值
+Status XLookupColor(Display *display, Colormap colormap, char *color_name, XColor*exact_def_return, *screen_def_return);
+Status XParseColor(Display *display, Colormap colormap, char *spec, XColor *exact_def_return);
+Status XcmsLookupColor(Display *display, Colormap colormap, char *color_string, XcmsColor*color_exact_return, *color_screen_return, XcmsColorFormat result_format);
+
+### 分配和释放细cell
+Status XAllocColor(Display *display, Colormap colormap, XColor *screen_in_out);
+Status XcmsAllocColor(Display *display, Colormap colormap, XcmsColor *color_in_out, XcmsColorFormat result_format);
+Status XAllocNamedColor(Display *display, Colormap colormap, char *color_name, XColor*screen_def_return, *exact_def_return);
+Status XcmsAllocNamedColor(Display *display, Colormap colormap, char *color_string, XcmsColor *color_screen_return, XcmsColor *color_exact_return, XcmsColorFormat result_format);
+Status XAllocColorCells(Display *display, Colormap colormap, Bool contig, unsignedlong plane_masks_return[], unsignedint nplanes, unsignedlong pixels_return[], unsignedint npixels);
+Status XAllocColorPlanes(Display *display, Colormap colormap, Bool contig, unsignedlong pixels_return[], int ncolors, intnreds,ngreens, nblues, unsignedlong*rmask_return,*gmask_return, *bmask_return);
+XFreeColors(Display *display, Colormap colormap, unsignedlong pixels[], int npixels, unsignedlong planes);
+
+### 修改和查询色图cells
+XStoreColor(Display *display, Colormap colormap, XColor *color);
+XStoreColors(Display *display, Colormap colormap, XColor color[], int ncolors);
+Status XcmsStoreColor(Display *display, Colormap colormap, XcmsColor *color);
+Status XcmsStoreColors(Display *display, Colormap colormap, XcmsColor colors[], int ncolors, Bool compression_flags_return[]);
+XStoreNamedColor(Display *display, Colormap colormap, char *color, unsignedlong pixel, int flags);
+XQueryColor(Display *display, Colormap colormap, XColor *def_in_out);
+XQueryColors(Display *display, Colormap colormap, XColor defs_in_out[], int ncolors);
+Status XcmsQueryColor(Display *display, Colormap colormap, XcmsColor *color_in_out, XcmsColorFormat result_format);
+Status XcmsQueryColors(Display *display, Colormap colormap, XcmsColor colors_in_out[], unsignedint ncolors, XcmsColorFormat result_format);
+XcmsCCC XcmsCCCOfColormap(Display *display, Colormap colormap);
+XcmsCCC XcmsSetCCCOfColormap(Display *display, Colormap colormap, XcmsCCC ccc);
+XcmsCCC XcmsDefaultCCC(Display *display, int screen_number);
+DisplayOfCCC(XcmsCCC ccc);
+VisualOfCCC(XcmsCCC ccc);
+ScreenNumberOfCCC(XcmsCCC ccc);
+ScreenWhitePointOfCCC(XcmsCCC ccc);
+ClientWhitePointOfCCC(XcmsCCC ccc);
+Status XcmsSetWhitePoint(XcmsCCC ccc, XcmsColor *color);
+XcmsCompressionProc XcmsSetCompressionProc(XcmsCCC ccc, XcmsCompressionProc compression_proc, XPointer client_data);
+XcmsWhiteAdjustProc XcmsSetWhiteAdjustProc(XcmsCCC ccc, XcmsWhiteAdjustProc white_adjust_proc, XPointer client_data);
+XcmsCCC XcmsCreateCCC(Display *display, int screen_number, Visual *visual, XcmsColor *client_white_point, XcmsCompressionProc compression_proc, XPointer compression_client_data, XcmsWhiteAdjustProc white_adjust_proc, XPointer white_adjust_client_data);
+void XcmsFreeCCC(XcmsCCC ccc);
+Status XcmsConvertColors(XcmsCCC ccc, XcmsColor colors_in_out[], unsignedint ncolors, XcmsColorFormat target_format, Bool compression_flags_return[]);
+typedef Status(*XcmsCompressionProc)(XcmsCCC ccc, XcmsColor colors_in_out[], unsignedint ncolors, unsignedint index, Bool compression_flags_return[]);
+typedef Status (*XcmsWhiteAdjustProc)(XcmsCCC ccc, XcmsColor *initial_white_point, XcmsColor *target_white_point, XcmsColorFormat target_format, XcmsColor colors_in_out[], unsignedint ncolors, Bool compression_flags_return[]);
+Status XcmsQueryBlack(XcmsCCC ccc, XcmsColorFormat target_format, XcmsColor *color_return);
+Status XcmsQueryBlue(XcmsCCC ccc, XcmsColorFormat target_format, XcmsColor *color_return);
+Status XcmsQueryGreen(XcmsCCC ccc, XcmsColorFormat target_format, XcmsColor *color_return);
+Status XcmsQueryRed(XcmsCCC ccc, XcmsColorFormat target_format, XcmsColor *color_return);
+Status XcmsQueryWhite(XcmsCCC ccc, XcmsColorFormat target_format, XcmsColor *color_return);
+Status XcmsCIELabQueryMaxC(XcmsCCC ccc, XcmsFloat hue_angle, XcmsFloat L_star, XcmsColor *color_return);
+Status XcmsCIELabQueryMaxL(XcmsCCC ccc, XcmsFloat hue_angle, XcmsFloat chroma, XcmsColor *color_return);
+Status XcmsCIELabQueryMaxLC(XcmsCCC ccc, XcmsFloat hue_angle, XcmsColor *color_return);
+Status XcmsCIELabQueryMinL(XcmsCCC ccc, XcmsFloat hue_angle, XcmsFloat chroma, XcmsColor *color_return);
+Status XcmsCIELuvQueryMaxC(XcmsCCC ccc, XcmsFloat hue_angle, XcmsFloat L_star, XcmsColor *color_return);
+Status XcmsCIELuvQueryMaxL(XcmsCCC ccc, XcmsFloat hue_angle, XcmsFloat chroma, XcmsColor *color_return);
+Status XcmsCIELuvQueryMaxLC(XcmsCCC ccc, XcmsFloat hue_angle, XcmsColor *color_return);
+Status XcmsCIELuvQueryMinL(XcmsCCC ccc, XcmsFloat hue_angle, XcmsFloat chroma, XcmsColor *color_return);
+Status XcmsTekHVCQueryMaxC(XcmsCCC ccc, XcmsFloat hue, XcmsFloat value, XcmsColor *color_return);
+Status XcmsTekHVCQueryMaxV(XcmsCCC ccc, XcmsFloat hue, XcmsFloat chroma, XcmsColor *color_return);
+Status XcmsTekHVCQueryMaxVC(XcmsCCC ccc, XcmsFloat hue, XcmsColor *color_return);
+Status XcmsTekHVCQueryMaxVSamples(XcmsCCC ccc, XcmsFloat hue, XcmsColor colors_return[], unsignedint nsamples);
+Status XcmsTekHVCQueryMinV(XcmsCCC ccc, XcmsFloat hue, XcmsFloat chroma, XcmsColor *color_return);
+Status XcmsAddColorSpace(XcmsColorSpace *color_space);
+XcmsColorFormat XcmsFormatOfPrefix(char *prefix);
+char *XcmsPrefixOfFormat(XcmsColorFormat format);
+Status XcmsParseStringProc(char *color_string, XcmsColor *color_return);
+Status ConversionProc(XcmsCCC ccc, XcmsColor *white_point, XcmsColor *colors_in_out, unsignedint ncolors);
+Status ConversionProc(XcmsCCC ccc, XcmsColor *colors_in_out, unsignedint ncolors, Bool compression_flags_return[]);
+Status XcmsAddFunctionSet(XcmsFunctionSet *function_set);
+typedef Status (*XcmsScreenInitProc)(Display *display, int screen_number, ScmsPerScrnInfo *screen_info);
+typedef void (*XcmsScreenFreeProc)(XPointer screenData);
+GC XCreateGC(Display *display, Drawable d, unsignedlong valuemask, XGCValues *values);
+XCopyGC(Display *display, GCsrc, dest, unsignedlong valuemask);
+XChangeGC(Display *display, GC gc, unsignedlong valuemask, XGCValues *values);
+Status XGetGCValues(Display *display, GC gc, unsignedlong valuemask, XGCValues *values_return);
+XFreeGC(Display *display, GC gc);
+GContext XGContextFromGC(GC gc);
+void XFlushGC(Display *display, GC gc);
+XSetState(Display *display, GC gc, unsignedlongforeground, background, int function, unsignedlong plane_mask);
+XSetForeground(Display *display, GC gc, unsignedlong foreground);
+XSetBackground(Display *display, GC gc, unsignedlong background);
+XSetFunction(Display *display, GC gc, int function);
+XSetPlaneMask(Display *display, GC gc, unsignedlong plane_mask);
+XSetLineAttributes(Display *display, GC gc, unsignedint line_width, int line_style, int cap_style, int join_style);
+XSetDashes(Display *display, GC gc, int dash_offset, char dash_list[], int n);
+XSetFillStyle(Display *display, GC gc, int fill_style);
+XSetFillRule(Display *display, GC gc, int fill_rule);
+Status XQueryBestSize(Display *display, int class, Drawable which_screen, unsignedintwidth, height, unsignedint*width_return, *height_return);
+Status XQueryBestTile(Display *display, Drawable which_screen, unsignedintwidth, height, unsignedint*width_return, *height_return);
+Status XQueryBestStipple(Display *display, Drawable which_screen, unsignedintwidth, height, unsignedint*width_return, *height_return);
+XSetTile(Display *display, GC gc, Pixmap tile);
+XSetStipple(Display *display, GC gc, Pixmap stipple);
+XSetTSOrigin(Display *display, GC gc, intts_x_origin, ts_y_origin);
+XSetFont(Display *display, GC gc, Font font);
+XSetClipOrigin(Display *display, GC gc, intclip_x_origin, clip_y_origin);
+XSetClipMask(Display *display, GC gc, Pixmap pixmap);
+XSetClipRectangles(Display *display, GC gc, intclip_x_origin, clip_y_origin, XRectangle rectangles[], int n, int ordering);
+XSetArcMode(Display *display, GC gc, int arc_mode);
+XSetSubwindowMode(Display *display, GC gc, int subwindow_mode);
+XSetGraphicsExposures(Display *display, GC gc, Bool graphics_exposures);
+XClearArea(Display *display, Window w, intx, y, unsignedintwidth, height, Bool exposures);
+XClearWindow(Display *display, Window w);
+
+### 复制区域
+XCopyArea(Display *display, Drawablesrc, dest, GC gc, intsrc_x, src_y, unsignedintwidth, height, intdest_x, dest_y);
+XCopyPlane(Display *display, Drawablesrc, dest, GC gc, intsrc_x, src_y, unsignedintwidth, height, intdest_x, dest_y, unsignedlong plane);
+
+### 画点，线，矩形和圆弧
+XDrawPoint(Display *display, Drawable d, GC gc, intx, y);
+XDrawPoints(Display *display, Drawable d, GC gc, XPoint *points, int npoints, int mode);
+XDrawLine(Display *display, Drawable d, GC gc, intx1,y1,x2, y2);
+XDrawLines(Display *display, Drawable d, GC gc, XPoint *points, int npoints, int mode);
+XDrawSegments(Display *display, Drawable d, GC gc, XSegment *segments, int nsegments);
+XDrawRectangle(Display *display, Drawable d, GC gc, intx, y, unsignedintwidth, height);
+XDrawRectangles(Display *display, Drawable d, GC gc, XRectangle rectangles[], int nrectangles);
+XDrawArc(Display *display, Drawable d, GC gc, intx, y, unsignedintwidth, height, intangle1, angle2);
+XDrawArcs(Display *display, Drawable d, GC gc, XArc *arcs, int narcs);
+
+### 填充区域
+XFillRectangle(Display *display, Drawable d, GC gc, intx, y, unsignedintwidth, height);
+XFillRectangles(Display *display, Drawable d, GC gc, XRectangle *rectangles, int nrectangles);
+XFillPolygon(Display *display, Drawable d, GC gc, XPoint *points, int npoints, int shape, int mode);
+XFillArc(Display *display, Drawable d, GC gc, intx, y, unsignedintwidth, height, intangle1, angle2);
+XFillArcs(Display *display, Drawable d, GC gc, XArc *arcs, int narcs);
+
+##字体规格
+Font XLoadFont(Display *display, char *name);
+XFontStruct *XQueryFont(Display *display, XID font_ID);
+XFontStruct *XLoadQueryFont(Display *display, char *name);
+XFreeFont(Display *display, XFontStruct *font_struct);
+Bool XGetFontProperty(XFontStruct *font_struct, Atom atom, unsignedlong *value_return);
+XUnloadFont(Display *display, Font font);
+char **XListFonts(Display *display, char *pattern, int maxnames, int *actual_count_return);
+XFreeFontNames(char *list[]);
+char **XListFontsWithInfo(Display *display, char *pattern, int maxnames, int *count_return, XFontStruct **info_return);
+XFreeFontInfo(char **names, XFontStruct *free_info, int actual_count);
+int XTextWidth(XFontStruct *font_struct, char *string, int count);
+int XTextWidth16(XFontStruct *font_struct, XChar2b *string, int count);
+XTextExtents(XFontStruct *font_struct, char *string, int nchars, int *direction_return, int*font_ascent_return, *font_descent_return, XCharStruct *overall_return);
+XTextExtents16(XFontStruct *font_struct, XChar2b *string, int nchars, int *direction_return, int*font_ascent_return, *font_descent_return, XCharStruct *overall_return);
+XQueryTextExtents(Display *display, XID font_ID, char *string, int nchars, int *direction_return, int*font_ascent_return, *font_descent_return, XCharStruct *overall_return);
+XQueryTextExtents16(Display *display, XID font_ID, XChar2b *string, int nchars, int *direction_return, int*font_ascent_return, *font_descent_return, XCharStruct *overall_return);
+
+###画字体
+XDrawText(Display *display, Drawable d, GC gc, intx, y, XTextItem *items, int nitems);
+XDrawText16(Display *display, Drawable d, GC gc, intx, y, XTextItem16 *items, int nitems);
+XDrawString(Display *display, Drawable d, GC gc, int x, int y, char *string, int length);
+XDrawString16(Display *display, Drawable d, GC gc, intx, y, XChar2b *string, int length);
+XDrawImageString(Display *display, Drawable d, GC gc, intx, y, char *string, int length);
+XDrawImageString16(Display *display, Drawable d, GC gc, intx, y, XChar2b *string, int length);
+
+## 在客户端与服务器之间传输图像
+Status XInitImage(XImage *image);
+XPutImage(Display *display, Drawable d, GC gc, XImage *image, intsrc_x, src_y, intdest_x, dest_y, unsignedintwidth, height);
+XImage *XGetImage(Display *display, Drawable d, intx, y, unsignedintwidth, height, unsignedlong plane_mask, int format);
+XImage *XGetSubImage(Display *display, Drawable d, intx, y, unsignedintwidth, height, unsignedlong plane_mask, int format, XImage *dest_image, intdest_x, dest_y);
+
+### 更改父窗口
+XReparentWindow(Display *display, Window w, Window parent, intx, y);
+XChangeSaveSet(Display *display, Window w, int change_mode);
+XAddToSaveSet(Display *display, Window w);
+XRemoveFromSaveSet(Display *display, Window w);
+XInstallColormap(Display *display, Colormap colormap);
+XUninstallColormap(Display *display, Colormap colormap);
+Colormap *XListInstalledColormaps(Display *display, Window w, int *num_return);
+XSetFontPath(Display *display, char **directories, int ndirs);
+char **XGetFontPath(Display *display, int *npaths_return);
+XFreeFontPath(char **list);
+XGrabServer(Display *display);
+XUngrabServer(Display *display);
+XKillClient(Display *display, XID resource);
+XSetScreenSaver(Display *display, inttimeout, interval, int prefer_blanking, int allow_exposures);
+XForceScreenSaver(Display *display, int mode);
+XActivateScreenSaver(Display *display);
+XResetScreenSaver(Display *display);
+XGetScreenSaver(Display *display, int*timeout_return, *interval_return, int *prefer_blanking_return, int *allow_exposures_return);
+XAddHost(Display *display, XHostAddress *host);
+XAddHosts(Display *display, XHostAddress *hosts, int num_hosts);
+XHostAddress *XListHosts(Display *display, int *nhosts_return, Bool *state_return);
+XRemoveHost(Display *display, XHostAddress *host);
+XRemoveHosts(Display *display, XHostAddress *hosts, int num_hosts);
+XSetAccessControl(Display *display, int mode);
+XEnableAccessControl(Display *display);
+XDisableAccessControl(Display *display);
+XSelectInput(Display *display, Window w, long event_mask);
+XFlush(Display *display);
+XSync(Display *display, Bool discard);
+int XEventsQueued(Display *display, int mode);
+int XPending(Display *display);
+XNextEvent(Display *display, XEvent *event_return);
+XPeekEvent(Display *display, XEvent *event_return);
+Bool(Display *display, XEvent *event, XPointer arg);
+XIfEvent(Display *display, XEvent *event_return, Bool (*predicate)(), XPointer arg);
+Bool XCheckIfEvent(Display *display, XEvent *event_return, Bool (*predicate)(), XPointer arg);
+XPeekIfEvent(Display *display, XEvent *event_return, Bool (*predicate)(), XPointer arg);
+XWindowEvent(Display *display, Window w, long event_mask, XEvent *event_return);
+Bool XCheckWindowEvent(Display *display, Window w, long event_mask, XEvent *event_return);
+XMaskEvent(Display *display, long event_mask, XEvent *event_return);
+Bool XCheckMaskEvent(Display *display, long event_mask, XEvent *event_return);
+Bool XCheckTypedEvent(Display *display, int event_type, XEvent *event_return);
+Bool XCheckTypedWindowEvent(Display *display, Window w, int event_type, XEvent *event_return);
+XPutBackEvent(Display *display, XEvent *event);
+Status XSendEvent(Display *display, Window w, Bool propagate, long event_mask, XEvent *event_send);
+unsigned long(Display *display);
+XTimeCoord *XGetMotionEvents(Display *display, Window w, Timestart, stop, int *nevents_return);
+int(Display *display, int (*procedure)());
+int(Display *display, Bool onoff);
+int *XSetErrorHandler(int *handler);
+XGetErrorText(Display *display, int code, char *buffer_return, int length);
+XGetErrorDatabaseText(Display *display, char*name, *message, char *default_string, char *buffer_return, int length);
+char *XDisplayName(char *string);
+int(int(*handler)(Display *));
+int XGrabPointer(Display *display, Window grab_window, Bool owner_events, unsignedint event_mask, intpointer_mode, keyboard_mode, Window confine_to, Cursor cursor, Time time);
+XUngrabPointer(Display *display, Time time);
+XChangeActivePointerGrab(Display *display, unsignedint event_mask, Cursor cursor, Time time);
+XGrabButton(Display *display, unsignedint button, unsignedint modifiers, Window grab_window, Bool owner_events, unsignedint event_mask, intpointer_mode, keyboard_mode, Window confine_to, Cursor cursor);
+XUngrabButton(Display *display, unsignedint button, unsignedint modifiers, Window grab_window);
+int XGrabKeyboard(Display *display, Window grab_window, Bool owner_events, intpointer_mode, keyboard_mode, Time time);
+XUngrabKeyboard(Display *display, Time time);
+XGrabKey(Display *display, int keycode, unsignedint modifiers, Window grab_window, Bool owner_events, intpointer_mode, keyboard_mode);
+XUngrabKey(Display *display, int keycode, unsignedint modifiers, Window grab_window);
+XAllowEvents(Display *display, int event_mode, Time time);
+XWarpPointer(Display *display, Windowsrc_w, dest_w, intsrc_x, src_y, unsignedintsrc_width, src_height, intdest_x, dest_y);
+XSetInputFocus(Display *display, Window focus, int revert_to, Time time);
+XGetInputFocus(Display *display, Window *focus_return, int *revert_to_return);
+XChangeKeyboardControl(Display *display, unsignedlong value_mask, XKeyboardControl *values);
+XGetKeyboardControl(Display *display, XKeyboardState *values_return);
+XAutoRepeatOn(Display *display);
+XAutoRepeatOff(Display *display);
+XBell(Display *display, int percent);
+XQueryKeymap(Display *display, char keys_return[32]);
+int XSetPointerMapping(Display *display, unsignedchar map[], int nmap);
+int XGetPointerMapping(Display *display, unsignedchar map_return[], int nmap);
+XChangePointerControl(Display *display, Booldo_accel, do_threshold, intaccel_numerator, accel_denominator, int threshold);
+XGetPointerControl(Display *display, int*accel_numerator_return, *accel_denominator_return, int *threshold_return);
+XDisplayKeycodes(Display *display, int*min_keycodes_return, *max_keycodes_return);
+KeySym *XGetKeyboardMapping(Display *display, KeyCode first_keycode, int keycode_count, int *keysyms_per_keycode_return);
+XChangeKeyboardMapping(Display *display, int first_keycode, int keysyms_per_keycode, KeySym *keysyms, int num_codes);
+XModifierKeymap *XNewModifiermap(int max_keys_per_mod);
+XModifierKeymap *XInsertModifiermapEntry(XModifierKeymap *modmap, KeyCode keycode_entry, int modifier);
+XModifierKeymap *XDeleteModifiermapEntry(XModifierKeymap *modmap, KeyCode keycode_entry, int modifier);
+XFreeModifiermap(XModifierKeymap *modmap);
+int XSetModifierMapping(Display *display, XModifierKeymap *modmap);
+XModifierKeymap *XGetModifierMapping(Display *display);
+char *XSetLocaleModifiers(char *modifier_list);
+XVaNestedList XVaCreateNestedList(int dummy);
+XOM XOpenOM(Display *display, XrmDatabase db, char *res_name, char *res_class);
+Status XCloseOM(XOM om);
+char *XSetOMValues(XOM om);
+char *XGetOMValues(XOM om);
+Display *XDisplayOfOM(XOM om);
+char *XLocaleOfOM(XOM om);
+XOC XCreateOC(XOM om);
+void XDestroyOC(XOC oc);
+XOM XOMOfOC(XOC oc);
+char *XSetOCValues(XOC oc);
+char *XGetOCValues(XOC oc);
+XFontSet XCreateFontSet(Display *display, char *base_font_name_list, char ***missing_charset_list_return, int *missing_charset_count_return, char **def_string_return);
+int XFontsOfFontSet(XFontSet font_set, XFontStruct ***font_struct_list_return, char ***font_name_list_return);
+char *XBaseFontNameListOfFontSet(XFontSet font_set);
+char *XLocaleOfFontSet(XFontSet font_set);
+void XFreeFontSet(Display *display, XFontSet font_set);
+Bool XDirectionalDependentDrawing(XFontSet font_set);
+Bool XContextualDrawing(XFontSet font_set);
+Bool XContextDependentDrawing(XFontSet font_set);
+XFontSetExtents *XExtentsOfFontSet(XFontSet font_set);
+int XmbTextEscapement(XFontSet font_set, char *string, int num_bytes);
+int XmbTextExtents(XFontSet font_set, char *string, int num_bytes, XRectangle *overall_ink_return, XRectangle *overall_logical_return);
+Status XmbTextPerCharExtents(XFontSet font_set, char *string, int num_bytes, XRectangle *ink_array_return, XRectangle *logical_array_return, int array_size, int *num_chars_return, XRectangle *overall_ink_return, XRectangle *overall_logical_return);
+void XmbDrawText(Display *display, Drawable d, GC gc, intx, y, XmbTextItem *items, int nitems);
+void XmbDrawString(Display *display, Drawable d, XFontSet font_set, GC gc, intx, y, char *string, int num_bytes);
+void XmbDrawImageString(Display *display, Drawable d, XFontSet font_set, GC gc, intx, y, char *string, int num_bytes);
+XIM XOpenIM(Display *display, XrmDatabase db, char *res_name, char *res_class);
+Status XCloseIM(XIM im);
+char *XSetIMValues(XIM im);
+char *XGetIMValues(XIM im);
+Display *XDisplayOfIM(XIM im);
+char *XLocaleOfIM(XIM im);
+Bool XRegisterIMInstantiateCallback(Display *display, XrmDatabase db, char *res_name, char *res_class, XIMProc callback, XPointer *client_data);
+void IMInstantiateCallback(Display *display, XPointer client_data, XPointer call_data);
+Bool XUnregisterIMInstantiateCallback(Display *display, XrmDatabase db, char *res_name, char *res_class, XIMProc callback, XPointer *client_data);
+void DestroyCallback(XIM im, XPointer client_data, XPointer call_data);
+XIC XCreateIC(XIM im);
+void XDestroyIC(XIC ic);
+void XSetICFocus(XIC ic);
+void XUnsetICFocus(XIC ic);
+char *XmbResetIC(XIC ic);
+XIM XIMOfIC(XIC ic);
+char *XSetICValues(XIC ic);
+char *XGetICValues(XIC ic);
+void PreeditStateNotifyCallback(XIC ic, XPointer client_data, XIMPreeditStateNotifyCallbackStruct *call_data);
+void CallbackPrototype(XIC ic, XPointer client_data, SomeType call_data);
+void GeometryCallback(XIC ic, XPointer client_data, XPointer call_data);
+void DestroyCallback(XIC ic, XPointer client_data, XPointer call_data);
+void StringConversionCallback(XIC ic, XPointer client_data, XIMStringConversionCallbackStruct *call_data);
+int PreeditStartCallback(XIC ic, XPointer client_data, XPointer call_data);
+void PreeditDoneCallback(XIC ic, XPointer client_data, XPointer call_data);
+void PreeditDrawCallback(XIC ic, XPointer client_data, XIMPreeditDrawCallbackStruct *call_data);
+void PreeditCaretCallback(XIC ic, XPointer client_data, XIMPreeditCaretCallbackStruct *call_data);
+void StatusStartCallback(XIC ic, XPointer client_data, XPointer call_data);
+void StatusDoneCallback(XIC ic, XPointer client_data, XPointer call_data);
+void StatusDrawCallback(XIC ic, XPointer client_data, XIMStatusDrawCallbackStruct *call_data);
+Bool XFilterEvent(XEvent *event, Window w);
+int XmbLookupString(XIC ic, XKeyPressedEvent *event, char *buffer_return, int bytes_buffer, KeySym *keysym_return, Status *status_return);
+Status XIconifyWindow(Display *display, Window w, int screen_number);
+Status XWithdrawWindow(Display *display, Window w, int screen_number);
+Status XReconfigureWMWindow(Display *display, Window w, int screen_number, unsignedint value_mask, XWindowChanges *values);
+int XmbTextListToTextProperty(Display *display, char **list, int count, XICCEncodingStyle style, XTextProperty *text_prop_return);
+int XmbTextPropertyToTextList(Display *display, XTextProperty *text_prop, char ***list_return, int *count_return);
+void XwcFreeStringList(wchar_t **list);
+Status XStringListToTextProperty(char **list, int count, XTextProperty *text_prop_return);
+Status XTextPropertyToStringList(XTextProperty *text_prop, char ***list_return, int *count_return);
+void XFreeStringList(char **list);
+void XSetTextProperty(Display *display, Window w, XTextProperty *text_prop, Atom property);
+Status XGetTextProperty(Display *display, Window w, XTextProperty *text_prop_return, Atom property);
+void XSetWMName(Display *display, Window w, XTextProperty *text_prop);
+Status XGetWMName(Display *display, Window w, XTextProperty *text_prop_return);
+XStoreName(Display *display, Window w, char *window_name);
+Status XFetchName(Display *display, Window w, char **window_name_return);
+void XSetWMIconName(Display *display, Window w, XTextProperty *text_prop);
+Status XGetWMIconName(Display *display, Window w, XTextProperty *text_prop_return);
+XSetIconName(Display *display, Window w, char *icon_name);
+Status XGetIconName(Display *display, Window w, char **icon_name_return);
+XWMHints *XAllocWMHints();
+typedef struct {
+	long flags;	        /* marks which fields in this structure are defined */
+		InputHint             (1L<<0)
+		StateHint             (1L<<1)
+		IconPixmapHint        (1L<<2)
+		IconWindowHint        (1L<<3)
+		IconPositionHint      (1L<<4)
+		IconMaskHint          (1L<<5)
+		WindowGroupHint       (1L<<6)
+		UrgencyHint           (1L<<8)
+		AllHints              (InputHint|StateHint|IconPixmapHint|IconWIndowHint|IconPositionHint|IconMaskHint|WindowGroupHint)
+	Bool input;	        /* does this application rely on the window manager to
+			           get keyboard input? */
+	int initial_state;	/* see below */
+	Pixmap icon_pixmap;	/* pixmap to be used as icon */
+	Window icon_window;	/* window to be used as icon */
+	int icon_x, icon_y;	/* initial position of icon */
+	Pixmap icon_mask;	/* pixmap to be used as mask for icon_pixmap */
+	XID window_group;	/* id of related window group */
+	/* this structure may be extended in the future */
+} XWMHints;
+XSetWMHints(Display *display, Window w, XWMHints *wmhints);
+XWMHints *XGetWMHints(Display *display, Window w);
+void XSetWMNormalHints(Display *display, Window w, XSizeHints *hints);
+Status XGetWMNormalHints(Display *display, Window w, XSizeHints *hints_return, long *supplied_return);
+void XSetWMSizeHints(Display *display, Window w, XSizeHints *hints, Atom property);
+Status XGetWMSizeHints(Display *display, Window w, XSizeHints *hints_return, long *supplied_return, Atom property);
+XSetClassHint(Display *display, Window w, XClassHint *class_hints);
+Status XGetClassHint(Display *display, Window w, XClassHint *class_hints_return);
+XSetTransientForHint(Display *display, Window w, Window prop_window);
+Status XGetTransientForHint(Display *display, Window w, Window *prop_window_return);
+Status XSetWMProtocols(Display *display, Window w, Atom *protocols, int count);
+Status XGetWMProtocols(Display *display, Window w, Atom **protocols_return, int *count_return);
+Status XSetWMColormapWindows(Display *display, Window w, Window *colormap_windows, int count);
+Status XGetWMColormapWindows(Display *display, Window w, Window **colormap_windows_return, int *count_return);
+XSetIconSizes(Display *display, Window w, XIconSize *size_list, int count);
+Status XGetIconSizes(Display *display, Window w, XIconSize **size_list_return, int *count_return);
+void XmbSetWMProperties(Display *display, Window w, char *window_name, char *icon_name, char *argv[], int argc, XSizeHints *normal_hints, XWMHints *wm_hints, XClassHint *class_hints);
+void XSetWMProperties(Display *display, Window w, XTextProperty *window_name, XTextProperty *icon_name, char **argv, int argc, XSizeHints *normal_hints, XWMHints *wm_hints, XClassHint *class_hints);
+XSetCommand(Display *display, Window w, char **argv, int argc);
+Status XGetCommand(Display *display, Window w, char ***argv_return, int *argc_return);
+void XSetWMClientMachine(Display *display, Window w, XTextProperty *text_prop);
+Status XGetWMClientMachine(Display *display, Window w, XTextProperty *text_prop_return);
+void XSetRGBColormaps(Display *display, Window w, XStandardColormap *std_colormap, int count, Atom property);
+Status XGetRGBColormaps(Display *display, Window w, XStandardColormap **std_colormap_return, int *count_return, Atom property);
+XrmQuark XrmStringToQuark(char *string);
+char *XrmQuarkToString(XrmQuark quark);
+void XrmStringToQuarkList(char *string, XrmQuarkList quarks_return);
+XrmStringToBindingQuarkList(char *string, XrmBindingList bindings_return, XrmQuarkList quarks_return);
+void XrmInitialize(void XrmInitialize(|));
+XrmDatabase XrmGetFileDatabase(char *filename);
+void XrmPutFileDatabase(XrmDatabase database, char *stored_db);
+char *XResourceManagerString(Display *display);
+char *XScreenResourceString(Screen *screen);
+XrmDatabase XrmGetStringDatabase(char *data);
+char *XrmLocaleOfDatabase(XrmDatabase database);
+void XrmDestroyDatabase(XrmDatabase database);
+void XrmSetDatabase(Display *display, XrmDatabase database);
+XrmDatabase XrmGetDatabase(Display *display);
+Status XrmCombineFileDatabase(char *filename, XrmDatabase *target_db, Bool override);
+void XrmCombineDatabase(XrmDatabasesource_db, *target_db, Bool override);
+void XrmMergeDatabases(XrmDatabasesource_db, *target_db);
+Bool XrmGetResource(XrmDatabase database, char *str_name, char *str_class, char **str_type_return, XrmValue *value_return);
+Bool XrmQGetResource(XrmDatabase database, XrmNameList quark_name, XrmClassList quark_class, XrmRepresentation *quark_type_return, XrmValue *value_return);
+Bool XrmQGetSearchResource(XrmDatabase database, XrmNameList names, XrmClassList classes, XrmSearchList list_return, int list_length);
+Bool XrmQGetSearchResource(XrmSearchList list, XrmName name, XrmClass class, XrmRepresentation *type_return, XrmValue *value_return);
+void XrmPutResource(XrmDatabase *database, char *specifier, char *type, XrmValue *value);
+void XrmQPutResource(XrmDatabase *database, XrmBindingList bindings, XrmQuarkList quarks, XrmRepresentation type, XrmValue *value);
+void XrmPutStringResource(XrmDatabase *database, char *specifier, char *value);
+void XrmQPutStringResource(XrmDatabase *database, XrmBindingList bindings, XrmQuarkList quarks, char *value);
+void XrmPutLineResource(XrmDatabase *database, char *line);
+Bool XrmEnumerateDatabase(XrmDatabase database, XrmNameList name_prefix, XrmClassList class_prefix, int mode, Bool (*proc)(), XPointer arg);
+void XrmParseCommand(XrmDatabase *database, XrmOptionDescList table, int table_count, char *name, int *argc_in_out, char **argv_in_out);
+KeySym XLookupKeysym(XKeyEvent *key_event, int index);
+KeySym XKeycodeToKeysym(Display *display, KeyCode keycode, int index);
+KeyCode XKeysymToKeycode(Display *display, KeySym keysym);
+XRefreshKeyboardMapping(XMappingEvent *event_map);
+void XConvertCase(KeySym keysym, KeySym *lower_return, KeySym *upper_return);
+KeySym XStringToKeysym(char *string);
+char *XKeysymToString(KeySym keysym);
+int XLookupString(XKeyEvent *event_struct, char *buffer_return, int bytes_buffer, KeySym *keysym_return, XComposeStatus *status_in_out);
+XRebindKeysym(Display *display, KeySym keysym, KeySym list[ ], int mod_count, unsignedchar *string, int num_bytes);
+char *Xpermalloc(unsignedint size);
+int XParseGeometry(char *parsestring, int*x_return, *y_return, unsignedint*width_return, *height_return);
+int XWMGeometry(Display *display, int screen, char *user_geom, char *def_geom, unsignedint bwidth, XSizeHints *hints, int*x_return, *y_return, int *width_return, int *height_return, int *gravity_return);
+Region XPolygonRegion(XPoint points[], int n, int fill_rule);
+XSetRegion(Display *display, GC gc, Region r);
+XDestroyRegion(Region r);
+XOffsetRegion(Region r, intdx, dy);
+XShrinkRegion(Region r, intdx, dy);
+XClipBox(Region r, XRectangle *rect_return);
+XIntersectRegion(Regionsra,srb, dr_return);
+XUnionRegion(Regionsra,srb, dr_return);
+XUnionRectWithRegion(XRectangle *rectangle, Region src_region, Region dest_region_return);
+XSubtractRegion(Regionsra,srb, dr_return);
+XXorRegion(Regionsra,srb, dr_return);
+Bool XEmptyRegion(Region r);
+Bool XEqualRegion(Regionr1, r2);
+Bool XPointInRegion(Region r, intx, y);
+int XRectInRegion(Region r, intx, y, unsignedintwidth, height);
+XStoreBytes(Display *display, char *bytes, int nbytes);
+XStoreBuffer(Display *display, char *bytes, int nbytes, int buffer);
+char *XFetchBytes(Display *display, int *nbytes_return);
+char *XFetchBuffer(Display *display, int *nbytes_return, int buffer);
+XRotateBuffers(Display *display, int rotate);
+XVisualInfo *XGetVisualInfo(Display *display, long vinfo_mask, XVisualInfo *vinfo_template, int *nitems_return);
+Status XMatchVisualInfo(Display *display, int screen, int depth, int class, XVisualInfo *vinfo_return);
+XImage *XCreateImage(Display *display, Visual *visual, unsignedint depth, int format, int offset, char *data, unsignedint width, unsignedint height, int bitmap_pad, int bytes_per_line);
+unsigned long XGetPixel(XImage *ximage, int x, int y);
+XPutPixel(XImage *ximage, int x, int y, unsignedlong pixel);
+XImage *XSubImage(XImage *ximage, int x, int y, unsignedint subimage_width, unsignedint subimage_height);
+XAddPixel(XImage *ximage, long value);
+XDestroyImage(XImage *ximage);
+
+### 操纵位图
+int XReadBitmapFile(Display *display, Drawable d, char *filename, unsignedint*width_return, *height_return, Pixmap *bitmap_return, int*x_hot_return, *y_hot_return);
+int XReadBitmapFileData(char *filename, unsignedint*width_return, *height_return, unsignedchar *data_return, int*x_hot_return, *y_hot_return);
+int XWriteBitmapFile(Display *display, char *filename, Pixmap bitmap, unsignedintwidth, height, intx_hot, y_hot);
+Pixmap XCreatePixmapFromBitmapData(Display *display, Drawable d, char *data, unsignedintwidth, height, unsignedlongfg, bg, unsignedint depth);
+Pixmap XCreateBitmapFromData(Display *display, Drawable d, char *data, unsignedintwidth, height);
+int XSaveContext(Display *display, XID rid, XContext context, XPointer data);
+int XFindContext(Display *display, XID rid, XContext context, XPointer *data_return);
+int XDeleteContext(Display *display, XID rid, XContext context);
+Bool XQueryExtension(Display *display, char *name, int *major_opcode_return, int *first_event_return, int *first_error_return);
+char **XListExtensions(Display *display, int *nextensions_return);
+XFreeExtensionList(char **list);
+XExtCodes *XInitExtension(Display *display, char *name);
+XExtCodes *XAddExtension(Display *display);
+int XESetCloseDisplay(Display *display, int extension, int (*proc)());
+int (*proc)(Display *display, XExtCodes *codes);
+int *XESetCreateGC(Display *display, int extension, int (*proc)());
+int (*proc)(Display *display, GC gc, XExtCodes *codes);
+int *XESetCopyGC(Display *display, int extension, int (*proc)());
+int (*proc)(Display *display, GC gc, XExtCodes *codes);
+int *XESetFreeGC(Display *display, int extension, int (*proc)());
+int (*proc)(Display *display, GC gc, XExtCodes *codes);
+int *XESetCreateFont(Display *display, int extension, int (*proc)());
+int (*proc)(Display *display, XFontStruct *fs, XExtCodes *codes);
+int *XESetFreeFont(Display *display, int extension, int (*proc)());
+int (*proc)(Display *display, XFontStruct *fs, XExtCodes *codes);
+int *XESetWireToEvent(Display *display, int event_number, Status (*proc)());
+int (*proc)(Display *display, XEvent *re, xEvent *event);
+unsigned long_XSetLastRequestRead(Display *display, xGenericReply *rep);
+Status *XESetEventToWire(Display *display, int event_number, int (*proc)());
+int (*proc)(Display *display, XEvent *re, xEvent *event);
+Bool *XESetWireToError(Display *display, int error_number, Bool (*proc)());
+int (*proc)(Display *display, XErrorEvent *he, xError *we);
+int *XESetError(Display *display, int extension, int (*proc)());
+int (*proc)(Display *display, xError *err, XExtCodes *codes, int *ret_code);
+char *XESetErrorString(Display *display, int extension, char *(*proc)());
+int (*proc)(Display *display, int code, XExtCodes *codes, char *buffer, int nbytes);
+void *XESetPrintErrorValues(Display *display, int extension, void (*proc)());
+void (*proc)(Display *display, XErrorEvent *ev, void *fp);
+int *XESetFlushGC(Display *display, int extension, int *(*proc)());
+int *XESetCopyGC(Display *display, int extension, int *(*proc)());
+void (*proc)(Display *display, XExtCodes *codes, char *data, long len);
+XExtData **XEHeadOfExtensionList(XEDataObject object);
+XAddToExtensionList(XExtData **structure, XExtData *ext_data);
+XExtData *XFindOnExtensionList(struct_XExtData **structure, int number);
+XAllocID(Display *display);
+XAllocIDs(Display *display, XID *ids_return, int count);
+FlushGC(Display *display, GC gc);
+_XFlushGCCache(Display *display, GC gc);
+LockDisplay(Display *display);
+UnlockDisplay(Display *display);
+Data( display, (char *);
+Status _XReply(Display *display, xReply *rep, int extra, Bool discard);
+_XRead(Display *display, char *data_return, long nbytes);
+_XRead16(Display *display, short *data_return, long nbytes);
+_XRead32(Display *display, long *data_return, long nbytes);
+_XRead16Pad(Display *display, short *data_return, long nbytes);
+_XReadPad(Display *display, char *data_return, long nbytes);
+char *_XAllocScratch(Display *display, unsignedlong nbytes);
+char *_XAllocTemp(Display *display, unsignedlong nbytes);
+void _XFreeTemp(Display *display, char *buf, unsignedlong nbytes);
+XSetStandardProperties(Display *display, Window w, char *window_name, char *icon_name, Pixmap icon_pixmap, char **argv, int argc, XSizeHints *hints);
+XSetNormalHints(Display *display, Window w, XSizeHints *hints);
+Status XGetNormalHints(Display *display, Window w, XSizeHints *hints_return);
+XSetZoomHints(Display *display, Window w, XSizeHints *zhints);
+Status XGetZoomHints(Display *display, Window w, XSizeHints *zhints_return);
+XSetSizeHints(Display *display, Window w, XSizeHints *hints, Atom property);
+Status XGetSizeHints(Display *display, Window w, XSizeHints *hints_return, Atom property);
+Status XGetStandardColormap(Display *display, Window w, XStandardColormap *colormap_return, Atom property);
+XSetStandardColormap(Display *display, Window w, XStandardColormap *colormap, Atom property);
+int XGeometry(Display *display, int screen, char*position, *default_position, unsignedint bwidth, unsignedintfwidth, fheight, intxadder, yadder, int*x_return, *y_return, int*width_return, *height_return);
+char *XGetDefault(Display *display, char *program, char *option);
+Status XDraw(Display *display, Drawable d, GC gc, Vertex *vlist, int vcount);
+Status XDrawFilled(Display *display, Drawable d, GC gc, Vertex *vlist, int vcount);
+
+### 关联用户数据与值
+XAssocTable *XCreateAssocTable(int size);
+XMakeAssoc(Display *display, XAssocTable *table, XID x_id, char *data);
+char *XLookUpAssoc(Display *display, XAssocTable *table, XID x_id);
+XDeleteAssoc(Display *display, XAssocTable *table, XID x_id);
+XDestroyAssocTable(XAssocTable *table);	#指定ASSOC表
+
+
+
+
+

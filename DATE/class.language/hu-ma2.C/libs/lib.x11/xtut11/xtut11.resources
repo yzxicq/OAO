@@ -1,0 +1,8 @@
+xtut11.exit: Quit
+xtut11.background: light blue
+xtut11.foreground: slate blue
+xtut11.border: slate blue
+xtut11.exit.background: darblue
+xtut11.exit.foreground: blue
+xtut11.exit.border: slate blue
+xtut11.font: -*-charter-medium-r-*-15-*
