@@ -1,161 +1,161 @@
-    GObject
-    ├── GAppInfoMonitor
-    ├── GAppLaunchContext
-    ├── GApplicationCommandLine
-    ├── GApplication
-    ├── GInputStream
-    │   ├── GFilterInputStream
-    │   │   ├── GBufferedInputStream
-    │   │   │   ╰── GDataInputStream
-    │   │   ╰── GConverterInputStream
-    │   ├── GFileInputStream
-    │   ├── GMemoryInputStream
-    │   ╰── GUnixInputStream
-    ├── GOutputStream
-    │   ├── GFilterOutputStream
-    │   │   ├── GBufferedOutputStream
-    │   │   ├── GConverterOutputStream
-    │   │   ╰── GDataOutputStream
-    │   ├── GFileOutputStream
-    │   ├── GMemoryOutputStream
-    │   ╰── GUnixOutputStream
-    ├── GBytesIcon
-    ├── GCancellable
-    ├── GCharsetConverter
-    ├── GCredentials
-    ├── GDBusActionGroup
-    ├── GDBusAuthObserver
-    ├── GDBusConnection
-    ├── GDBusInterfaceSkeleton
-    ├── GMenuModel
-    │   ├── GDBusMenuModel
-    │   ╰── GMenu
-    ├── GDBusMessage
-    ├── GDBusMethodInvocation
-    ├── GDBusObjectManagerClient
-    ├── GDBusObjectManagerServer
-    ├── GDBusObjectProxy
-    ├── GDBusObjectSkeleton
-    ├── GDBusProxy
-    ├── GDBusServer
-    ├── GDesktopAppInfo
-    ├── GEmblem
-    ├── GEmblemedIcon
-    ├── GFileEnumerator
-    ├── GFileIcon
-    ├── GFileInfo
-    ├── GIOStream
-    │   ├── GFileIOStream
-    │   ├── GSimpleIOStream
-    │   ├── GSocketConnection
-    │   │   ├── GTcpConnection
-    │   │   │   ╰── GTcpWrapperConnection
-    │   │   ╰── GUnixConnection
-    │   ╰── GTlsConnection
-    ├── GFileMonitor
-    ├── GFilenameCompleter
-    ├── GInetAddress
-    ├── GInetAddressMask
-    ├── GSocketAddress
-    │   ├── GInetSocketAddress
-    │   │   ╰── GProxyAddress
-    │   ╰── GUnixSocketAddress
-    ├── GTypeModule
-    │   ╰── GIOModule
-    ├── GListStore
-    ├── GMenuAttributeIter
-    ├── GMenuItem
-    ├── GMenuLinkIter
-    ├── GMountOperation
-    ├── GNetworkAddress
-    ├── GNetworkService
-    ├── GNotification
-    ├── GPermission
-    │   ╰── GSimplePermission
-    ├── GPropertyAction
-    ├── GSocketAddressEnumerator
-    │   ╰── GProxyAddressEnumerator
-    ├── GResolver
-    ├── GSettingsBackend
-    ├── GSettings
-    ├── GSimpleAction
-    ├── GSimpleActionGroup
-    ├── GSimpleAsyncResult
-    ├── GSimpleProxyResolver
-    ├── GSocketClient
-    ├── GSocketControlMessage
-    │   ├── GUnixCredentialsMessage
-    │   ╰── GUnixFDMessage
-    ├── GSocket
-    ├── GSocketListener
-    │   ╰── GSocketService
-    │       ╰── GThreadedSocketService
-    ├── GSubprocess
-    ├── GSubprocessLauncher
-    ├── GTask
-    ├── GTestDBus
-    ├── GThemedIcon
-    ├── GTlsCertificate
-    ├── GTlsDatabase
-    ├── GTlsInteraction
-    ├── GTlsPassword
-    ├── GUnixFDList
-    ├── GUnixMountMonitor
-    ├── GVfs
-    ├── GVolumeMonitor
-    ├── GZlibCompressor
-    ╰── GZlibDecompressor
-    GInterface
-    ├── GAction
-    ├── GActionGroup
-    ├── GActionMap
-    ├── GAppInfo
-    ├── GAsyncInitable
-    ├── GAsyncResult
-    ├── GSeekable
-    ├── GIcon
-    ├── GLoadableIcon
-    ├── GConverter
-    ├── GInitable
-    ├── GPollableInputStream
-    ├── GPollableOutputStream
-    ├── GRemoteActionGroup
-    ├── GDBusInterface
-    ├── GDBusObject
-    ├── GDBusObjectManager
-    ├── GDesktopAppInfoLookup
-    ├── GDrive
-    ├── GDtlsClientConnection
-    ├── GDtlsConnection
-    ├── GDatagramBased
-    ├── GDtlsServerConnection
-    ├── GFileDescriptorBased
-    ├── GFile
-    ├── GSocketConnectable
-    ├── GListModel
-    ├── GMount
-    ├── GNetworkMonitor
-    ├── GProxy
-    ├── GProxyResolver
-    ├── GTlsBackend
-    ├── GTlsClientConnection
-    ├── GTlsFileDatabase
-    ├── GTlsServerConnection
-        ╰── GVolume
-    GBoxed
-    ├── GDBusAnnotationInfo
-    ├── GDBusArgInfo
-    ├── GDBusInterfaceInfo
-    ├── GDBusMethodInfo
-    ├── GDBusNodeInfo
-    ├── GDBusPropertyInfo
-    ├── GDBusSignalInfo
-    ├── GFileAttributeInfoList
-    ├── GFileAttributeMatcher
-    ├── GResource
-    ├── GSettingsSchema
-    ├── GSettingsSchemaKey
-    ├── GSettingsSchemaSource
-        ╰── GSrvTarget
+GObject
+├── GAppInfoMonitor
+├── GAppLaunchContext
+├── GApplicationCommandLine
+├── GApplication
+├── GInputStream
+│   ├── GFilterInputStream
+│   │   ├── GBufferedInputStream
+│   │   │   ╰── GDataInputStream
+│   │   ╰── GConverterInputStream
+│   ├── GFileInputStream
+│   ├── GMemoryInputStream
+│   ╰── GUnixInputStream
+├── GOutputStream
+│   ├── GFilterOutputStream
+│   │   ├── GBufferedOutputStream
+│   │   ├── GConverterOutputStream
+│   │   ╰── GDataOutputStream
+│   ├── GFileOutputStream
+│   ├── GMemoryOutputStream
+│   ╰── GUnixOutputStream
+├── GBytesIcon
+├── GCancellable
+├── GCharsetConverter
+├── GCredentials
+├── GDBusActionGroup
+├── GDBusAuthObserver
+├── GDBusConnection
+├── GDBusInterfaceSkeleton
+├── GMenuModel
+│   ├── GDBusMenuModel
+│   ╰── GMenu
+├── GDBusMessage
+├── GDBusMethodInvocation
+├── GDBusObjectManagerClient
+├── GDBusObjectManagerServer
+├── GDBusObjectProxy
+├── GDBusObjectSkeleton
+├── GDBusProxy
+├── GDBusServer
+├── GDesktopAppInfo
+├── GEmblem
+├── GEmblemedIcon
+├── GFileEnumerator
+├── GFileIcon
+├── GFileInfo
+├── GIOStream
+│   ├── GFileIOStream
+│   ├── GSimpleIOStream
+│   ├── GSocketConnection
+│   │   ├── GTcpConnection
+│   │   │   ╰── GTcpWrapperConnection
+│   │   ╰── GUnixConnection
+│   ╰── GTlsConnection
+├── GFileMonitor
+├── GFilenameCompleter
+├── GInetAddress
+├── GInetAddressMask
+├── GSocketAddress
+│   ├── GInetSocketAddress
+│   │   ╰── GProxyAddress
+│   ╰── GUnixSocketAddress
+├── GTypeModule
+│   ╰── GIOModule
+├── GListStore
+├── GMenuAttributeIter
+├── GMenuItem
+├── GMenuLinkIter
+├── GMountOperation
+├── GNetworkAddress
+├── GNetworkService
+├── GNotification
+├── GPermission
+│   ╰── GSimplePermission
+├── GPropertyAction
+├── GSocketAddressEnumerator
+│   ╰── GProxyAddressEnumerator
+├── GResolver
+├── GSettingsBackend
+├── GSettings
+├── GSimpleAction
+├── GSimpleActionGroup
+├── GSimpleAsyncResult
+├── GSimpleProxyResolver
+├── GSocketClient
+├── GSocketControlMessage
+│   ├── GUnixCredentialsMessage
+│   ╰── GUnixFDMessage
+├── GSocket
+├── GSocketListener
+│   ╰── GSocketService
+│   ╰── GThreadedSocketService
+├── GSubprocess
+├── GSubprocessLauncher
+├── GTask
+├── GTestDBus
+├── GThemedIcon
+├── GTlsCertificate
+├── GTlsDatabase
+├── GTlsInteraction
+├── GTlsPassword
+├── GUnixFDList
+├── GUnixMountMonitor
+├── GVfs
+├── GVolumeMonitor
+├── GZlibCompressor
+╰── GZlibDecompressor
+GInterface
+├── GAction
+├── GActionGroup
+├── GActionMap
+├── GAppInfo
+├── GAsyncInitable
+├── GAsyncResult
+├── GSeekable
+├── GIcon
+├── GLoadableIcon
+├── GConverter
+├── GInitable
+├── GPollableInputStream
+├── GPollableOutputStream
+├── GRemoteActionGroup
+├── GDBusInterface
+├── GDBusObject
+├── GDBusObjectManager
+├── GDesktopAppInfoLookup
+├── GDrive
+├── GDtlsClientConnection
+├── GDtlsConnection
+├── GDatagramBased
+├── GDtlsServerConnection
+├── GFileDescriptorBased
+├── GFile
+├── GSocketConnectable
+├── GListModel
+├── GMount
+├── GNetworkMonitor
+├── GProxy
+├── GProxyResolver
+├── GTlsBackend
+├── GTlsClientConnection
+├── GTlsFileDatabase
+├── GTlsServerConnection
+╰── GVolume
+GBoxed
+├── GDBusAnnotationInfo
+├── GDBusArgInfo
+├── GDBusInterfaceInfo
+├── GDBusMethodInfo
+├── GDBusNodeInfo
+├── GDBusPropertyInfo
+├── GDBusSignalInfo
+├── GFileAttributeInfoList
+├── GFileAttributeMatcher
+├── GResource
+├── GSettingsSchema
+├── GSettingsSchemaKey
+├── GSettingsSchemaSource
+╰── GSrvTarget
 
 

@@ -23,6 +23,15 @@
 	@gcc `pkg-config --cflags gtk+-3.0` -o example-5 example-5.c `pkg-config --libs gtk+-3.0`
 	./example-5
 
+6:
+	@echo "画画"
+	gcc `pkg-config --cflags gtk+-3.0` -o example-6 example-6.c `pkg-config --libs gtk+-3.0`
+	./example-6
+
 test:
 	@gcc `pkg-config --cflags gtk+-3.0` -o test test.c `pkg-config --libs gtk+-3.0`
 
+a:
+	@cd a;gcc `pkg-config --cflags gtk+-3.0` -o run exampleapp.c exampleappwin.c main.c `pkg-config --libs gtk+-3.0`
+
+clean:
