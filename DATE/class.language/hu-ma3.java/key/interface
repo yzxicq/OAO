@@ -1,0 +1,9 @@
+
+		接口的声明
+
+[public] interface 接口名 [extends 父接口名列表]
+{      
+    [public][static][final]属性类型  常量名＝常量值;
+    [public][abstract]返回值 方法名(参数列表)
+                                            [throw 异常列表];
+}

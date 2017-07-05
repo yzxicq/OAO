@@ -1,0 +1,2 @@
+关键字native用来声明用其他语言书写方法体并具体实现方法功能的特殊方法
+    native  double  addMethod(int x,int y);

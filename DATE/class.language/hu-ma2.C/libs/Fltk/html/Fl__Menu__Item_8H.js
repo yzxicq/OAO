@@ -1,0 +1,25 @@
+var Fl__Menu__Item_8H =
+[
+    [ "Fl_Menu_Item", "structFl__Menu__Item.html", "structFl__Menu__Item" ],
+    [ "Fl_Menu", "Fl__Menu__Item_8H.html#a5d62cb6d3879dca9d132cee821d54896", null ],
+    [ "FL_MENU_INACTIVE", "Fl__Menu__Item_8H.html#abed82baf7f470b522273a3e37c24c600ac6317c5784b88505e7f8a3d78c71bc39", null ],
+    [ "FL_MENU_TOGGLE", "Fl__Menu__Item_8H.html#abed82baf7f470b522273a3e37c24c600a7425ae185af0bdbf04dbadaaa9413574", null ],
+    [ "FL_MENU_VALUE", "Fl__Menu__Item_8H.html#abed82baf7f470b522273a3e37c24c600ab9cdabaf7a4065f0b8ea4e73ccf1b7cf", null ],
+    [ "FL_MENU_RADIO", "Fl__Menu__Item_8H.html#abed82baf7f470b522273a3e37c24c600a11aab33bbffb20feac97c9b9979638bf", null ],
+    [ "FL_MENU_INVISIBLE", "Fl__Menu__Item_8H.html#abed82baf7f470b522273a3e37c24c600aba2f58fc4162b673a1e166c324aa598f", null ],
+    [ "FL_SUBMENU_POINTER", "Fl__Menu__Item_8H.html#abed82baf7f470b522273a3e37c24c600aa6dad0dc73339fdb1a9ae9d3079f8659", null ],
+    [ "FL_SUBMENU", "Fl__Menu__Item_8H.html#abed82baf7f470b522273a3e37c24c600a1b4924fb8a5172e5d8defa98dba6b7ef", null ],
+    [ "FL_MENU_DIVIDER", "Fl__Menu__Item_8H.html#abed82baf7f470b522273a3e37c24c600a4e221192c48b090c3c3a0a6fb716faae", null ],
+    [ "FL_MENU_HORIZONTAL", "Fl__Menu__Item_8H.html#abed82baf7f470b522273a3e37c24c600addd31aa5c7e6fc8367bed974d366103c", null ],
+    [ "FL_PUP_NONE", "Fl__Menu__Item_8H.html#ab04a0655cd1e3bcac5e8f48c18df1a57aa5358e281ed9e0a5ef3dd717c69d2456", null ],
+    [ "FL_PUP_GREY", "Fl__Menu__Item_8H.html#ab04a0655cd1e3bcac5e8f48c18df1a57a3f513b71a720ccc98caf29d07fcf3ee9", null ],
+    [ "FL_PUP_GRAY", "Fl__Menu__Item_8H.html#ab04a0655cd1e3bcac5e8f48c18df1a57a9faf9e8a1570582bd923e1e93fb0145c", null ],
+    [ "FL_MENU_BOX", "Fl__Menu__Item_8H.html#ab04a0655cd1e3bcac5e8f48c18df1a57a2985b061770f4f34b96ca31bf7760de9", null ],
+    [ "FL_PUP_BOX", "Fl__Menu__Item_8H.html#ab04a0655cd1e3bcac5e8f48c18df1a57a47bdeaf71b6f3ef9b4e3d96dbad14d63", null ],
+    [ "FL_MENU_CHECK", "Fl__Menu__Item_8H.html#ab04a0655cd1e3bcac5e8f48c18df1a57a8c3775c6ae47b7274f5611727c725ab2", null ],
+    [ "FL_PUP_CHECK", "Fl__Menu__Item_8H.html#ab04a0655cd1e3bcac5e8f48c18df1a57a8336aa02474ff03df7806f50b9f29cfb", null ],
+    [ "FL_PUP_RADIO", "Fl__Menu__Item_8H.html#ab04a0655cd1e3bcac5e8f48c18df1a57a6c344b93f6ed791acd4201b5141e3807", null ],
+    [ "FL_PUP_INVISIBLE", "Fl__Menu__Item_8H.html#ab04a0655cd1e3bcac5e8f48c18df1a57a754349b3f6290659391a0b7532f01e80", null ],
+    [ "FL_PUP_SUBMENU", "Fl__Menu__Item_8H.html#ab04a0655cd1e3bcac5e8f48c18df1a57a2b2cd816b3f61a8117d85aa5bc83acf4", null ],
+    [ "fl_old_shortcut", "Fl__Menu__Item_8H.html#ga6f6f1aea3b90a03c1714336e7aef349d", null ]
+];

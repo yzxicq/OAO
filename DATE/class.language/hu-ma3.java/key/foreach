@@ -1,0 +1,16 @@
+foreach循环
+JDK 1.5 引进了一种新的循环类型，被称为foreach循环或者加强型循环，它能在不使用下标的情况下遍历数组。
+
+示例:
+	#该实例用来显示数组myList中的所有元素：
+		public class TestArray {
+
+		   public static void main(String[] args) {
+			  double[] myList = {1.9, 2.9, 3.4, 3.5};
+
+			  // 打印所有数组元素
+			  for (double element: myList) {
+				 System.out.println(element);
+			  }
+		   }
+		}
