@@ -1,4 +1,4 @@
-概括&简史
+介绍
 ===========
 
 
@@ -31,11 +31,11 @@ sql,或另一种规则。直接上来就做网页，不太符合实际。<br>
 =========== 
 
 
- [》c语言笔记](http://github.com/angelllls/OAO/tree/master/DATE/class.language/hu-ma2.C)<br>
- [》编程语言java](https://github.com/angelllls/OAO/tree/master/DATE/class.language/hu-ma3.java)<br> 
- [》启动引导UEFI](https://github.com/angelllls/OAO/tree/master/DATE/class.devinf/sys.uefi)<br> 
- [》linux](https://github.com/angelllls/OAO/tree/master/DATE/class.devinf/sys.linux)<br> 
- [》 内建项目-OAO辅助](https://github.com/angelllls/d.aider)<br>
+ [--c语言笔记](http://github.com/angelllls/OAO/tree/master/DATE/class.language/hu-ma2.C)<br>
+ [--编程语言java](https://github.com/angelllls/OAO/tree/master/DATE/class.language/hu-ma3.java)<br> 
+ [--启动引导UEFI](https://github.com/angelllls/OAO/tree/master/DATE/class.devinf/sys.uefi)<br> 
+ [--linux](https://github.com/angelllls/OAO/tree/master/DATE/class.devinf/sys.linux)<br> 
+ [--内建项目-OAO辅助](https://github.com/angelllls/d.aider)<br>
 
 参与项目
 ===========
