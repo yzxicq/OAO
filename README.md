@@ -1,6 +1,6 @@
 概括&简史
 ===========
-	    "one add one (OAO)"，起这个名字,是引用了系统哲学里的经典的一加一话题，在
+	    "one add one (OAO)"，起这个名字,有引用在系统哲学里的经典的一加一话题，在
 	数学里它是基础,无疑是答案是二,只是在哲学的世界里,一加一就不再是唯一的答案....
 	 
 	    这是一个“知识共享平台”,可以查看资料与参与无数项目的完善，所有的知识都在规
@@ -28,10 +28,10 @@
 	 
 项目列表
 =========== 
-	[c语言笔记](https://github.com/angelllls/OAO/tree/master/DATE/class.language/hu-ma2.C)
-	[编程语言java](https://github.com/angelllls/OAO/tree/master/DATE/class.language/hu-ma3.java)
-	[启动引导UEFI](https://github.com/angelllls/OAO/tree/master/DATE/class.devinf/sys.uefi)
-	[linux](https://github.com/angelllls/OAO/tree/master/DATE/class.devinf/sys.linux)
+[c语言笔记](http://github.com/angelllls/OAO/tree/master/DATE/class.language/hu-ma2.C)
+[编程语言java](https://github.com/angelllls/OAO/tree/master/DATE/class.language/hu-ma3.java)
+[启动引导UEFI](https://github.com/angelllls/OAO/tree/master/DATE/class.devinf/sys.uefi)
+[linux](https://github.com/angelllls/OAO/tree/master/DATE/class.devinf/sys.linux)
 参与项目
 ===========
 	目录就像是一个法则那样，定制自有的规则,自然的其包含的目录默认使他上层的规则，以此类推。
