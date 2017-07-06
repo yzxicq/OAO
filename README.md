@@ -28,10 +28,10 @@
 	 
 项目列表
 =========== 
-	 [c语言笔记](http://github.com/angelllls/OAO/tree/master/DATE/class.language/hu-ma2.C)
-	 [编程语言java](https://github.com/angelllls/OAO/tree/master/DATE/class.language/hu-ma3.java)
-	 [启动引导UEFI](https://github.com/angelllls/OAO/tree/master/DATE/class.devinf/sys.uefi)
-	 [linux](https://github.com/angelllls/OAO/tree/master/DATE/class.devinf/sys.linux)
+	 .[c语言笔记](http://github.com/angelllls/OAO/tree/master/DATE/class.language/hu-ma2.C)
+	 .[编程语言java](https://github.com/angelllls/OAO/tree/master/DATE/class.language/hu-ma3.java)
+	 .[启动引导UEFI](https://github.com/angelllls/OAO/tree/master/DATE/class.devinf/sys.uefi)
+	 .[linux](https://github.com/angelllls/OAO/tree/master/DATE/class.devinf/sys.linux)
 参与项目
 ===========
 	目录就像是一个法则那样，定制自有的规则,自然的其包含的目录默认使他上层的规则，以此类推。
