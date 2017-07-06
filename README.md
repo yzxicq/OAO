@@ -22,18 +22,22 @@
 	 
 	    如果要编辑参与，可读的文本最好别太复杂,像xml,html那些，不是所有人都是编程
 	的,特别是入门者,你的可读文本可以先制定简单的规则,后期可以用脚本或软件转化为其
-	他格式，如html,sql。直接上来就做网页，不太符合实际。
+	他格式，如html,sql,或另一种规则。直接上来就做网页，不太符合实际。
 	 
 	 
 	 
-	 
-
-
+项目列表
+=========== 
+	[c语言笔记](https://github.com/angelllls/OAO/tree/master/DATE/class.language/hu-ma2.C),
+	[编程语言java](https://github.com/angelllls/OAO/tree/master/DATE/class.language/hu-ma3.java),
+	[启动引导UEFI](https://github.com/angelllls/OAO/tree/master/DATE/class.devinf/sys.uefi),
+	[linux](https://github.com/angelllls/OAO/tree/master/DATE/class.devinf/sys.linux),
 参与项目
 ===========
 	目录就像是一个法则那样，定制自有的规则,自然的其包含的目录默认使他上层的规则，以此类推。
 	每个目录都有start文件和、help文件，start是初学者读本，help可以让你更加的顺利了解他们。
 	这个项目更偏向与对人二非对机器，除非那对我们有利的。
+
 
 *项目概括
 -----------
@@ -54,6 +58,7 @@
 	$ make down					#git数据同步到本地主机 
 	$ make update 					#本地主机数据同步到git
 	$ make clean					#清理二进制或tmp文件
+
 
 
 联系
