@@ -1,0 +1,9 @@
+http://gtk2-perl.sourceforge.net/doc/
+
+
+
+
+
+print "Hello, World!\n"; 
+
+	$ perl -e 'print "Hello World\n"'
