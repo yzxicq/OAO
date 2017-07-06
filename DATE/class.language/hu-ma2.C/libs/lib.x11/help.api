@@ -248,19 +248,19 @@ XUndefineCursor(Display *display, Window w);	#取消定义
 
 ### 获取窗口信息
 Status XQueryTree(Display *display, Window w, Window *root_return, Window *parent_return, Window **children_return, unsignedint *nchildren_return);
-	display	# 指定显示器
-	w	# 指定窗口
-	root_return	#返回根窗口
-	parent_return	#返回主窗口
+	display		# 指定显示器
+	w		# 指定窗口
+	root_return	# 返回根窗口
+	parent_return	# 返回主窗口
 	children_return	# 子窗口列表
 	nchildren_return	# 子窗口数
 Status XGetWindowAttributes(Display *display, Window w, XWindowAttributes *window_attributes_return);
 	window_attributes_return	# 返回XWindowAttributes结构
 typedef struct {
-     int x, y;                     /* location of window */
-     int width, height;            /* width and height of window */
-     int border_width;             /* border width of window */
-     int depth;                    /* depth of window */
+     int x, y;				# 窗口的位置
+     int width, height;			# 窗口的大小
+     int border_width;			# 方框宽度
+     int depth;				# 窗口的深度
      Visual *visual;               /* the associated visual structure */
      Window root;                  /* root of screen containing window */
      int class;                    /* InputOutput, InputOnly*/
@@ -291,21 +291,21 @@ Status XGetGeometry(Display *display, Drawable d, Window *root_return, int*x_ret
 
 ### 转换屏幕坐标
 Bool XTranslateCoordinates(Display *display, Windowsrc_w, dest_w, intsrc_x, src_y, int*dest_x_return, *dest_y_return, Window *child_return);
-src_w	# 指定原窗口
-dest_w	# 指定目标窗口
-src_x
-src_y	#指定源窗口内的x和y坐标
-dest_x_return
-dest_y_return	# 返回目标窗口中的x和y坐标
-child_return	# 如果坐标包含在目标窗口的映射子节点中，则返回该子节点
+	src_w	# 指定原窗口
+	dest_w	# 指定目标窗口
+	src_x
+	src_y	#指定源窗口内的x和y坐标
+	dest_x_return
+	dest_y_return	# 返回目标窗口中的x和y坐标
+	child_return	# 如果坐标包含在目标窗口的映射子节点中，则返回该子节点
 Bool XQueryPointer(Display *display, Window w, Window *root_return, *child_return, int*root_x_return, *root_y_return, int *win_x_return, *win_y_return, unsignedint *mask_return);
-root_return	# 返回根窗口
-child_return	# 返回子窗口
-root_x_return
-root_y_return	# 相对于根窗口的原点返回指针坐标。
-win_x_return
-win_y_return	Return the pointer coordinates relative to the specified window.
-mask_return	Returns the current state of the modifier keys and pointer buttons. 
+	root_return	# 返回根窗口
+	child_return	# 返回子窗口
+	root_x_return
+	root_y_return	# 相对于根窗口的原点返回指针坐标。
+	win_x_return
+	win_y_return	Return the pointer coordinates relative to the specified window.
+	mask_return	Returns the current state of the modifier keys and pointer buttons. 
 
 ### 性能与原子
 Atom XInternAtom(Display *display, char *atom_name, Bool only_if_exists);
@@ -533,6 +533,7 @@ XSync(Display *display, Bool discard);
 int XEventsQueued(Display *display, int mode);
 int XPending(Display *display);
 XNextEvent(Display *display, XEvent *event_return);
+	event_return	# 返回队列中的下一个事件。
 XPeekEvent(Display *display, XEvent *event_return);
 Bool(Display *display, XEvent *event, XPointer arg);
 XIfEvent(Display *display, XEvent *event_return, Bool (*predicate)(), XPointer arg);
@@ -865,5 +866,39 @@ XDestroyAssocTable(XAssocTable *table);	#指定ASSOC表
 
 
 
-
+typedef union _XEvent {
+	int type;	/* must not be changed */
+	XAnyEvent xany;
+	XKeyEvent xkey;
+	XButtonEvent xbutton;
+	XMotionEvent xmotion;
+	XCrossingEvent xcrossing;
+	XFocusChangeEvent xfocus;
+	XExposeEvent xexpose;
+	XGraphicsExposeEvent xgraphicsexpose;
+	XNoExposeEvent xnoexpose;
+	XVisibilityEvent xvisibility;
+	XCreateWindowEvent xcreatewindow;
+	XDestroyWindowEvent xdestroywindow;
+	XUnmapEvent xunmap;
+	XMapEvent xmap;
+	XMapRequestEvent xmaprequest;
+	XReparentEvent xreparent;
+	XConfigureEvent xconfigure;
+	XGravityEvent xgravity;
+	XResizeRequestEvent xresizerequest;
+	XConfigureRequestEvent xconfigurerequest;
+	XCirculateEvent xcirculate;
+	XCirculateRequestEvent xcirculaterequest;
+	XPropertyEvent xproperty;
+	XSelectionClearEvent xselectionclear;
+	XSelectionRequestEvent xselectionrequest;
+	XSelectionEvent xselection;
+	XColormapEvent xcolormap;
+	XClientMessageEvent xclient;
+	XMappingEvent xmapping;
+	XErrorEvent xerror;
+	XKeymapEvent xkeymap;
+	long pad[24];
+} XEvent;
 
