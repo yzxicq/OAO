@@ -4,6 +4,7 @@
 
 "one add one (OAO)"，起这个名字,有引用在系统哲学里的经典的一加一话题，在数学里它是基<br>
 础,无疑是答案是二,只是在哲学的世界里,一加一就不再是唯一的答案.... <br>
+
 这是一个“知识共享平台”,可以查看资料与参与无数项目的完善，所有的知识都在规定的系统规则<br>
 之下,你只需了解规则，那么你就很容易的详细你需要的知识。OAO把规则记录到了start文件之中<br>
 ，就代表本目录及包含的目录都沿用这一规则(没有特殊情况下),就有子目录的子目录中的规则分<br>
@@ -34,7 +35,7 @@ sql,或另一种规则。直接上来就做网页，不太符合实际。<br>
  [》编程语言java](https://github.com/angelllls/OAO/tree/master/DATE/class.language/hu-ma3.java)<br> 
  [》启动引导UEFI](https://github.com/angelllls/OAO/tree/master/DATE/class.devinf/sys.uefi)<br> 
  [》linux](https://github.com/angelllls/OAO/tree/master/DATE/class.devinf/sys.linux)<br> 
-
+ [》 内建项目-OAO辅助](https://github.com/angelllls/d.aider)<br>
 
 参与项目
 ===========
