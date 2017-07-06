@@ -13,10 +13,10 @@
 “参与者要点”，帮OAO完善，帮他成长，这样，你只要付出一的代价，或就是等待时间的问题了，<br>
 这里也会记录贡献者，当OAO有回报的时候，贡献者也必是最先的。<br>
  
-我的做法只是为了OAO的完善。OAO可以帮助自学者，可以一起开发项目；OAO的规则体制可以根据<br>
-良性规则改变规则，这点就给予有想象力强的或不善于其他的人一个空间；OAO的分工可以是明确<br>
-的，良性的阅读体系，OAO的不断脚本化，可视化工程，或者还可以是会思考的OAO，这样的集结<br>
-是很方便的，而且方便于创新。<br>
+我的做法只是为了OAO的完善。OAO可以帮助自学者，可以一起开发项目；OAO的规则体制可以<br>
+根据良性规则改变规则，这点就给予有想象力强的或不善于其他的人一个空间；OAO的分工可<br>
+以是明确的，良性的阅读体系，OAO的不断脚本化，可视化工程，或者还可以是会思考的OAO，<br>
+这样的集结是很方便的，而且方便于创新。<br>
  
 遗憾的是，OAO目前跟angelllls一个属性，工作环境是在ubuntu下的，windows中感觉需要高级<br>
 编辑器，或msys2(linux运行环境)。<br>
@@ -60,12 +60,12 @@ help	--本意是加快回忆效率的,要求整洁，按照明显特征来,后�
 *github工作
 -----------
 
-<$ git clone git@github.com:angelllls/OAO.git	#第一次需要完整下载>
-<$ cd DATA
-<
-<$ make down					#git数据同步到本地主机>
-<$ make update 					#本地主机数据同步到git>
-<$ make clean					#清理二进制或tmp文件>
++$ git clone git@github.com:angelllls/OAO.git	#第一次需要完整下载+
++$ cd DATA+
+++
++$ make down					#git数据同步到本地主机+
++$ make update 					#本地主机数据同步到git+
++$ make clean					#清理二进制或tmp文件+
 
 
 
