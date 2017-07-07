@@ -41,7 +41,7 @@
 ===========
 
 目录就像是一个法则那样，定制自有的规则,自然的其包含的目录默认使他上层的规则，以此类推。<br>
-每个目录都有_start_文件和、_help_文件，_start_是初学者读本，_help_可以让你更加的顺利了解他们。<br>
+每个目录都有start文件和、help文件，start是初学者读本，help可以让你更加的顺利了解他们。<br>
 这个项目更偏向与对人二非对机器，除非那对我们有利的。<br>
 
 
@@ -60,12 +60,16 @@ help	--本意是加快回忆效率的,要求整洁，按照明显特征来,后�
 *github工作
 -----------
 
-`$ git clone git@github.com:angelllls/OAO.git	#第一次需要完整下载`<br>
+`$ git clone git@github.com:angelllls/OAO.git	#第一次需要完整下载`
+
 `$ cd OAO`<br>
 
-`$ make down					#git数据同步到本地主机`<br>
-`$ make update 					#本地主机数据同步到git`<br>
-`$ make clean					#清理二进制或tmp文件`<br>
+`$ make down					#git数据同步到本地主机`
+
+`$ make update 					#本地主机数据同步到git`
+
+`$ make clean					#清理二进制或tmp文件`
+
 
 
 
