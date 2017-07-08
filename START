@@ -1,14 +1,16 @@
 
 
 
-目录说明:
 
-DATE	存放简洁的数据或项目，体系是比较整体的,仅在顶层目录
-PRO	未归纳活动目录,仅在顶层目录
-ADOUT	说明自己与一些相关资源,仅在顶层目录
 
-Makefile	make的文件
-makefile.common	Makefile的包含
+
+
+本目录规定:
+	DATE	存放简洁的数据或项目，体系是比较整体的,仅在顶层目录
+	PRO	未归纳活动目录,仅在顶层目录
+	ADOUT	说明自己与一些相关资源,仅在顶层目录
+	Makefile	make的文件
+	makefile.common	Makefile的包含
 
 
 
